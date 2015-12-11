@@ -50,7 +50,12 @@ class Qube6_6(Qube):
 
     def submit(self,jobObj):
         job = jobObj.getparam();
-        cmd = self.getValue("executable")+' --name myjobrx --cpus 1 '+job["fileInfo"]["filePath"]
+        cmd = self.getValue("executable")+' --name myjobrx --prototype cmdrange --priority 9998 --range 1-200 --chunk 10 ls -s QB_FRAME_START -e QB_FRAME_END ' +job["fileInfo"]["filePath"]
+        #--groups string
+        #--cluster string
+        #--processors int
+        #--supervisor
+        #--range 1-100 --chunk 10
         print cmd
 
         p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -58,6 +63,7 @@ class Qube6_6(Qube):
         stdout_data, stderr_data = p.communicate()
 
         print stdout_data
+        print stderr_data
 
     def _buildCmd(self):
         for job in self._job:
