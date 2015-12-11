@@ -6,6 +6,9 @@ class DispatcherBase(interface.IDispatcher):
         self._param={}
         self._job=[]
 
+    def getparam(self):
+        return self._param
+
     def setValue(self, key, value):
         self._param[key]=value
 

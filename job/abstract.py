@@ -9,6 +9,9 @@ class JobBase(interface.IJob):
         self._param["fileInfo"] = param.copy() #copy param Dictionary
         self._param["jobInfo"]={}
 
+    def getparam(self):
+        return self._param
+
     def setValue(self, key, value):
         self._param[key]=value
 

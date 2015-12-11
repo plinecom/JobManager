@@ -101,7 +101,7 @@ class FileParserMayaMA(FileParserMaya):
         if byFrameSteps is None:
             byFrameSteps = "0"
 
-
+        self._param["filePath"]= self.getFilePath()
         self._param["version"]=version
         self._param["application"]="Maya "+version
         self._param["renderer"]=renderer

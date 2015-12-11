@@ -26,9 +26,18 @@ class Qube6_6(Qube):
         #print stdout_data
 
         group_dic = {}
-        for element_groups in  qb_xml_document.findall("object/item/object/groups"):
-            group_dic[element_groups.text]="true"
-        print group_dic
+        for e in qb_xml_document.findall("object/item/object/groups"):
+            group_dic[e.text] = "1"
+
+        self.setValue("groups",group_dic.keys())
+        print group_dic.keys()
+
+        cluster_dic = {}
+        for e in qb_xml_document.findall("object/item/object/cluster"):
+            cluster_dic[e.text] = "1"
+        #    group_dic[e.text]="1"
+        self.setValue("clusters",cluster_dic.keys())
+        print cluster_dic.keys()
 
     def addJob(self,job):
         self._job.append(job)
@@ -38,6 +47,17 @@ class Qube6_6(Qube):
 
     def getDispatcherName(self):
         return "Qube 6.6"
+
+    def submit(self,jobObj):
+        job = jobObj.getparam();
+        cmd = self.getValue("executable")+' --name myjobrx --cpus 1 '+job["fileInfo"]["filePath"]
+        print cmd
+
+        p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+        stdout_data, stderr_data = p.communicate()
+
+        print stdout_data
 
     def _buildCmd(self):
         for job in self._job:

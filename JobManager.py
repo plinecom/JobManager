@@ -26,3 +26,6 @@ if __name__ == "__main__":
     job_factory = jobfactory.factory.JobFactory()
     job = job_factory.getJob(fileParser.getparam(), "SudioPlugin()")
     dispatcher = dispatcher.qube.Qube6_6()
+    print dispatcher.getparam();
+
+    dispatcher.submit(job)
