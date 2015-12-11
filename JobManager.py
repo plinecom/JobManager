@@ -4,7 +4,7 @@ import filelib.parser.mb
 import os.path
 import sys
 import jobfactory.factory
-
+import dispatcher.qube
 
 if __name__ == "__main__":
 
@@ -25,3 +25,4 @@ if __name__ == "__main__":
     print fileParser.getparam()
     job_factory = jobfactory.factory.JobFactory()
     job = job_factory.getJob(fileParser.getparam(), "SudioPlugin()")
+    dispatcher = dispatcher.qube.Qube6_6()

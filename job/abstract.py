@@ -6,7 +6,8 @@ class JobBase(interface.IJob):
     def __init__(self,param):
         interface.IJob.__init__(self)
         self._param ={}
-        self._param = param.copy() #copy param Dictionary
+        self._param["fileInfo"] = param.copy() #copy param Dictionary
+        self._param["jobInfo"]={}
 
     def setValue(self, key, value):
         self._param[key]=value
