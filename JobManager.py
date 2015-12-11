@@ -6,6 +6,10 @@ import sys
 import jobfactory.factory
 import dispatcher.qube
 
+import PyQt4.QtGui
+import PyQt4.QtCore
+
+
 if __name__ == "__main__":
 
 
@@ -28,4 +32,13 @@ if __name__ == "__main__":
     dispatcher = dispatcher.qube.Qube6_6()
     print dispatcher.getparam();
 
-    dispatcher.submit(job)
+
+    app = PyQt4.QtGui.QApplication(sys.argv)
+    main_window = PyQt4.QtGui.QMainWindow()
+    main_window.setWindowTitle("JobManager")
+    #main_window.setCentralWidget(panel)
+    main_window.show()
+
+
+    sys.exit(app.exec_())
+#    dispatcher.submit(job)
