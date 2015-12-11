@@ -3,8 +3,12 @@ import filelib.parser.ma
 import filelib.parser.mb
 import os.path
 import sys
+import jobfactory.factory
+
 
 if __name__ == "__main__":
+
+
     addFilePath = "/root/test_maya_2015.mb"
 
     if(len(sys.argv) > 1):
@@ -14,11 +18,10 @@ if __name__ == "__main__":
     (dir,jobExt) = os.path.splitext(addFilePath)
     jobExt = jobExt.lower()
     if jobExt == ".ma":
-        fileParser = filelib.parser.ma.FileParserMayaMA(addFilePath, SudioPlugin())
+        fileParser = filelib.parser.ma.FileParserMayaMA(addFilePath)
     elif jobExt == ".mb":
         fileParser = filelib.parser.mb.FileParserMayaMB(addFilePath)
     fileParser.parse()
     print fileParser.getparam()
-#    job2 = fileParser.getJob()
-    #jobfactory = JobFactory();
-    #job2 = jobfactory.getJob(fileParser.getparam(), SudioPlugin())
+    job_factory = jobfactory.factory.JobFactory()
+    job = job_factory.getJob(fileParser.getparam(), "SudioPlugin()")

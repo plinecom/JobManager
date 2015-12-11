@@ -11,7 +11,7 @@ class FileParserMaya(abstract.FileParserBase):
 
 
 class FileParserMayaMA(FileParserMaya):
-    def __init__(self, filepath, studioPlugin):
+    def __init__(self, filepath):
         FileParserMaya.__init__(self, filepath)
 
     def parse_process(self):
