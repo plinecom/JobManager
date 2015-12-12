@@ -1,7 +1,6 @@
 import abstract
 import subprocess
 import xml.etree.ElementTree
-__author__ = 'Masataka'
 
 
 class Qube(abstract.DispatcherBase):

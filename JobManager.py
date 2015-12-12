@@ -19,6 +19,8 @@ if __name__ == "__main__":
         addFilePath = sys.argv[1]
 
 
+    #command line mode?
+
     (dir,jobExt) = os.path.splitext(addFilePath)
     jobExt = jobExt.lower()
     if jobExt == ".ma":
