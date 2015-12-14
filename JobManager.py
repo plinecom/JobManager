@@ -32,15 +32,16 @@ if __name__ == "__main__":
     print fileParser.getparam()
     job_factory = jobfactory.factory.JobFactory()
     job = job_factory.getJob(fileParser.getparam(), "SudioPlugin()")
-    dispatcher = dispatcher.qube.Qube6_6()
-    print dispatcher.getparam();
+    dispatcherList=[]
+    dispatcherList.append(dispatcher.qube.Qube6_6())
+    print dispatcherList[0].getparam();
 
 
     app = PyQt4.QtGui.QApplication(sys.argv)
     main_window = PyQt4.QtGui.QMainWindow()
     panel = PyQt4.QtGui.QWidget()
 
-    common_panel = gui.submit.common.CommonPanel(panel)
+    common_panel = gui.submit.common.CommonPanel(dispatcherList, panel)
     pannel_layout = PyQt4.QtGui.QVBoxLayout()
     pannel_layout.addWidget(common_panel)
     panel.setLayout(pannel_layout)

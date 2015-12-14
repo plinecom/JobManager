@@ -26,16 +26,17 @@ class Qube6_6(Qube):
 
         group_dic = {}
         for e in qb_xml_document.findall("object/item/object/groups"):
-            group_dic[e.text] = "1"
+            if e.text != None:
+                group_dic[e.text.encode("utf-8")] = "1"
 
-        self.setValue("groups",group_dic.keys())
+        self.setValue("groups", sorted(group_dic.keys()))
         print group_dic.keys()
 
         cluster_dic = {}
         for e in qb_xml_document.findall("object/item/object/cluster"):
-            cluster_dic[e.text] = "1"
+            cluster_dic[e.text.encode("utf-8")] = "1"
         #    group_dic[e.text]="1"
-        self.setValue("clusters",cluster_dic.keys())
+        self.setValue("pools", sorted(cluster_dic.keys()))
         print cluster_dic.keys()
 
     def addJob(self,job):

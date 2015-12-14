@@ -1,0 +1,26 @@
+{
+  "maya_executable": {
+    "Maya_2016" : "/usr/autodesk/maya2016/bin/Render",
+    "Maya_2015" : "/usr/autodesk/maya2015-x64/bin/Render",
+    "Maya_2014" : "/usr/autodesk/maya2014-x64/bin/Render",
+    "Maya_2013" : "/usr/autodesk/maya2013-x64/bin/Render"
+  },
+  "Maya_renderer": {
+    "mentalray": "mr",
+    "maya_software": "sw",
+    "maya_hardware": "hw",
+    "maya_file": "file",
+    "vray": "vray",
+    "3Delight": "3Delight"
+  },
+  "dispatcher": {
+    "Qube6" : {
+      "manager": "localhost.localdomain",
+      "submitter" : "/usr/local/pfx/qube/bin/qbsub"
+    },
+    "Deadline7": {
+      "repository":"/DeadlineRepository7",
+      "submitter":""
+    }
+  }
+}
