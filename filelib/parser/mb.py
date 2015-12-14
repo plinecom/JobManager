@@ -132,20 +132,20 @@ class FileParserMayaMB(filelib.parser.ma.FileParserMaya):
         if renderer is None:
             renderer = 'sw'
 
-        self._param["version"]=version
-        self._param["application"]="Maya "+version
-        self._param["renderer"]=renderer
+        self._param["version"] = version
+        self._param["application"] = "Maya "+version
+        self._param["renderer"] = renderer
 
-        self._param["byFrameSteps"]=str(byFrameSteps)
+        self._param["byFrameSteps"] = str(byFrameSteps)
 
-        self._param["outputFileExt"]=outputFileExt
-        self._param["outputFileExtVray"]=outputFileExtVray
-        self._param["outputPathFormat"]=outputPathFormat
-        self._param["opuputPathFormatVray"]=outputPathFormatVray
+        self._param["outputFileExt"] = outputFileExt
+        self._param["outputFileExtVray"] = outputFileExtVray
+        self._param["outputPathFormat"] = outputPathFormat
+        self._param["opuputPathFormatVray"] = outputPathFormatVray
 
-        self._param["renderLayerList"]=renderLayerList
-        self._param["renderLayerEnable"]=renderlayerEnable
-        self._param["cameraList"]=cameraList
+        self._param["renderLayerList"] = renderLayerList
+        self._param["renderLayerEnable"] = renderlayerEnable
+        self._param["cameraList"] = cameraList
 
         print self._param
 

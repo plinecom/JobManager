@@ -1,11 +1,11 @@
-import abstract
+import jobinfo
 
 __author__ = 'Masataka'
 
 
-class JobMaya(abstract.JobBase):
+class JobMaya(jobinfo.JobInfo):
     def __init__(self,param):
-        abstract.JobBase.__init__(self,param)
+        jobinfo.JobInfo.__init__(self, param)
 
 
 class JobMayaSw(JobMaya):

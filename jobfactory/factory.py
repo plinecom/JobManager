@@ -1,4 +1,4 @@
-from job import maya
+from job import _maya
 
 
 class JobFactory():
@@ -13,5 +13,5 @@ class JobFactory():
 #        param["machineLimit"]= studio_plugin.getDefaultMachineLimit()
 
         if param["software"] == "Maya":
-            job = maya.JobMaya(param)
+            job = _maya.JobMaya(param)
         return job

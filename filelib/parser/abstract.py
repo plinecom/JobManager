@@ -18,7 +18,7 @@ class FileParserBase(interface.IFileParser):
 
     def setFilePath(self, filePath):
         self._param["filePath"] = filePath
-        self._param["job"] = os.path.splitext(os.path.basename(filePath))[0]
+        self._param["fileNameWithoutExt"] = os.path.splitext(os.path.basename(filePath))[0]
         self._param["proj"] = os.path.dirname(filePath)
 
     def getFilePath(self):
@@ -39,3 +39,7 @@ class FileParserBase(interface.IFileParser):
         self.parse_preprocess()
 
         self.parse_process()
+
+        self._param["jobName"] = self._param["fileNameWithoutExt"]\
+                                 + "_" + self._param["software"]\
+                                 + "_" + self._param["renderer"]
