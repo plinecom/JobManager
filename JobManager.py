@@ -9,6 +9,7 @@ import dispatcher.qube
 import PyQt4.QtGui
 import PyQt4.QtCore
 
+import gui.submit.common
 
 if __name__ == "__main__":
 
@@ -37,8 +38,16 @@ if __name__ == "__main__":
 
     app = PyQt4.QtGui.QApplication(sys.argv)
     main_window = PyQt4.QtGui.QMainWindow()
+    panel = PyQt4.QtGui.QWidget()
+
+    common_panel = gui.submit.common.CommonPanel(panel)
+    pannel_layout = PyQt4.QtGui.QVBoxLayout()
+    pannel_layout.addWidget(common_panel)
+    panel.setLayout(pannel_layout)
+
+
     main_window.setWindowTitle("JobManager")
-    #main_window.setCentralWidget(panel)
+    main_window.setCentralWidget(panel)
     main_window.show()
 
 
