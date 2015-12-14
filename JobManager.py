@@ -14,6 +14,21 @@ import job.jobinfo
 
 import gui.submit.common
 
+class MainWindow(PyQt4.QtGui.QMainWindow):
+    def __init__(self, parent=None):
+        PyQt4.QtGui.QMainWindow.__init__(self,parent)
+
+        self.setAcceptDrops(True)
+    def dragEnterEvent(self, event):
+        if event.mimeData().hasUrls():
+            event.accept()
+        else:
+            event.ignore()
+
+    def dropEvent(self, event):
+        for u in event.mimeData().urls():
+            print u.toLocalFile()
+
 if __name__ == "__main__":
 
 
@@ -45,14 +60,17 @@ if __name__ == "__main__":
     dispatcherList.append(dispatcher.qube.Qube6_6())
     print dispatcherList[0].getparam()
 
-    job = job.jobinfo.JobInfo(fileParser.getparam(),dispatcherList,config)
+    jobList = []
+    jobList.append(job.jobinfo.JobInfo(fileParser.getparam(),dispatcherList,config))
 
 
     app = PyQt4.QtGui.QApplication(sys.argv)
-    main_window = PyQt4.QtGui.QMainWindow()
+    main_window = MainWindow()
     panel = PyQt4.QtGui.QWidget()
 
-    common_panel = gui.submit.common.CommonPanel(job, panel)
+    #main_window.setAcceptDrops(True)
+
+    common_panel = gui.submit.common.CommonPanel(jobList, panel)
     pannel_layout = PyQt4.QtGui.QVBoxLayout()
     pannel_layout.addWidget(common_panel)
     panel.setLayout(pannel_layout)
