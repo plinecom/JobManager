@@ -54,6 +54,7 @@ if __name__ == "__main__":
         fileParser = filelib.parser.mb.FileParserMayaMB(addFilePath)
     fileParser.parse()
     print fileParser.getparam()
+#
 #    job_factory = jobfactory.factory.JobFactory()
 #    job = job_factory.getJob(fileParser.getparam(), "SudioPlugin()")
     dispatcherList = []
