@@ -20,8 +20,22 @@ class JobInfo():
     def getparam(self):
         return self._param
 
+    def getlist_dispatcher(self):
+        key = "dispatcherInfo"
+        param = []
+        if self._param.has_key(key):
+            param = self._param["dispatcherInfo"]
+        return param
+
+    def getparam_config(self):
+        key = "configInfo"
+        param = {}
+        if self._param.has_key(key):
+            param = self._param["configInfo"]
+        return param
+
     def setValue(self, key, value):
-        self._param[key]=value
+        self._param[key]["job_setting_override"]=value
 
     def getValue(self, key):
 

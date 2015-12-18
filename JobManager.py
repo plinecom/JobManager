@@ -1,6 +1,4 @@
 
-import filelib.parser.ma
-import filelib.parser.mb
 import filelib.parser.lib
 import os.path
 import sys
@@ -36,10 +34,12 @@ class MainWindow(PyQt4.QtGui.QMainWindow):
             self._joblist.append(
                     job.jobinfo.JobInfo(
                             fileParser.getparam(),
-                            self._joblist[0]._param["dispatcherInfo"],
-                            self._joblist[0]._param["configInfo"]))
+                            self._joblist[0].getlist_dispatcher(),
+                            self._joblist[0].getparam_config()
+                    )
+            )
 
-            print self._joblist
+            print self._joblist[-1]._param
 
 def loadFile(absPath):
     return job
