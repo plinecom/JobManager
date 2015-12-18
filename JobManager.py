@@ -19,6 +19,7 @@ class MainWindow(PyQt4.QtGui.QMainWindow):
     def __init__(self,jobList, parent=None):
         PyQt4.QtGui.QMainWindow.__init__(self,parent)
         self._joblist = jobList
+        print self._joblist
 
         self.setAcceptDrops(True)
 
@@ -31,6 +32,14 @@ class MainWindow(PyQt4.QtGui.QMainWindow):
     def dropEvent(self, event):
         for u in event.mimeData().urls():
             print u.toLocalFile()
+            file_parser = filelib.parser.lib.fileParse(str(u.toLocalFile()))
+            self._joblist.append(
+                    job.jobinfo.JobInfo(
+                            fileParser.getparam(),
+                            self._joblist[0]._param["dispatcherInfo"],
+                            self._joblist[0]._param["configInfo"]))
+
+            print self._joblist
 
 def loadFile(absPath):
     return job
@@ -64,6 +73,10 @@ if __name__ == "__main__":
     print dispatcherList[0].getparam()
 
     jobList = []
+    jobInfo = job.jobinfo.JobInfo(fileParser.getparam(),dispatcherList,config)
+    print job.jobinfo.JobInfo(fileParser.getparam(),dispatcherList,config)
+    print "test"
+    print jobInfo
     jobList.append(job.jobinfo.JobInfo(fileParser.getparam(),dispatcherList,config))
 
 

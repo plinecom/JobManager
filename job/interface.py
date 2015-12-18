@@ -1,8 +1,10 @@
 __author__ = 'Masataka'
 
-class IJob(dict):
+
+class IJob():
     def __init__(self):
         pass
 
     def test(self):
         pass
+
