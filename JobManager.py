@@ -1,6 +1,7 @@
 
 import filelib.parser.ma
 import filelib.parser.mb
+import filelib.parser.lib
 import os.path
 import sys
 import jobfactory.factory
@@ -15,10 +16,12 @@ import job.jobinfo
 import gui.submit.common
 
 class MainWindow(PyQt4.QtGui.QMainWindow):
-    def __init__(self, parent=None):
+    def __init__(self,jobList, parent=None):
         PyQt4.QtGui.QMainWindow.__init__(self,parent)
+        self._joblist = jobList
 
         self.setAcceptDrops(True)
+
     def dragEnterEvent(self, event):
         if event.mimeData().hasUrls():
             event.accept()
@@ -28,6 +31,10 @@ class MainWindow(PyQt4.QtGui.QMainWindow):
     def dropEvent(self, event):
         for u in event.mimeData().urls():
             print u.toLocalFile()
+
+def loadFile(absPath):
+    return job
+
 
 if __name__ == "__main__":
 
@@ -46,13 +53,8 @@ if __name__ == "__main__":
 
     #command line mode?
 
-    (dir,jobExt) = os.path.splitext(addFilePath)
-    jobExt = jobExt.lower()
-    if jobExt == ".ma":
-        fileParser = filelib.parser.ma.FileParserMayaMA(addFilePath)
-    elif jobExt == ".mb":
-        fileParser = filelib.parser.mb.FileParserMayaMB(addFilePath)
-    fileParser.parse()
+    # loadFile(addFilePath)
+    fileParser = filelib.parser.lib.fileParse(addFilePath)
     print fileParser.getparam()
 #
 #    job_factory = jobfactory.factory.JobFactory()
@@ -66,7 +68,7 @@ if __name__ == "__main__":
 
 
     app = PyQt4.QtGui.QApplication(sys.argv)
-    main_window = MainWindow()
+    main_window = MainWindow(jobList)
     panel = PyQt4.QtGui.QWidget()
 
     #main_window.setAcceptDrops(True)
