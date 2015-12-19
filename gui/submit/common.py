@@ -12,7 +12,7 @@ class CommonPanel(QtGui.QWidget):
         height = 0
         layout = QtGui.QGridLayout()
         self.jobname_label = QtGui.QLabel("job name")
-        self.jobname_qle = QtGui.QLineEdit(self._jobList[0]._param["fileInfo"]["jobName"])
+        self.jobname_qle = QtGui.QLineEdit(self._jobList[0].getValue("jobName"))
 
         layout.addWidget(self.jobname_label, height, 0)
         layout.addWidget(self.jobname_qle, height, 1)

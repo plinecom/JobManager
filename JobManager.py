@@ -33,7 +33,7 @@ class MainWindow(PyQt4.QtGui.QMainWindow):
             file_parser = filelib.parser.lib.fileParse(str(u.toLocalFile()))
             self._joblist.append(
                     job.jobinfo.JobInfo(
-                            fileParser.getparam(),
+                            file_parser.getparam(),
                             self._joblist[0].getlist_dispatcher(),
                             self._joblist[0].getparam_config()
                     )
@@ -48,7 +48,8 @@ def loadFile(absPath):
 if __name__ == "__main__":
 
 
-    addFilePath = "/root/test_maya_2015.mb"
+    #addFilePath = "/root/test_maya_2015.mb"
+    addFilePath = None
 
     if(len(sys.argv) > 1):
         addFilePath = sys.argv[1]
@@ -63,8 +64,11 @@ if __name__ == "__main__":
     #command line mode?
 
     # loadFile(addFilePath)
-    fileParser = filelib.parser.lib.fileParse(addFilePath)
-    print fileParser.getparam()
+    fileParam = None
+    if addFilePath is not None:
+        fileParser = filelib.parser.lib.fileParse(addFilePath)
+        print fileParser.getparam()
+        fileParam = fileParser.getparam()
 #
 #    job_factory = jobfactory.factory.JobFactory()
 #    job = job_factory.getJob(fileParser.getparam(), "SudioPlugin()")
@@ -73,11 +77,11 @@ if __name__ == "__main__":
     print dispatcherList[0].getparam()
 
     jobList = []
-    jobInfo = job.jobinfo.JobInfo(fileParser.getparam(),dispatcherList,config)
-    print job.jobinfo.JobInfo(fileParser.getparam(),dispatcherList,config)
+    jobInfo = job.jobinfo.JobInfo(fileParam,dispatcherList,config)
+    print job.jobinfo.JobInfo(fileParam,dispatcherList,config)
     print "test"
     print jobInfo
-    jobList.append(job.jobinfo.JobInfo(fileParser.getparam(),dispatcherList,config))
+    jobList.append(job.jobinfo.JobInfo(fileParam,dispatcherList,config))
 
 
     app = PyQt4.QtGui.QApplication(sys.argv)

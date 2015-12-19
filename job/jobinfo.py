@@ -12,7 +12,7 @@ class JobInfo():
         self._param["fileInfo"] = param  # copy param Dictionary
         self._param["dispatcherInfo"] = dispatcher
         self._param["configInfo"] = config
-        self._param["job_setting_override"] = {}  # GUI Select
+        self._param["job_setting_override"] = {"dispatcher": 0}  # GUI Select
         print "inst"
         print self._param
         print self
@@ -39,6 +39,21 @@ class JobInfo():
 
     def getValue(self, key):
 
-        if self._param.has_key(key):
-            return self._param[key]
+        category = None
+        if self._param.has_key("job_setting_override"):
+            category = "job_setting_override"
+        elif self._param.has_key("configInfo"):
+            category = "configInfo"
+        elif self._param.has_key("job_setting_override"):
+            category = "job_setting_override"
+        elif self._param.has_key("dispatcherInfo"):
+            category = "dispatcherInfo"
+        else:
+            return ""
+
+        if category == "dispatcherInfo":
+            if self._param[category][ self._param["job_setting_override"]].has_key(key):
+                return self._param[category][ self._param["job_setting_override"]][key]
+        elif self._param[category].has_key(key):
+            return self._param[category][key]
         return ""
