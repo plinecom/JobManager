@@ -12,7 +12,7 @@ class CommonPanel(QtGui.QWidget):
         height = 0
         layout = QtGui.QGridLayout()
         self.jobname_label = QtGui.QLabel("job name")
-        self.jobname_qle = QtGui.QLineEdit(self._jobList[0].getValue("jobName"))
+        self.jobname_qle = QtGui.QLineEdit(self._jobList.get_current_job().getValue("jobName"))
 
         layout.addWidget(self.jobname_label, height, 0)
         layout.addWidget(self.jobname_qle, height, 1)
@@ -56,7 +56,7 @@ class CommonPanel(QtGui.QWidget):
 
         self.group_label = QtGui.QLabel("group")
         self.group_combo = QtGui.QComboBox(self)
-        self.group_combo.addItems(self._jobList[0]._param["dispatcherInfo"][0].getparam()["groups"])
+        self.group_combo.addItems(self._jobList.get_current_job()._param["dispatcherInfo"][0].getparam()["groups"])
         layout.addWidget(self.group_label, height, 0)
         layout.addWidget(self.group_combo, height, 1)
 
@@ -64,7 +64,7 @@ class CommonPanel(QtGui.QWidget):
 
         self.pool_label = QtGui.QLabel("pool/cluster")
         self.pool_combo = QtGui.QComboBox(self)
-        self.pool_combo.addItems(self._jobList[0]._param["dispatcherInfo"][0].getparam()["pools"])
+        self.pool_combo.addItems(self._jobList.get_current_job()._param["dispatcherInfo"][0].getparam()["pools"])
         layout.addWidget(self.pool_label, height, 0)
         layout.addWidget(self.pool_combo, height, 1)
 

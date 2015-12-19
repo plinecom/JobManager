@@ -17,7 +17,7 @@ class MainWindow(PyQt4.QtGui.QMainWindow):
     def __init__(self,jobList, parent=None):
         PyQt4.QtGui.QMainWindow.__init__(self,parent)
         self._joblist = jobList
-        print self._joblist
+        print self._joblist.get_joblist()
 
         self.setAcceptDrops(True)
 
@@ -31,15 +31,17 @@ class MainWindow(PyQt4.QtGui.QMainWindow):
         for u in event.mimeData().urls():
             print u.toLocalFile()
             file_parser = filelib.parser.lib.fileParse(str(u.toLocalFile()))
-            self._joblist.append(
+            self._joblist.get_joblist().append(
                     job.jobinfo.JobInfo(
                             file_parser.getparam(),
-                            self._joblist[0].getlist_dispatcher(),
-                            self._joblist[0].getparam_config()
+                            self._joblist.get_current_job().getlist_dispatcher(),
+                            self._joblist.get_current_job().getparam_config()
                     )
             )
 
-            print self._joblist[-1]._param
+            print self._joblist.get_current_job()
+
+        self._joblist.set_current_job_id(-1)
 
 def loadFile(absPath):
     return job
@@ -76,12 +78,8 @@ if __name__ == "__main__":
     dispatcherList.append(dispatcher.qube.Qube6_6())
     print dispatcherList[0].getparam()
 
-    jobList = []
-    jobInfo = job.jobinfo.JobInfo(fileParam,dispatcherList,config)
-    print job.jobinfo.JobInfo(fileParam,dispatcherList,config)
-    print "test"
-    print jobInfo
-    jobList.append(job.jobinfo.JobInfo(fileParam,dispatcherList,config))
+    jobList = job.jobinfo.JobInfoList()
+    jobList.get_joblist().append(job.jobinfo.JobInfo(fileParam,dispatcherList,config))
 
 
     app = PyQt4.QtGui.QApplication(sys.argv)

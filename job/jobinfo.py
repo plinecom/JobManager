@@ -2,6 +2,23 @@ import interface
 
 __author__ = 'Masataka'
 
+class JobInfoList():
+    def __init__(self):
+        self.current_job_id = -1
+        self.jobList = []
+
+    def get_current_job(self):
+        return self.jobList[self.current_job_id]
+
+    def get_joblist(self):
+        return self.jobList
+
+    def set_current_job_id(self,id):
+        if len( self.jobList ) < id:
+            self.current_job_id = id
+        else:
+            self.current_job_id = -1
+
 
 class JobInfo():
     def __init__(self, param=None, dispatcher=None, config=None):
@@ -12,7 +29,9 @@ class JobInfo():
         self._param["fileInfo"] = param  # copy param Dictionary
         self._param["dispatcherInfo"] = dispatcher
         self._param["configInfo"] = config
-        self._param["job_setting_override"] = {"dispatcher": 0}  # GUI Select
+        self._param["job_setting_override"] = {
+            "dispatcher": 0
+        }  # GUI Select
         print "inst"
         print self._param
         print self
