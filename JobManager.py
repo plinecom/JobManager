@@ -33,7 +33,7 @@ class MainWindow(PyQt4.QtGui.QMainWindow):
             file_parser = filelib.parser.lib.fileParse(str(u.toLocalFile()))
             self._joblist.get_joblist().append(
                     job.jobinfo.JobInfo(
-                            file_parser.getparam(),
+                            [file_parser.getparam()],
                             self._joblist.get_current_job().getlist_dispatcher(),
                             self._joblist.get_current_job().getparam_config()
                     )
@@ -42,6 +42,10 @@ class MainWindow(PyQt4.QtGui.QMainWindow):
             print self._joblist.get_current_job()
 
         self._joblist.set_current_job_id(-1)
+#        common_panel = self.findChild(gui.submit.common.CommonPanel, "commonPanel")
+        common_panel = self.findChild(gui.submit.common.CommonPanel)
+        print common_panel
+        common_panel.update_ui()
 
 def loadFile(absPath):
     return job
@@ -66,7 +70,7 @@ if __name__ == "__main__":
     #command line mode?
 
     # loadFile(addFilePath)
-    fileParam = None
+    fileParam = {}
     if addFilePath is not None:
         fileParser = filelib.parser.lib.fileParse(addFilePath)
         print fileParser.getparam()
@@ -75,16 +79,17 @@ if __name__ == "__main__":
 #    job_factory = jobfactory.factory.JobFactory()
 #    job = job_factory.getJob(fileParser.getparam(), "SudioPlugin()")
     dispatcherList = []
-    dispatcherList.append(dispatcher.qube.Qube6_6())
-    print dispatcherList[0].getparam()
+    dispatcherList.append(dispatcher.qube.Qube6_6().getparam())
+    print dispatcherList[0]
 
     jobList = job.jobinfo.JobInfoList()
-    jobList.get_joblist().append(job.jobinfo.JobInfo(fileParam,dispatcherList,config))
+    jobList.get_joblist().append(job.jobinfo.JobInfo([fileParam],dispatcherList,[config]))
 
 
     app = PyQt4.QtGui.QApplication(sys.argv)
     main_window = MainWindow(jobList)
     panel = PyQt4.QtGui.QWidget()
+    panel.setObjectName("commonPanel")
 
     #main_window.setAcceptDrops(True)
 

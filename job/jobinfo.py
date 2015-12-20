@@ -29,9 +29,11 @@ class JobInfo():
         self._param["fileInfo"] = param  # copy param Dictionary
         self._param["dispatcherInfo"] = dispatcher
         self._param["configInfo"] = config
-        self._param["job_setting_override"] = {
-            "dispatcher": 0
-        }  # GUI Select
+        self._param["job_setting_override"] = [{}]  # GUI Select
+        self._paramkeyList = ["job_setting_override", "configInfo", "fileInfo", "dispatcherInfo"]
+        for paramKey in self._paramkeyList:
+            self._param["job_setting_override"][0][paramKey] = 0
+
         print "inst"
         print self._param
         print self
@@ -59,20 +61,13 @@ class JobInfo():
     def getValue(self, key):
 
         category = None
-        if self._param.has_key("job_setting_override"):
-            category = "job_setting_override"
-        elif self._param.has_key("configInfo"):
-            category = "configInfo"
-        elif self._param.has_key("job_setting_override"):
-            category = "job_setting_override"
-        elif self._param.has_key("dispatcherInfo"):
-            category = "dispatcherInfo"
-        else:
-            return ""
+        for param_key in self._paramkeyList:
+            if self._param.has_key(param_key):
+                print param_key
+                print self._param["job_setting_override"]
+                print self._param[param_key]
+                print self._param[param_key][self._param["job_setting_override"][0][param_key]]
+                if self._param[param_key][self._param["job_setting_override"][0][param_key]].has_key(key):
+                    return self._param[param_key][self._param["job_setting_override"][0][param_key]][key]
 
-        if category == "dispatcherInfo":
-            if self._param[category][ self._param["job_setting_override"]].has_key(key):
-                return self._param[category][ self._param["job_setting_override"]][key]
-        elif self._param[category].has_key(key):
-            return self._param[category][key]
         return ""
