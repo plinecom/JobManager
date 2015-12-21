@@ -77,10 +77,11 @@ class CommonPanel(QtGui.QWidget):
         height += 1
 
         self.group_label = QtGui.QLabel("group")
-        self.group_combo = QtGui.QComboBox(self)
-        self.group_combo.addItems(self._jobList.get_current_job()._param["dispatcherInfo"][0]["groups"])
+        self.group_listWidget = QtGui.QListWidget(self)
+        self.group_listWidget.setSelectionMode(QtGui.QAbstractItemView.MultiSelection)
+        self.group_listWidget.addItems(self._jobList.get_current_job()._param["dispatcherInfo"][0]["groups"])
         layout.addWidget(self.group_label, height, 0)
-        layout.addWidget(self.group_combo, height, 1)
+        layout.addWidget(self.group_listWidget, height, 1)
 
         height += 1
 
@@ -124,6 +125,6 @@ class CommonPanel(QtGui.QWidget):
         self.manager_combo.addItems(["Qube6"])
 
     def app_combo_activated(self,index):
-        print index
+#        print index
         self._jobList.get_current_job().setValue("application", self.app_combo.currentText())
-        print self._jobList.get_current_job().getValue("application")
+#        print self._jobList.get_current_job().getValue("application")
