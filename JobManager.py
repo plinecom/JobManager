@@ -20,6 +20,24 @@ class MainWindow(PyQt4.QtGui.QMainWindow):
         print self._joblist.get_joblist()
 
         self.setAcceptDrops(True)
+        panel = PyQt4.QtGui.QWidget()
+        panel.setObjectName("commonPanel")
+
+        #main_window.setAcceptDrops(True)
+
+        common_panel = gui.submit.common.CommonPanel(jobList, panel)
+        pannel_layout = PyQt4.QtGui.QVBoxLayout()
+        pannel_layout.addWidget(common_panel)
+
+        button_submit =PyQt4.QtGui.QPushButton("sumbmit")
+        button_submit.clicked.connect(self.on_button_submit)
+        pannel_layout.addWidget(button_submit)
+
+        panel.setLayout(pannel_layout)
+
+
+        self.setWindowTitle("JobManager")
+        self.setCentralWidget(panel)
 
     def dragEnterEvent(self, event):
         if event.mimeData().hasUrls():
@@ -46,6 +64,10 @@ class MainWindow(PyQt4.QtGui.QMainWindow):
         common_panel = self.findChild(gui.submit.common.CommonPanel)
         print common_panel
         common_panel.update_ui()
+    def on_button_submit(self):
+        dispatcher = self._joblist.get_current_job().getValue("dispatherObj")
+        dispatcher.submit(self._joblist.get_current_job())
+        print "submit"
 
 def loadFile(absPath):
     return job
@@ -88,23 +110,6 @@ if __name__ == "__main__":
 
     app = PyQt4.QtGui.QApplication(sys.argv)
     main_window = MainWindow(jobList)
-    panel = PyQt4.QtGui.QWidget()
-    panel.setObjectName("commonPanel")
-
-    #main_window.setAcceptDrops(True)
-
-    common_panel = gui.submit.common.CommonPanel(jobList, panel)
-    pannel_layout = PyQt4.QtGui.QVBoxLayout()
-    pannel_layout.addWidget(common_panel)
-
-    button_submit =PyQt4.QtGui.QPushButton("sumbmit")
-    pannel_layout.addWidget(button_submit)
-
-    panel.setLayout(pannel_layout)
-
-
-    main_window.setWindowTitle("JobManager")
-    main_window.setCentralWidget(panel)
     main_window.show()
 
 

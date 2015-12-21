@@ -40,6 +40,8 @@ class Qube6_6(Qube):
         self.setValue("pools", sorted(cluster_dic.keys()))
         print cluster_dic.keys()
 
+        self.setValue("dispatherObj", self)
+
     def addJob(self,job):
         self._job.append(job)
 
@@ -50,8 +52,12 @@ class Qube6_6(Qube):
         return "Qube 6.6"
 
     def submit(self,jobObj):
-        job = jobObj.getparam();
-        cmd = self.getValue("executable")+' --name myjobrx --prototype cmdrange --priority 9998 --range 1-200 --chunk 10 ls -s QB_FRAME_START -e QB_FRAME_END ' +job["fileInfo"]["filePath"]
+        print jobObj.getparam()
+#        job = jobObj.getparam();
+        cmd = self.getValue("executable")+' --name myjobrx --prototype cmdrange --priority 9998 ' \
+        + '--range '+ jobObj.getValue("startFrame")+ '-'+jobObj.getValue("endFrame")\
+              +' --chunk 10 ls -s QB_FRAME_START -e QB_FRAME_END ' \
+              +jobObj.getValue("filePath")
         #--groups string
         #--cluster string
         #--processors int
@@ -59,12 +65,12 @@ class Qube6_6(Qube):
         #--range 1-100 --chunk 10
         print cmd
 
-        p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        #p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
-        stdout_data, stderr_data = p.communicate()
+        #stdout_data, stderr_data = p.communicate()
 
-        print stdout_data
-        print stderr_data
+        #print stdout_data
+        #print stderr_data
 
     def _buildCmd(self):
         for job in self._job:
