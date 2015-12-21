@@ -133,7 +133,7 @@ class FileParserMayaMB(filelib.parser.ma.FileParserMaya):
             renderer = 'sw'
 
         self._param["version"] = version
-        self._param["application"] = "Maya "+version
+        self._param["application"] = "Maya_"+version
         self._param["renderer"] = renderer
 
         self._param["byFrameSteps"] = str(byFrameSteps)

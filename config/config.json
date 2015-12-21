@@ -1,5 +1,5 @@
 {
-  "maya_executable": {
+  "Maya_executable": {
     "Maya_2016" : "/usr/autodesk/maya2016/bin/Render",
     "Maya_2015" : "/usr/autodesk/maya2015-x64/bin/Render",
     "Maya_2014" : "/usr/autodesk/maya2014-x64/bin/Render",

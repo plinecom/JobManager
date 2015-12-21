@@ -103,7 +103,7 @@ class FileParserMayaMA(FileParserMaya):
 
         self._param["filePath"]= self.getFilePath()
         self._param["version"]=version
-        self._param["application"]="Maya "+version
+        self._param["application"]="Maya_"+version
         self._param["renderer"]=renderer
 
         self._param["startFrame"]=frameStart

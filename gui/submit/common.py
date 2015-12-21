@@ -42,16 +42,16 @@ class CommonPanel(QtGui.QWidget):
         height += 1
 
         self.app_label = QtGui.QLabel("application")
-        self.app_qle = QtGui.QLineEdit(self)
+        self.app_combo = QtGui.QComboBox(self)
         layout.addWidget(self.app_label, height, 0)
-        layout.addWidget(self.app_qle, height, 1)
+        layout.addWidget(self.app_combo, height, 1)
 
         height += 1
 
         self.renderer_label = QtGui.QLabel("renderer")
-        self.renderer_qle = QtGui.QLineEdit(self)
+        self.renderer_combo = QtGui.QComboBox(self)
         layout.addWidget(self.renderer_label, height, 0)
-        layout.addWidget(self.renderer_qle, height, 1)
+        layout.addWidget(self.renderer_combo, height, 1)
 
         height += 1
 
@@ -71,8 +71,15 @@ class CommonPanel(QtGui.QWidget):
 
         self.setLayout(layout)
 
+        self.update_ui()
+
     def update_ui(self):
         self.jobname_qle.setText(self._jobList.get_current_job().getValue("jobName"))
         print self._jobList.get_current_job().getValue("jobName")
         print self._jobList.get_current_job()._param
         print "testz"
+        self.app_combo.clear()
+
+        app_item_list = sorted(self._jobList.get_current_job().getValue("Maya_executable").keys())
+        self.app_combo.addItems(app_item_list)
+        self.app_combo.setCurrentIndex(app_item_list.index(self._jobList.get_current_job().getValue("application")))
