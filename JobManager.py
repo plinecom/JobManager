@@ -96,6 +96,10 @@ if __name__ == "__main__":
     common_panel = gui.submit.common.CommonPanel(jobList, panel)
     pannel_layout = PyQt4.QtGui.QVBoxLayout()
     pannel_layout.addWidget(common_panel)
+
+    button_submit =PyQt4.QtGui.QPushButton("sumbmit")
+    pannel_layout.addWidget(button_submit)
+
     panel.setLayout(pannel_layout)
 
 
