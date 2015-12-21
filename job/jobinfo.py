@@ -63,10 +63,10 @@ class JobInfo():
         category = None
         for param_key in self._paramkeyList:
             if self._param.has_key(param_key):
-                print param_key
-                print self._param["job_setting_override"]
-                print self._param[param_key]
-                print self._param[param_key][self._param["job_setting_override"][0][param_key]]
+#                print param_key
+#                print self._param["job_setting_override"]
+#                print self._param[param_key]
+#                print self._param[param_key][self._param["job_setting_override"][0][param_key]]
                 if self._param[param_key][self._param["job_setting_override"][0][param_key]].has_key(key):
                     return self._param[param_key][self._param["job_setting_override"][0][param_key]][key]
 

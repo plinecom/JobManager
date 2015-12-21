@@ -20,24 +20,45 @@ class CommonPanel(QtGui.QWidget):
 
         height += 1
 
-        self.pj_path_label = QtGui.QLabel("proj path")
-        self.pj_path_qle = QtGui.QLineEdit(self)
-        layout.addWidget(self.pj_path_label, height, 0)
-        layout.addWidget(self.pj_path_qle, height, 1)
+#        self.pj_path_label = QtGui.QLabel("proj path")
+#        self.pj_path_qle = QtGui.QLineEdit(self)
+#        layout.addWidget(self.pj_path_label, height, 0)
+#        layout.addWidget(self.pj_path_qle, height, 1)
+
+#        height += 1
+
+#        self.scene_path_label = QtGui.QLabel("scene path")
+#        self.scene_path_qle = QtGui.QLineEdit(self)
+#        layout.addWidget(self.scene_path_label, height, 0)
+#        layout.addWidget(self.scene_path_qle, height, 1)
+
+#        height += 1
+
+        self.start_frame_label = QtGui.QLabel("start frame")
+        self.start_frame_qle = QtGui.QLineEdit(self)
+        layout.addWidget(self.start_frame_label, height, 0)
+        layout.addWidget(self.start_frame_qle, height, 1)
 
         height += 1
 
-        self.scene_path_label = QtGui.QLabel("scene path")
-        self.scene_path_qle = QtGui.QLineEdit(self)
-        layout.addWidget(self.scene_path_label, height, 0)
-        layout.addWidget(self.scene_path_qle, height, 1)
+        self.end_frame_label = QtGui.QLabel("end frame")
+        self.end_frame_qle = QtGui.QLineEdit(self)
+        layout.addWidget(self.end_frame_label, height, 0)
+        layout.addWidget(self.end_frame_qle, height, 1)
+
+        height += 1
+
+        self.chunksize_label = QtGui.QLabel("chunksize")
+        self.chunksize_qle = QtGui.QLineEdit(self)
+        layout.addWidget(self.chunksize_label, height, 0)
+        layout.addWidget(self.chunksize_qle, height, 1)
 
         height += 1
 
         self.manager_label = QtGui.QLabel("manager")
-        self.manager_qle = QtGui.QLineEdit(self)
+        self.manager_combo = QtGui.QComboBox(self)
         layout.addWidget(self.manager_label, height, 0)
-        layout.addWidget(self.manager_qle, height, 1)
+        layout.addWidget(self.manager_combo, height, 1)
 
         height += 1
 
@@ -75,11 +96,27 @@ class CommonPanel(QtGui.QWidget):
 
     def update_ui(self):
         self.jobname_qle.setText(self._jobList.get_current_job().getValue("jobName"))
-        print self._jobList.get_current_job().getValue("jobName")
-        print self._jobList.get_current_job()._param
-        print "testz"
+#        print self._jobList.get_current_job().getValue("jobName")
+#        print self._jobList.get_current_job()._param
+#        print "testz"
         self.app_combo.clear()
 
         app_item_list = sorted(self._jobList.get_current_job().getValue("Maya_executable").keys())
         self.app_combo.addItems(app_item_list)
         self.app_combo.setCurrentIndex(app_item_list.index(self._jobList.get_current_job().getValue("application")))
+
+        renderer_item_list = self._jobList.get_current_job().getValue("Maya_renderer").keys()
+        self.renderer_combo.addItems(renderer_item_list)
+#        print renderer_item_list
+#        print self._jobList.get_current_job().getValue("renderer")
+        self.renderer_combo.setCurrentIndex(renderer_item_list.index(self._jobList.get_current_job().getValue("renderer")))
+
+
+        self.start_frame_qle.setText(self._jobList.get_current_job().getValue("startFrame"))
+        self.end_frame_qle.setText(self._jobList.get_current_job().getValue("endFrame"))
+        self.chunksize_qle.setText("10")
+
+
+
+#        print self._jobList.get_current_job().getValue("dispatch_software")
+        self.manager_combo.addItems(["Qube6"])

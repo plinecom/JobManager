@@ -80,13 +80,13 @@ class FileParserMayaMA(FileParserMaya):
                 print l;
                 temp = l.split(' ')[-1]
                 if 'mentalRay' in temp:
-                    renderer = 'mr'
+                    renderer = 'mentalray'
                 elif 'vray' in temp:
                     renderer = 'vray'
                 elif 'mayaHardware' in temp:
-                    renderer = 'hw'
+                    renderer = 'maya_hardware'
                 else:
-                    renderer = 'file'
+                    renderer = 'maya_file'
 
                 print renderer
                 break;

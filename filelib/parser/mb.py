@@ -75,13 +75,13 @@ class FileParserMayaMB(filelib.parser.ma.FileParserMaya):
             if renderer is None and 'ren\0' in l:
                 ren = l.split('ren\0')[1][1:100]
                 if 'mentalRay' in ren:
-                    renderer = 'mr'
+                    renderer = 'mentalray'
                 elif 'mayaHardware' in ren:
-                    renderer = 'hw'
+                    renderer = 'maya_hardware'
                 elif 'vray' in ren:
                     renderer = 'vray'
                 else:
-                    renderer = 'sw'
+                    renderer = 'maya_software'
             if "RNDLCREA" in l:
                 renderLayerInfoList = l.split("RNDLCREA");
                 for renderLayerInfo in renderLayerInfoList:
@@ -249,9 +249,9 @@ class FileParserMayaMB(filelib.parser.ma.FileParserMaya):
                      readSize = min(id,512)
                      ren = buffer[bufferLength-id+4:bufferLength-id+4+readSize]
                      if 'mentalRay' in ren:
-                         res["renderer"] = 'mr'
+                         res["renderer"] = 'mentalray'
                      elif 'mayaHardware' in ren:
-                         res["renderer"] = 'hw'
+                         res["renderer"] = 'maya_hardware'
                      elif 'vray' in ren:
                          res["renderer"] = 'vray'
                      renderUnLoaded = False

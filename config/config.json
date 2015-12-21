@@ -13,16 +13,18 @@
     "vray": "vray",
     "3Delight": "3Delight"
   },
-  "dispatcher": {
-    "Qube6" : {
-      "manager": "localhost.localdomain",
-      "submitter" : "/usr/local/pfx/qube/bin/qbsub"
+  "dispatcher": [
+    {
+      "dispatch_software":"Qube6",
+      "dispatch_manager": "localhost.localdomain",
+      "submitter": "/usr/local/pfx/qube/bin/qbsub"
     },
-    "Deadline7": {
-      "repository":"/DeadlineRepository7",
-      "submitter":""
+    {
+      "dispatch_software":"Deadline7",
+      "repository": "/DeadlineRepository7",
+      "submitter": ""
     }
-  },
+  ],
   "studio_setting":{
     "dispatcher":["Qube6"],
     "priority":"9999"

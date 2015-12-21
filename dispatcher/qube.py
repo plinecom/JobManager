@@ -14,6 +14,7 @@ class Qube6_6(Qube):
         self.setValue("executable","/usr/local/pfx/qube/bin/qbsub")
         self.setValue("server","172.29.115.99")
 
+        self.setValue("dispatch_software","Qube6")
         cmd = "/usr/local/pfx/qube/bin/qbhosts --xml"
 
         p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
