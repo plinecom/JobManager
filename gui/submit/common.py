@@ -104,7 +104,9 @@ class CommonPanel(QtGui.QWidget):
         app_item_list = sorted(self._jobList.get_current_job().getValue("Maya_executable").keys())
         self.app_combo.addItems(app_item_list)
         self.app_combo.setCurrentIndex(app_item_list.index(self._jobList.get_current_job().getValue("application")))
+        self.app_combo.activated.connect(self.app_combo_activated)
 
+        self.renderer_combo.clear()
         renderer_item_list = self._jobList.get_current_job().getValue("Maya_renderer").keys()
         self.renderer_combo.addItems(renderer_item_list)
 #        print renderer_item_list
@@ -120,3 +122,8 @@ class CommonPanel(QtGui.QWidget):
 
 #        print self._jobList.get_current_job().getValue("dispatch_software")
         self.manager_combo.addItems(["Qube6"])
+
+    def app_combo_activated(self,index):
+        print index
+        self._jobList.get_current_job().setValue("application", self.app_combo.currentText())
+        print self._jobList.get_current_job().getValue("application")

@@ -56,7 +56,7 @@ class JobInfo():
         return param
 
     def setValue(self, key, value):
-        self._param[key]["job_setting_override"]=value
+        self._param["job_setting_override"][0][key]=value
 
     def getValue(self, key):
 
