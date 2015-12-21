@@ -117,7 +117,8 @@ class CommonPanel(QtGui.QWidget):
 
         self.start_frame_qle.setText(self._jobList.get_current_job().getValue("startFrame"))
         self.end_frame_qle.setText(self._jobList.get_current_job().getValue("endFrame"))
-        self.chunksize_qle.setText("10")
+        print self._jobList.get_current_job().getValue("chunksize")
+        self.chunksize_qle.setText(self._jobList.get_current_job().getValue("chunksize"))
 
 
 

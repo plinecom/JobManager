@@ -1,5 +1,6 @@
 import interface
 
+
 __author__ = 'Masataka'
 
 class JobInfoList():
@@ -21,18 +22,20 @@ class JobInfoList():
 
 
 class JobInfo():
-    def __init__(self, param=None, dispatcher=None, config=None):
+    def __init__(self, param=None, dispatcherList=None, configList=None):
 #        interface.IJob.__init__(self)
         self.test=1
 
         self._param ={}
         self._param["fileInfo"] = param  # copy param Dictionary
-        self._param["dispatcherInfo"] = dispatcher
-        self._param["configInfo"] = config
-        self._param["job_setting_override"] = [{}]  # GUI Select
+        self._param["dispatcherInfo"] = dispatcherList
+        self._param["configInfo"] = configList
+        self._param["job_setting_override"] = {
+            "dispatcherIndex":0
+        }  # GUI Select
         self._paramkeyList = ["job_setting_override", "configInfo", "fileInfo", "dispatcherInfo"]
-        for paramKey in self._paramkeyList:
-            self._param["job_setting_override"][0][paramKey] = 0
+ #       for paramKey in self._paramkeyList:
+#            self._param["job_setting_override"][0][paramKey] = 0
 
         print "inst"
         print self._param
@@ -56,18 +59,33 @@ class JobInfo():
         return param
 
     def setValue(self, key, value):
-        self._param["job_setting_override"][0][key]=value
+        self._param["job_setting_override"][key]=value
 
     def getValue(self, key):
 
         category = None
         for param_key in self._paramkeyList:
             if self._param.has_key(param_key):
-#                print param_key
+                print param_key
 #                print self._param["job_setting_override"]
 #                print self._param[param_key]
-#                print self._param[param_key][self._param["job_setting_override"][0][param_key]]
-                if self._param[param_key][self._param["job_setting_override"][0][param_key]].has_key(key):
-                    return self._param[param_key][self._param["job_setting_override"][0][param_key]][key]
+#                print self._param[param_key]
+                if param_key == "configInfo":
+                    for config_doc in self._param[param_key]:
+                        print config_doc
+                        for config_title in config_doc.keys():
+                            if config_doc[config_title].has_key(key):
+                                value = config_doc[config_title][key]
+                                print value
+                                if isinstance(value, unicode):
+                                    return value.encode('utf-8')
+                                else:
+                                    return value
+                elif param_key == "dispatcherInfo":
+                    if self._param[param_key][self._param["job_setting_override"]["dispatcherIndex"]].has_key(key):
+                        return self._param[param_key][self._param["job_setting_override"]["dispatcherIndex"]][key]
+                else:
+                    if self._param[param_key].has_key(key):
+                        return self._param[param_key][key]
 
         return ""
