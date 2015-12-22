@@ -72,7 +72,7 @@ class JobInfo():
 #                print self._param[param_key]
                 if param_key == "configInfo":
                     for config_doc in self._param[param_key]:
-                        print config_doc
+#                        print config_doc
                         for config_title in config_doc.keys():
                             if config_doc[config_title].has_key(key):
                                 value = config_doc[config_title][key]
