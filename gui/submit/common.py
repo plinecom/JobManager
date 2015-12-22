@@ -104,7 +104,8 @@ class CommonPanel(QtGui.QWidget):
 
         app_item_list = sorted(self._jobList.get_current_job().getValue("Maya_executable").keys())
         self.app_combo.addItems(app_item_list)
-        self.app_combo.setCurrentIndex(app_item_list.index(self._jobList.get_current_job().getValue("application")))
+        if self._jobList.get_current_job().getValue("application") in app_item_list:
+            self.app_combo.setCurrentIndex(app_item_list.index(self._jobList.get_current_job().getValue("application")))
         self.app_combo.activated.connect(self.app_combo_activated)
 
         self.renderer_combo.clear()
@@ -112,7 +113,8 @@ class CommonPanel(QtGui.QWidget):
         self.renderer_combo.addItems(renderer_item_list)
 #        print renderer_item_list
 #        print self._jobList.get_current_job().getValue("renderer")
-        self.renderer_combo.setCurrentIndex(renderer_item_list.index(self._jobList.get_current_job().getValue("renderer")))
+        if self._jobList.get_current_job().getValue("renderer") in renderer_item_list:
+            self.renderer_combo.setCurrentIndex(renderer_item_list.index(self._jobList.get_current_job().getValue("renderer")))
 
 
         self.start_frame_qle.setText(self._jobList.get_current_job().getValue("startFrame"))

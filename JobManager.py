@@ -76,8 +76,8 @@ def loadFile(absPath):
 if __name__ == "__main__":
 
 
-    addFilePath = "/root/test_maya_2015.mb"
-    #addFilePath = None
+    #addFilePath = "/root/test_maya_2015.mb"
+    addFilePath = None
 
     if(len(sys.argv) > 1):
         addFilePath = sys.argv[1]
