@@ -17,18 +17,17 @@
       },
       "chunksize": "10",
       "priority": "100",
-      "dispatcher": [
-        {
-          "dispatch_software": "Qube6",
-          "dispatch_manager": "localhost.localdomain",
-          "submitter": "/usr/local/pfx/qube/bin/qbsub"
-        },
-        {
+      "Qube6": {
+        "dispatch_software": "Qube6",
+        "dispatch_manager": "localhost.localdomain",
+        "submitter": "/usr/local/pfx/qube/bin/qbsub"
+      },
+      "Deadline7":{
           "dispatch_software": "Deadline7",
           "repository": "/DeadlineRepository7",
           "submitter": ""
-        }
-      ]
+      }
+
     }
   },
   "01":{
