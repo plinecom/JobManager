@@ -10,7 +10,7 @@ import PyQt4.QtCore
 
 import json
 import job.jobinfo
-
+import config.auto.autocconf
 import gui.submit.common
 
 class MainWindow(PyQt4.QtGui.QMainWindow):
@@ -69,6 +69,8 @@ class MainWindow(PyQt4.QtGui.QMainWindow):
         dispatcher.submit(self._joblist.get_current_job())
         print "submit"
 
+
+
 def loadFile(absPath):
     return job
 
@@ -81,6 +83,9 @@ if __name__ == "__main__":
 
     if(len(sys.argv) > 1):
         addFilePath = sys.argv[1]
+
+
+    auto_config = config.auto.autocconf.AutoConfig()
 
     script_dir_path = os.path.abspath(os.path.dirname(__file__))
     config_path = os.path.join(script_dir_path,"config","config.json")
