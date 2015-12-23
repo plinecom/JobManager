@@ -10,7 +10,7 @@ import PyQt4.QtCore
 
 import json
 import job.jobinfo
-import config.auto.autocconf
+import config.auto.autoconf
 import gui.submit.common
 
 class MainWindow(PyQt4.QtGui.QMainWindow):
@@ -85,7 +85,7 @@ if __name__ == "__main__":
         addFilePath = sys.argv[1]
 
 
-    auto_config = config.auto.autocconf.AutoConfig()
+    auto_config = config.auto.autoconf.AutoConfig()
 
     script_dir_path = os.path.abspath(os.path.dirname(__file__))
     config_path = os.path.join(script_dir_path,"config","config.json")

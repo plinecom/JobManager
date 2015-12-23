@@ -1,5 +1,6 @@
 import os
 import platform
+import json
 
 
 class AutoConfig:
@@ -7,7 +8,7 @@ class AutoConfig:
 
         self._param = {}
 
-        system = platform.system()
+        system = platform.system() # Windows, Linux, Darwin
         if "Darwin" in system:
             system = "MacOS_X"
         self._param["system"] = system
@@ -20,7 +21,12 @@ class AutoConfig:
             pathList = os.environ['PATH'].split(':')
 
         print pathList
-
+        script_dir_path = os.path.abspath(os.path.dirname(__file__))
+        config_path = os.path.join(script_dir_path,"autoconf.json")
+        print config_path
+        config_file = open(config_path,'r')
+        config = json.load(config_file)
+        print config
         # scan dispatcher typical point
         # scan dispatcher $PATH
 
