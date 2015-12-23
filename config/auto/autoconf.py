@@ -1,7 +1,7 @@
 import os
 import platform
 import json
-
+import os.path
 
 class AutoConfig:
     def __init__(self):
@@ -23,10 +23,21 @@ class AutoConfig:
         print pathList
         script_dir_path = os.path.abspath(os.path.dirname(__file__))
         config_path = os.path.join(script_dir_path,"autoconf.json")
-        print config_path
         config_file = open(config_path,'r')
         config = json.load(config_file)
-        print config
+
+        self._param["dispatcher"] = {}
+        for dispatcher_name in config.keys():
+#            print "test"
+#            print  config[dispatcher_name]["submitter"][system].replace('\\\\','\\')
+            submit_path =  config[dispatcher_name]["submitter"][system].replace('\\\\','\\')
+            if os.path.exists(submit_path):
+                self._param["dispatcher"][dispatcher_name] = {}
+                self._param["dispatcher"][dispatcher_name]["submitter"] = submit_path
+
+                print "path"
+
+        print self._param["dispatcher"]
         # scan dispatcher typical point
         # scan dispatcher $PATH
 

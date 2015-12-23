@@ -1,11 +1,11 @@
 {
   "Qube": {
     "submitter": {
-      "Windows": "C:\\Program Files\\pfx\\qube\\bin\\qbsub",
+      "Windows": "C:\\Program Files\\pfx\\qube\\bin\\qbsub.exe",
       "Linux": "/usr/local/pfx/qube/bin/qbsub"
     },
     "qbhosts":{
-      "Windows": "C:\\Program Files\\pfx\\qube\\bin\\qbhosts",
+      "Windows": "C:\\Program Files\\pfx\\qube\\bin\\qbhosts.exe",
       "Linux": "/usr/local/pfx/qube/bin/qbhosts"
     }
   }

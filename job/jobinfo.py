@@ -66,7 +66,7 @@ class JobInfo():
         category = None
         for param_key in self._paramkeyList:
             if self._param.has_key(param_key):
-                print param_key
+                #print param_key
 #                print self._param["job_setting_override"]
 #                print self._param[param_key]
 #                print self._param[param_key]
@@ -76,7 +76,7 @@ class JobInfo():
                         for config_title in config_doc.keys():
                             if config_doc[config_title].has_key(key):
                                 value = config_doc[config_title][key]
-                                print value
+                                #print value
                                 if isinstance(value, unicode):
                                     return value.encode('utf-8')
                                 else:
