@@ -14,3 +14,5 @@ class ConfigInfo:
                     else:
                         return value
         return None
+    def getparam(self):
+        return self._configlist
