@@ -6,12 +6,12 @@ import os.path
 class AutoConfig:
     def __init__(self):
 
-        self._param = {}
+        self._param = {"auto_config":{}}
 
         system = platform.system() # Windows, Linux, Darwin
         if "Darwin" in system:
             system = "MacOS_X"
-        self._param["system"] = system
+        self._param["auto_config"]["system"] = system
 
         pathList =[]
 
@@ -26,20 +26,25 @@ class AutoConfig:
         config_file = open(config_path,'r')
         config = json.load(config_file)
 
-        self._param["dispatcher"] = {}
+        self._param["auto_config"]["dispatcher"] = {}
         for dispatcher_name in config.keys():
 #            print "test"
 #            print  config[dispatcher_name]["submitter"][system].replace('\\\\','\\')
             submit_path =  config[dispatcher_name]["submitter"][system].replace('\\\\','\\')
             if os.path.exists(submit_path):
-                self._param["dispatcher"][dispatcher_name] = {}
-                self._param["dispatcher"][dispatcher_name]["submitter"] = submit_path
+                self._param["auto_config"]["dispatcher"][dispatcher_name] = {}
+                for param_key in config[dispatcher_name].keys():
+                    self._param["auto_config"]["dispatcher"][dispatcher_name][param_key] = config[dispatcher_name]["submitter"][system].replace('\\\\','\\')
+
 
                 print "path"
 
-        print self._param["dispatcher"]
+        print self._param["auto_config"]["dispatcher"]
         # scan dispatcher typical point
         # scan dispatcher $PATH
 
         #scan registry  x too many times, too slow
+
+    def getparam(self):
+        return self._param
 

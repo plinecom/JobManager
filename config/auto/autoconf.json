@@ -1,5 +1,5 @@
 {
-  "Qube": {
+  "Qube6": {
     "submitter": {
       "Windows": "C:\\Program Files\\pfx\\qube\\bin\\qbsub.exe",
       "Linux": "/usr/local/pfx/qube/bin/qbsub"

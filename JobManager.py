@@ -85,17 +85,23 @@ if __name__ == "__main__":
         addFilePath = sys.argv[1]
 
 
-    auto_config = config.auto.autoconf.AutoConfig()
+    auto_config = config.auto.autoconf.AutoConfig().getparam()
+
 
     script_dir_path = os.path.abspath(os.path.dirname(__file__))
     config_path = os.path.join(script_dir_path,"config","config.json")
     print config_path
     config_file = open(config_path,'r')
     config = json.load(config_file)
+
+    config["00"] = auto_config
     print config
     configList=[]
+    #configList.append(auto_config["dispatcher"])
     for key in sorted(config.keys(), reverse=True):
         configList.append(config[key])
+
+    print configList
 
     #command line mode?
 
