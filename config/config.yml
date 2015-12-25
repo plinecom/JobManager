@@ -16,8 +16,12 @@
         "3Delight": "3Delight"
       },
       "chunksize": "10",
-      "priority": "100"
-##    "dispatcher":{
+      "priority": "100",
+      "dispatcher":{
+        "localbatch":{
+          "maya":"test"
+        }
+
 ##      "Qube6": {
 ##        "dispatch_software": "Qube6",
 ##        "dispatch_manager": "localhost.localdomain",
@@ -29,6 +33,7 @@
 ##          "submitter": ""
 ##      }
 ##      }
+      }
     }
   },
   "99":{
