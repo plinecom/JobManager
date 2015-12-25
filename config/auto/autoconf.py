@@ -26,15 +26,17 @@ class AutoConfig:
         config_file = open(config_path,'r')
         config = json.load(config_file)
 
+        #search dispatcher
+
         self._param["auto_config"]["dispatcher"] = {}
-        for dispatcher_name in config.keys():
+        for dispatcher_name in config["dispatcher"].keys():
 #            print "test"
 #            print  config[dispatcher_name]["submitter"][system].replace('\\\\','\\')
-            submit_path =  config[dispatcher_name]["submitter"][system].replace('\\\\','\\')
+            submit_path =  config["dispatcher"][dispatcher_name]["submitter"][system].replace('\\\\','\\')
             if os.path.exists(submit_path):
                 self._param["auto_config"]["dispatcher"][dispatcher_name] = {}
-                for param_key in config[dispatcher_name].keys():
-                    self._param["auto_config"]["dispatcher"][dispatcher_name][param_key] = config[dispatcher_name][param_key][system].replace('\\\\','\\')
+                for param_key in config["dispatcher"][dispatcher_name].keys():
+                    self._param["auto_config"]["dispatcher"][dispatcher_name][param_key] = config["dispatcher"][dispatcher_name][param_key][system].replace('\\\\','\\')
 
 
                 print "path"
@@ -44,6 +46,8 @@ class AutoConfig:
         # scan dispatcher $PATH
 
         #scan registry  x too many times, too slow
+
+        # search maya_executable
 
     def getparam(self):
         return self._param

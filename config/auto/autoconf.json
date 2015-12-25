@@ -1,12 +1,15 @@
 {
-  "Qube6": {
-    "submitter": {
-      "Windows": "C:\\Program Files\\pfx\\qube\\bin\\qbsub.exe",
-      "Linux": "/usr/local/pfx/qube/bin/qbsub"
-    },
-    "qbhosts":{
-      "Windows": "C:\\Program Files\\pfx\\qube\\bin\\qbhosts.exe",
-      "Linux": "/usr/local/pfx/qube/bin/qbhosts"
+  "application":{},
+  "dispatcher":{
+    "Qube6": {
+      "submitter": {
+        "Windows": "C:\\Program Files\\pfx\\qube\\bin\\qbsub.exe",
+        "Linux": "/usr/local/pfx/qube/bin/qbsub"
+      },
+      "qbhosts": {
+        "Windows": "C:\\Program Files\\pfx\\qube\\bin\\qbhosts.exe",
+        "Linux": "/usr/local/pfx/qube/bin/qbhosts"
+      }
     }
   }
 }
