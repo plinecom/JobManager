@@ -55,6 +55,13 @@ class CommonPanel(QtGui.QWidget):
 
         height += 1
 
+        self.priority_label = QtGui.QLabel("priority")
+        self.priority_qle = QtGui.QLineEdit(self)
+        layout.addWidget(self.priority_label, height, 0)
+        layout.addWidget(self.priority_qle, height, 1)
+
+        height += 1
+
         self.manager_label = QtGui.QLabel("manager")
         self.manager_combo = QtGui.QComboBox(self)
         layout.addWidget(self.manager_label, height, 0)
@@ -121,6 +128,7 @@ class CommonPanel(QtGui.QWidget):
         self.end_frame_qle.setText(self._jobList.get_current_job().getValue("endFrame"))
         print self._jobList.get_current_job().getValue("chunksize")
         self.chunksize_qle.setText(self._jobList.get_current_job().getValue("chunksize"))
+        self.priority_qle.setText(self._jobList.get_current_job().getValue("priority"))
 
 
 

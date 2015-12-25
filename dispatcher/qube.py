@@ -56,8 +56,9 @@ class Qube6(Qube):
     def submit(self,jobObj):
         print jobObj.getparam()
 #        job = jobObj.getparam();
-        cmd = self.getValue("executable")+' --name myjobrx --prototype cmdrange --priority 9998 ' \
-        + '--range '+ jobObj.getValue("startFrame")+ '-'+jobObj.getValue("endFrame")\
+        cmd = self.getValue("executable")+' --name '+jobObj.getValue("jobName")+' --prototype cmdrange' \
+            +' --priority '+jobObj.getValue("priority") \
+            + ' --range '+ jobObj.getValue("startFrame")+ '-'+jobObj.getValue("endFrame")\
               +' --chunk 10 ls -s QB_FRAME_START -e QB_FRAME_END ' \
               +jobObj.getValue("filePath")
         #--groups string
