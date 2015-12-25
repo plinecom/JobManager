@@ -34,7 +34,7 @@ class AutoConfig:
             if os.path.exists(submit_path):
                 self._param["auto_config"]["dispatcher"][dispatcher_name] = {}
                 for param_key in config[dispatcher_name].keys():
-                    self._param["auto_config"]["dispatcher"][dispatcher_name][param_key] = config[dispatcher_name]["submitter"][system].replace('\\\\','\\')
+                    self._param["auto_config"]["dispatcher"][dispatcher_name][param_key] = config[dispatcher_name][param_key][system].replace('\\\\','\\')
 
 
                 print "path"

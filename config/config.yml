@@ -33,7 +33,8 @@
   },
   "99":{
       "studio_setting":{
-        "use_dispatcher":["Qube6"],
+#        "use_dispatcher":["Qube6"],
+        "dispatcher_default":"Qube6",
         "priority":"9999"
       }
   }

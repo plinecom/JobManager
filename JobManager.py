@@ -118,8 +118,10 @@ if __name__ == "__main__":
 #    job_factory = jobfactory.factory.JobFactory()
 #    job = job_factory.getJob(fileParser.getparam(), "SudioPlugin()")
     dispatcherList = []
-    dispatcherList.append(dispatcher.qube.Qube6_6().getparam())
-    print dispatcherList[0]
+    for dispatcher_name in configInfo.getvalue("dispatcher").keys():
+        if dispatcher_name == "Qube6":
+             dispatcherList.append(dispatcher.qube.Qube6(configInfo.getvalue("dispatcher")[dispatcher_name]).getparam())
+    print dispatcherList
 
     jobList = job.jobinfo.JobInfoList()
     jobList.get_joblist().append(job.jobinfo.JobInfo(fileParam,dispatcherList,configInfo.getparam()))

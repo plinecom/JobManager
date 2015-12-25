@@ -8,14 +8,16 @@ class Qube(abstract.DispatcherBase):
        abstract.DispatcherBase.__init__(self)
 
 
-class Qube6_6(Qube):
-    def __init__(self):
+class Qube6(Qube):
+    def __init__(self, configdict):
         Qube.__init__(self)
-        self.setValue("executable","/usr/local/pfx/qube/bin/qbsub")
+        print configdict
+        self._configdict = configdict
+        self.setValue("executable",self._configdict["submitter"])
         self.setValue("server","172.29.115.99")
 
         self.setValue("dispatch_software","Qube6")
-        cmd = "/usr/local/pfx/qube/bin/qbhosts --xml"
+        cmd = self._configdict["qbhosts"]+" --xml"
 
         p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
@@ -49,7 +51,7 @@ class Qube6_6(Qube):
         self._buildCmd()
 
     def getDispatcherName(self):
-        return "Qube 6.6"
+        return "Qube 6"
 
     def submit(self,jobObj):
         print jobObj.getparam()
