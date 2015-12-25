@@ -8,7 +8,7 @@ import dispatcher.qube
 import PyQt4.QtGui
 import PyQt4.QtCore
 
-import json
+import yaml
 import job.jobinfo
 import config.auto.autoconf
 import gui.submit.common
@@ -89,10 +89,10 @@ if __name__ == "__main__":
 
 
     script_dir_path = os.path.abspath(os.path.dirname(__file__))
-    config_path = os.path.join(script_dir_path,"config","config.json")
+    config_path = os.path.join(script_dir_path,"config","config.yml")
     print config_path
     config_file = open(config_path,'r')
-    config = json.load(config_file)
+    config = yaml.load(config_file)
 
     config["00"] = auto_config
     print config
