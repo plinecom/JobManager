@@ -11,6 +11,7 @@ import PyQt4.QtCore
 import yaml
 import job.jobinfo
 import config.auto.autoconf
+import config.config
 import gui.submit.common
 
 class MainWindow(PyQt4.QtGui.QMainWindow):
@@ -92,17 +93,19 @@ if __name__ == "__main__":
     config_path = os.path.join(script_dir_path,"config","config.yml")
     print config_path
     config_file = open(config_path,'r')
-    config = yaml.load(config_file)
+    config_data = yaml.load(config_file)
 
-    config["00"] = auto_config
+    config_data["00"] = auto_config
     print config
     configList=[]
     #configList.append(auto_config["dispatcher"])
-    for key in sorted(config.keys(), reverse=True):
-        configList.append(config[key])
+    for key in sorted(config_data.keys(), reverse=True):
+        configList.append(config_data[key])
 
     print configList
-
+    configInfo = config.config.ConfigInfo(configList)
+    print configInfo.getvalue("priority")
+    print configInfo.getvalue("priority")
     #command line mode?
 
     # loadFile(addFilePath)
@@ -119,7 +122,7 @@ if __name__ == "__main__":
     print dispatcherList[0]
 
     jobList = job.jobinfo.JobInfoList()
-    jobList.get_joblist().append(job.jobinfo.JobInfo(fileParam,dispatcherList,configList))
+    jobList.get_joblist().append(job.jobinfo.JobInfo(fileParam,dispatcherList,configInfo))
 
 
     app = PyQt4.QtGui.QApplication(sys.argv)

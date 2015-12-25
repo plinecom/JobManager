@@ -22,14 +22,14 @@ class JobInfoList():
 
 
 class JobInfo():
-    def __init__(self, param=None, dispatcherList=None, configList=None):
+    def __init__(self, param=None, dispatcherList=None, configInfo=None):
 #        interface.IJob.__init__(self)
         self.test=1
 
         self._param ={}
         self._param["fileInfo"] = param  # copy param Dictionary
         self._param["dispatcherInfo"] = dispatcherList
-        self._param["configInfo"] = configList
+        self._param["configInfo"] = configInfo
         self._param["job_setting_override"] = {
             "dispatcherIndex":0
         }  # GUI Select
@@ -71,16 +71,9 @@ class JobInfo():
 #                print self._param[param_key]
 #                print self._param[param_key]
                 if param_key == "configInfo":
-                    for config_doc in self._param[param_key]:
-#                        print config_doc
-                        for config_title in config_doc.keys():
-                            if config_doc[config_title].has_key(key):
-                                value = config_doc[config_title][key]
-                                #print value
-                                if isinstance(value, unicode):
-                                    return value.encode('utf-8')
-                                else:
-                                    return value
+                    value = self._param[param_key].getvalue(key)
+                    if value is not None:
+                        return value
                 elif param_key == "dispatcherInfo":
                     if self._param[param_key][self._param["job_setting_override"]["dispatcherIndex"]].has_key(key):
                         return self._param[param_key][self._param["job_setting_override"]["dispatcherIndex"]][key]

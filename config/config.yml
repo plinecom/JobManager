@@ -16,7 +16,8 @@
         "3Delight": "3Delight"
       },
       "chunksize": "10",
-      "priority": "100",
+      "priority": "100"
+##    "dispatcher":{
 ##      "Qube6": {
 ##        "dispatch_software": "Qube6",
 ##        "dispatch_manager": "localhost.localdomain",
@@ -27,12 +28,12 @@
 ##          "repository": "/DeadlineRepository7",
 ##          "submitter": ""
 ##      }
-
+##      }
     }
   },
   "99":{
       "studio_setting":{
-        "dispatcher":["Qube6"],
+        "use_dispatcher":["Qube6"],
         "priority":"9999"
       }
   }
