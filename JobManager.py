@@ -124,7 +124,7 @@ if __name__ == "__main__":
     print dispatcherList
 
     jobList = job.jobinfo.JobInfoList()
-    jobList.get_joblist().append(job.jobinfo.JobInfo(fileParam,dispatcherList,configInfo.getparam()))
+    jobList.get_joblist().append(job.jobinfo.JobInfo(fileParam,dispatcherList,configInfo))
 
 
     app = PyQt4.QtGui.QApplication(sys.argv)

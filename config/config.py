@@ -1,3 +1,4 @@
+import copy
 class ConfigInfo:
     def __init__(self, configList):
         self._configlist = configList
@@ -19,6 +20,6 @@ class ConfigInfo:
         if len(dic.keys()) > 0:
             return dic
         else:
-            return None
+            return ""
     def getparam(self):
         return self._configlist

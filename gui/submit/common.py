@@ -109,6 +109,8 @@ class CommonPanel(QtGui.QWidget):
 #        print "testz"
         self.app_combo.clear()
 
+        print self._jobList.get_current_job().getValue("Maya_executable")
+
         app_item_list = sorted(self._jobList.get_current_job().getValue("Maya_executable").keys())
         self.app_combo.addItems(app_item_list)
         if self._jobList.get_current_job().getValue("application") in app_item_list:
