@@ -44,6 +44,7 @@ class CommonPanel(QtGui.QWidget):
 
         self.end_frame_label = QtGui.QLabel("end frame")
         self.end_frame_qle = QtGui.QLineEdit(self)
+        self.end_frame_qle.textChanged.connect(self.end_frame_textChanged)
         layout.addWidget(self.end_frame_label, height, 0)
         layout.addWidget(self.end_frame_qle, height, 1)
 
@@ -155,3 +156,6 @@ class CommonPanel(QtGui.QWidget):
     def start_frame_textChanged(self,text):
         print text
         self._jobList.get_current_job().setValue("startFrame", str(self.start_frame_qle.text()))
+    def end_frame_textChanged(self,text):
+        print text
+        self._jobList.get_current_job().setValue("endFrame", str(self.end_frame_qle.text()))
