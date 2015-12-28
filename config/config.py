@@ -20,6 +20,6 @@ class ConfigInfo:
         if len(dic.keys()) > 0:
             return dic
         else:
-            return ""
+            return None
     def getparam(self):
         return self._configlist

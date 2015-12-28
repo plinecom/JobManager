@@ -71,8 +71,11 @@ class JobInfo():
 #                print self._param[param_key]
 #                print self._param[param_key]
                 if param_key == "configInfo":
-                   return self._param[param_key].getvalue(key)
+                   value = self._param[param_key].getvalue(key)
+                   if value is not None:
+                       return value
                 elif param_key == "dispatcherInfo":
+
                     if self._param[param_key][self._param["job_setting_override"]["dispatcherIndex"]].has_key(key):
                         return self._param[param_key][self._param["job_setting_override"]["dispatcherIndex"]][key]
                 else:

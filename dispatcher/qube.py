@@ -56,11 +56,12 @@ class Qube6(Qube):
     def submit(self,jobObj):
         print jobObj.getparam()
 #        job = jobObj.getparam();
-        cmd = self.getValue("executable")+' --name '+jobObj.getValue("jobName")+' --prototype cmdrange' \
-            +' --priority '+jobObj.getValue("priority") \
-            + ' --range '+ jobObj.getValue("startFrame")+ '-'+jobObj.getValue("endFrame")\
-              +' --chunk 10 ls -s QB_FRAME_START -e QB_FRAME_END ' \
-              +jobObj.getValue("filePath")
+        cmd = self.getValue("executable")+' --name '+jobObj.getValue("jobName")\
+            + ' --priority '+jobObj.getValue("priority") \
+            + ' --range 1-30'\
+            + ' --chunk 10'\
+            + ' /usr/autodesk/maya2014-x64/bin/Render -s QB_FRAME_START -e QB_FRAME_END ' \
+            + jobObj.getValue("filePath") \
         #--groups string
         #--cluster string
         #--processors int
@@ -68,12 +69,12 @@ class Qube6(Qube):
         #--range 1-100 --chunk 10
         print cmd
 
-        #p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
-        #stdout_data, stderr_data = p.communicate()
+        stdout_data, stderr_data = p.communicate()
 
-        #print stdout_data
-        #print stderr_data
+        print stdout_data
+        print stderr_data
 
     def _buildCmd(self):
         for job in self._job:
