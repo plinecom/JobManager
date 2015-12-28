@@ -96,6 +96,7 @@ class CommonPanel(QtGui.QWidget):
         self.group_listWidget = QtGui.QListWidget(self)
         self.group_listWidget.setSelectionMode(QtGui.QAbstractItemView.MultiSelection)
         self.group_listWidget.addItems(self._jobList.get_current_job()._param["dispatcherInfo"][0]["groups"])
+        self.group_listWidget.itemSelectionChanged.connect(self.group_itemSelectionChanged)
         layout.addWidget(self.group_label, height, 0)
         layout.addWidget(self.group_listWidget, height, 1)
 
@@ -159,3 +160,9 @@ class CommonPanel(QtGui.QWidget):
     def end_frame_textChanged(self,text):
         print text
         self._jobList.get_current_job().setValue("endFrame", str(self.end_frame_qle.text()))
+    def group_itemSelectionChanged(self):
+        itemList =[]
+        for item in self.group_listWidget.selectedItems():
+            itemList.append(str(item.text()))
+        print itemList
+        self._jobList.get_current_job().setValue("selected_groups", itemList)

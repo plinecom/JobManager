@@ -59,8 +59,11 @@ class Qube6(Qube):
         cmd = self.getValue("executable")+' --name '+jobObj.getValue("jobName")\
             + ' --priority '+jobObj.getValue("priority") \
             + ' --range '+jobObj.getValue("startFrame")+'-'+jobObj.getValue("endFrame")\
-            + ' --chunk 10'\
-            + ' /usr/autodesk/maya2014-x64/bin/Render -s QB_FRAME_START -e QB_FRAME_END ' \
+            + ' --chunk 10'
+        if isinstance(jobObj.getValue("selected_groups"),list):
+            if len(jobObj.getValue("selected_groups"))>0:
+                cmd += ' --groups '+','.join(jobObj.getValue("selected_groups"))
+        cmd += ' /usr/autodesk/maya2014-x64/bin/Render -s QB_FRAME_START -e QB_FRAME_END ' \
             + jobObj.getValue("filePath") \
         #--groups string
         #--cluster string
