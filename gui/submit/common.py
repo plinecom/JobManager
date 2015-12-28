@@ -83,6 +83,13 @@ class CommonPanel(QtGui.QWidget):
 
         height += 1
 
+        self.core_label = QtGui.QLabel("core")
+        self.core_qle = QtGui.QLineEdit(self)
+        layout.addWidget(self.core_label, height, 0)
+        layout.addWidget(self.core_qle, height, 1)
+
+        height += 1
+
         self.group_label = QtGui.QLabel("group")
         self.group_listWidget = QtGui.QListWidget(self)
         self.group_listWidget.setSelectionMode(QtGui.QAbstractItemView.MultiSelection)
@@ -107,6 +114,9 @@ class CommonPanel(QtGui.QWidget):
 #        print self._jobList.get_current_job().getValue("jobName")
 #        print self._jobList.get_current_job()._param
 #        print "testz"
+
+        self.core_qle.setText("8")
+
         self.app_combo.clear()
 
         print self._jobList.get_current_job().getValue("Maya_executable")
