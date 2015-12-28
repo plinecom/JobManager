@@ -17,6 +17,7 @@ class FileParserMayaMB(filelib.parser.ma.FileParserMaya):
         frameEnd = None
         byFrameSteps = None
         fpsData = None
+        typeInfo = None
 
         outputFileExt = None
         outputFileExtVray = None
@@ -54,23 +55,31 @@ class FileParserMayaMB(filelib.parser.ma.FileParserMaya):
 
                 type = l.split('TUNI')[1][1:100]
                 fpsData = 0
+                print "test-"
+                print type
                 if 'ntscf' in type:
                     fpsData = 60
+                    typeInfo = 'ntscf'
                 elif 'ntsc' in type:
                     fpsData = 30
+                    typeInfo = 'ntsc'
                 elif 'palf' in type:
                     fpsData = 50
-                elif 'palf' in type:
-                    fpsData = 50
+                    typeInfo = 'palf'
                 elif 'pal' in type:
                     fpsData = 25
+                    typeInfo = 'pal'
                 elif 'film' in type:
                     fpsData = 24
+                    typeInfo = 'film'
                 elif 'game' in type:
                     fpsData = 15
+                    typeInfo = 'game'
                 elif 'show' in type:
                     fpsData = 48
+                    typeInfo = 'show'
                 else:
+                    print "else"
                     fpsData = 60
             if renderer is None and 'ren\0' in l:
                 ren = l.split('ren\0')[1][1:100]
@@ -135,6 +144,7 @@ class FileParserMayaMB(filelib.parser.ma.FileParserMaya):
         self._param["version"] = version
         self._param["application"] = "Maya_"+version
         self._param["renderer"] = renderer
+        self._param["type"] = typeInfo
 
         self._param["byFrameSteps"] = str(byFrameSteps)
 
