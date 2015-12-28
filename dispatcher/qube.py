@@ -58,7 +58,7 @@ class Qube6(Qube):
 #        job = jobObj.getparam();
         cmd = self.getValue("executable")+' --name '+jobObj.getValue("jobName")\
             + ' --priority '+jobObj.getValue("priority") \
-            + ' --range 1-30'\
+            + ' --range '+jobObj.getValue("startFrame")+'-30'\
             + ' --chunk 10'\
             + ' /usr/autodesk/maya2014-x64/bin/Render -s QB_FRAME_START -e QB_FRAME_END ' \
             + jobObj.getValue("filePath") \
