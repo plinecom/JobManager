@@ -36,6 +36,7 @@ class CommonPanel(QtGui.QWidget):
 
         self.start_frame_label = QtGui.QLabel("start frame")
         self.start_frame_qle = QtGui.QLineEdit(self)
+        self.start_frame_qle.textChanged.connect(self.start_frame_textChanged)
         layout.addWidget(self.start_frame_label, height, 0)
         layout.addWidget(self.start_frame_qle, height, 1)
 
@@ -151,3 +152,6 @@ class CommonPanel(QtGui.QWidget):
 #        print index
         self._jobList.get_current_job().setValue("application", self.app_combo.currentText())
 #        print self._jobList.get_current_job().getValue("application")
+    def start_frame_textChanged(self,text):
+        print text
+        self._jobList.get_current_job().setValue("startFrame", str(self.start_frame_qle.text()))
