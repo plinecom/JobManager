@@ -120,7 +120,7 @@ if __name__ == "__main__":
     dispatcherList = []
     for dispatcher_name in configInfo.getvalue("dispatcher").keys():
         if dispatcher_name == "Qube6":
-             dispatcherList.append(dispatcher.qube.Qube6(configInfo.getvalue("dispatcher")[dispatcher_name]).getparam())
+          dispatcherList.append(dispatcher.qube.Qube6(configInfo.getvalue("dispatcher")[dispatcher_name]).getparam())
     print dispatcherList
 
     jobList = job.jobinfo.JobInfoList()
