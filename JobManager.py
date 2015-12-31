@@ -104,8 +104,10 @@ if __name__ == "__main__":
 
     print configList
     configInfo = config.config.ConfigInfo(configList)
-    print configInfo.getvalue("priority")
-    print configInfo.getvalue("priority")
+#    print configInfo.getvalue("priority")
+#    print configInfo.getvalue("priority")
+    configInfo.getvalueJsonPath("[*].*.priority")
+    configInfo.getvalueJsonPath("[*].*.dispatcher")
     #command line mode?
 
     # loadFile(addFilePath)

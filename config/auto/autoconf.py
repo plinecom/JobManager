@@ -30,6 +30,9 @@ class AutoConfig:
 
         self._param["auto_config"]["dispatcher"] = {}
         for dispatcher_name in config["dispatcher"].keys():
+            if dispatcher_name == "localbatch":
+                self._param["auto_config"]["dispatcher"][dispatcher_name] = config["dispatcher"][dispatcher_name]
+                continue
 #            print "test"
 #            print  config[dispatcher_name]["submitter"][system].replace('\\\\','\\')
             submit_path =  config["dispatcher"][dispatcher_name]["submitter"][system].replace('\\\\','\\')

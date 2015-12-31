@@ -1,6 +1,9 @@
 {
   "application":{},
   "dispatcher":{
+    "localbatch":{
+      "maya":"test2"
+    },
     "Qube6": {
       "submitter": {
         "Windows": "C:\\Program Files\\pfx\\qube\\bin\\qbsub.exe",
