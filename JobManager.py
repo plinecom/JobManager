@@ -13,6 +13,7 @@ import job.jobinfo
 import config.auto.autoconf
 import config.config
 import gui.submit.common
+import gui.submit.maya
 
 class MainWindow(PyQt4.QtGui.QMainWindow):
     def __init__(self,jobList, parent=None):
@@ -27,8 +28,11 @@ class MainWindow(PyQt4.QtGui.QMainWindow):
         #main_window.setAcceptDrops(True)
 
         common_panel = gui.submit.common.CommonPanel(jobList, panel)
+        maya_panel = gui.submit.maya.MayaPanel(jobList, panel)
         qtab = PyQt4.QtGui.QTabWidget()
         qtab.addTab(common_panel, "common")
+        qtab.addTab(maya_panel, "Maya")
+
         pannel_layout = PyQt4.QtGui.QVBoxLayout()
         pannel_layout.addWidget(qtab)
 
