@@ -27,8 +27,10 @@ class MainWindow(PyQt4.QtGui.QMainWindow):
         #main_window.setAcceptDrops(True)
 
         common_panel = gui.submit.common.CommonPanel(jobList, panel)
+        qtab = PyQt4.QtGui.QTabWidget()
+        qtab.addTab(common_panel, "common")
         pannel_layout = PyQt4.QtGui.QVBoxLayout()
-        pannel_layout.addWidget(common_panel)
+        pannel_layout.addWidget(qtab)
 
         button_submit =PyQt4.QtGui.QPushButton("sumbmit")
         button_submit.clicked.connect(self.on_button_submit)
