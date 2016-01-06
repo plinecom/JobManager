@@ -48,14 +48,19 @@ class MainWindow(QtGui.QMainWindow):
         #main_window.setAcceptDrops(True)
 
 
-
+        qsplitV =QtGui.QSplitter(QtCore.Qt.Vertical)
         panelL_layout = QtGui.QVBoxLayout()
         qtabL = QtGui.QTabWidget()
         qtabL.addTab(QtGui.QListWidget(self),"Job")
-        panelL_layout.addWidget(qtabL)
+
+
+
         txtBrowser = QtGui.QTextBrowser()
         txtBrowser.append("test")
-        panelL_layout.addWidget(txtBrowser)
+        qsplitV.addWidget(qtabL)
+        qsplitV.addWidget(txtBrowser)
+
+        panelL_layout.addWidget(qsplitV)
 
         panelL.setLayout(panelL_layout)
 
