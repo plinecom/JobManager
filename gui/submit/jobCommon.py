@@ -50,20 +50,6 @@ class CommonPanel(QtGui.QWidget):
 
         height += 1
 
-        self.chunksize_label = QtGui.QLabel("chunksize")
-        self.chunksize_qle = QtGui.QLineEdit(self)
-        layout.addWidget(self.chunksize_label, height, 0)
-        layout.addWidget(self.chunksize_qle, height, 1)
-
-        height += 1
-
-        self.priority_label = QtGui.QLabel("priority")
-        self.priority_qle = QtGui.QLineEdit(self)
-        layout.addWidget(self.priority_label, height, 0)
-        layout.addWidget(self.priority_qle, height, 1)
-
-        height += 1
-
         self.manager_label = QtGui.QLabel("manager")
         self.manager_combo = QtGui.QComboBox(self)
         layout.addWidget(self.manager_label, height, 0)
@@ -85,29 +71,6 @@ class CommonPanel(QtGui.QWidget):
 
         height += 1
 
-        self.core_label = QtGui.QLabel("core")
-        self.core_qle = QtGui.QLineEdit(self)
-        layout.addWidget(self.core_label, height, 0)
-        layout.addWidget(self.core_qle, height, 1)
-
-        height += 1
-
-        self.group_label = QtGui.QLabel("group")
-        self.group_listWidget = QtGui.QListWidget(self)
-        self.group_listWidget.setSelectionMode(QtGui.QAbstractItemView.MultiSelection)
-        self.group_listWidget.addItems(self._jobList.get_current_job()._param["dispatcherInfo"][0]["groups"])
-        self.group_listWidget.itemSelectionChanged.connect(self.group_itemSelectionChanged)
-        layout.addWidget(self.group_label, height, 0)
-        layout.addWidget(self.group_listWidget, height, 1)
-
-        height += 1
-
-        self.pool_label = QtGui.QLabel("pool/cluster")
-        self.pool_combo = QtGui.QComboBox(self)
-        self.pool_combo.addItems(self._jobList.get_current_job()._param["dispatcherInfo"][0]["pools"])
-        layout.addWidget(self.pool_label, height, 0)
-        layout.addWidget(self.pool_combo, height, 1)
-
         self.setLayout(layout)
 
         self.update_ui()
@@ -117,8 +80,6 @@ class CommonPanel(QtGui.QWidget):
         print self._jobList.get_current_job().getValue("jobName")
 #        print self._jobList.get_current_job()._param
 #        print "testz"
-
-        self.core_qle.setText("8")
 
         self.app_combo.clear()
 
@@ -142,8 +103,6 @@ class CommonPanel(QtGui.QWidget):
         self.start_frame_qle.setText(self._jobList.get_current_job().getValue("startFrame"))
         self.end_frame_qle.setText(self._jobList.get_current_job().getValue("endFrame"))
         print self._jobList.get_current_job().getValue("chunksize")
-        self.chunksize_qle.setText(self._jobList.get_current_job().getValue("chunksize"))
-        self.priority_qle.setText(self._jobList.get_current_job().getValue("priority"))
 
 
 

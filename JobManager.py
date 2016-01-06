@@ -11,8 +11,9 @@ import yaml
 import job.jobinfo
 import config.auto.autoconf
 import config.config
-import gui.submit.common
+import gui.submit.jobCommon
 import gui.submit.maya
+import gui.submit.dispatcherCommon
 
 class MainWindow(QtGui.QMainWindow):
     def __init__(self,jobList, parent=None):
@@ -26,14 +27,15 @@ class MainWindow(QtGui.QMainWindow):
 
         #main_window.setAcceptDrops(True)
 
-        common_panel = gui.submit.common.CommonPanel(jobList, panel)
+        job_common_panel = gui.submit.jobCommon.CommonPanel(jobList, panel)
         maya_panel = gui.submit.maya.MayaPanel(jobList, panel)
         qtab = QtGui.QTabWidget()
-        qtab.addTab(common_panel, "jobinfo")
+        qtab.addTab(job_common_panel, "jobinfo")
         qtab.addTab(maya_panel, "Maya")
 
+        dispatcher_common_panel = gui.submit.dispatcherCommon.CommonPanel(jobList, panel)
         qtabRLow = QtGui.QTabWidget()
-        qtabRLow.addTab(common_panel, "dispatcher")
+        qtabRLow.addTab(dispatcher_common_panel, "dispatcher")
 
 
         panel_layout = QtGui.QVBoxLayout()
@@ -106,7 +108,7 @@ class MainWindow(QtGui.QMainWindow):
 
         self._joblist.set_current_job_id(-1)
 #        common_panel = self.findChild(gui.submit.common.CommonPanel, "commonPanel")
-        common_panel = self.findChild(gui.submit.common.CommonPanel)
+        common_panel = self.findChild(gui.submit.jobCommon.CommonPanel)
         print common_panel
         common_panel.update_ui()
     def on_button_submit(self):
