@@ -33,19 +33,37 @@ class MainWindow(QtGui.QMainWindow):
         qtab.addTab(maya_panel, "Maya")
 
 
-        pannel_layout = QtGui.QVBoxLayout()
-        pannel_layout.addWidget(qtab)
+        panel_layout = QtGui.QVBoxLayout()
+        panel_layout.addWidget(qtab)
 
         button_submit =QtGui.QPushButton("sumbmit")
         button_submit.clicked.connect(self.on_button_submit)
-        pannel_layout.addWidget(button_submit)
+        panel_layout.addWidget(button_submit)
 
-        panel.setLayout(pannel_layout)
+        panel.setLayout(panel_layout)
+
+        panelL = QtGui.QWidget()
+        panelL.setObjectName("listPanel")
+
+        #main_window.setAcceptDrops(True)
+
+
+
+        panelL_layout = QtGui.QVBoxLayout()
+        qtabL = QtGui.QTabWidget()
+        qtabL.addTab(QtGui.QListWidget(self),"Job")
+        panelL_layout.addWidget(qtabL)
+        txtBrowser = QtGui.QTextBrowser()
+        txtBrowser.append("test")
+        panelL_layout.addWidget(txtBrowser)
+
+        panelL.setLayout(panelL_layout)
 
         qsplitH = QtGui.QSplitter(QtCore.Qt.Horizontal)
-        qtabL = QtGui.QTabWidget()
-        qtabL.addTab(QtGui.QListWidget(self),"tab")
-        qsplitH.addWidget(qtabL)
+
+
+
+        qsplitH.addWidget(panelL)
         qsplitH.addWidget(panel)
 
 
