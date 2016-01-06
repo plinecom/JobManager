@@ -29,12 +29,16 @@ class MainWindow(QtGui.QMainWindow):
         common_panel = gui.submit.common.CommonPanel(jobList, panel)
         maya_panel = gui.submit.maya.MayaPanel(jobList, panel)
         qtab = QtGui.QTabWidget()
-        qtab.addTab(common_panel, "common")
+        qtab.addTab(common_panel, "jobinfo")
         qtab.addTab(maya_panel, "Maya")
+
+        qtabRLow = QtGui.QTabWidget()
+        qtabRLow.addTab(common_panel, "dispatcher")
 
 
         panel_layout = QtGui.QVBoxLayout()
         panel_layout.addWidget(qtab)
+        panel_layout.addWidget(qtabRLow)
 
         button_submit =QtGui.QPushButton("sumbmit")
         button_submit.clicked.connect(self.on_button_submit)
@@ -51,14 +55,18 @@ class MainWindow(QtGui.QMainWindow):
         qsplitV =QtGui.QSplitter(QtCore.Qt.Vertical)
         panelL_layout = QtGui.QVBoxLayout()
         qtabL = QtGui.QTabWidget()
-        qtabL.addTab(QtGui.QListWidget(self),"Job")
+        qtabL.addTab(QtGui.QListWidget(self), "Job")
+
 
 
 
         txtBrowser = QtGui.QTextBrowser()
         txtBrowser.append("test")
+        qtabLLow = QtGui.QTabWidget()
+        qtabLLow.addTab(txtBrowser, "console")
+
         qsplitV.addWidget(qtabL)
-        qsplitV.addWidget(txtBrowser)
+        qsplitV.addWidget(qtabLLow)
 
         panelL_layout.addWidget(qsplitV)
 
