@@ -5,8 +5,7 @@ import sys
 import jobfactory.factory
 import dispatcher.qube
 
-import PyQt4.QtGui
-import PyQt4.QtCore
+from PyQt4 import QtGui, QtCore
 
 import yaml
 import job.jobinfo
@@ -15,28 +14,28 @@ import config.config
 import gui.submit.common
 import gui.submit.maya
 
-class MainWindow(PyQt4.QtGui.QMainWindow):
+class MainWindow(QtGui.QMainWindow):
     def __init__(self,jobList, parent=None):
-        PyQt4.QtGui.QMainWindow.__init__(self,parent)
+        QtGui.QMainWindow.__init__(self,parent)
         self._joblist = jobList
         print self._joblist.get_joblist()
 
         self.setAcceptDrops(True)
-        panel = PyQt4.QtGui.QWidget()
+        panel = QtGui.QWidget()
         panel.setObjectName("commonPanel")
 
         #main_window.setAcceptDrops(True)
 
         common_panel = gui.submit.common.CommonPanel(jobList, panel)
         maya_panel = gui.submit.maya.MayaPanel(jobList, panel)
-        qtab = PyQt4.QtGui.QTabWidget()
+        qtab = QtGui.QTabWidget()
         qtab.addTab(common_panel, "common")
         qtab.addTab(maya_panel, "Maya")
 
-        pannel_layout = PyQt4.QtGui.QVBoxLayout()
+        pannel_layout = QtGui.QVBoxLayout()
         pannel_layout.addWidget(qtab)
 
-        button_submit =PyQt4.QtGui.QPushButton("sumbmit")
+        button_submit =QtGui.QPushButton("sumbmit")
         button_submit.clicked.connect(self.on_button_submit)
         pannel_layout.addWidget(button_submit)
 
@@ -135,7 +134,7 @@ if __name__ == "__main__":
     jobList.get_joblist().append(job.jobinfo.JobInfo(fileParam,dispatcherList,configInfo))
 
 
-    app = PyQt4.QtGui.QApplication(sys.argv)
+    app = QtGui.QApplication(sys.argv)
     main_window = MainWindow(jobList)
     main_window.show()
 
