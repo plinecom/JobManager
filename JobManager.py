@@ -9,6 +9,7 @@ import config.config
 import dispatcher.qube
 import filelib.parser.lib
 import gui.submit.dispatcher.common
+import gui.submit.dispatcher.qube
 import gui.submit.fileinfo.common
 import gui.submit.fileinfo.maya
 import job.jobinfo
@@ -33,8 +34,10 @@ class MainWindow(QtGui.QMainWindow):
         qtab.addTab(maya_panel, "Maya")
 
         dispatcher_common_panel = gui.submit.dispatcher.common.CommonPanel(jobList, panel)
+        qube_panel = gui.submit.dispatcher.qube.QubePanel(jobList, panel)
         qtabRLow = QtGui.QTabWidget()
         qtabRLow.addTab(dispatcher_common_panel, "dispatcher")
+        qtabRLow.addTab(qube_panel, "Qube")
 
 
         panel_layout = QtGui.QVBoxLayout()
