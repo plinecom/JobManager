@@ -39,6 +39,11 @@ class CommonPanel(QtGui.QWidget):
         self.group_listWidget.setSelectionMode(QtGui.QAbstractItemView.MultiSelection)
         self.group_listWidget.addItems(self._jobList.get_current_job()._param["dispatcherInfo"][0]["groups"])
         self.group_listWidget.itemSelectionChanged.connect(self.group_itemSelectionChanged)
+        # init selected
+        items = self.group_listWidget.findItems("*",QtCore.Qt.MatchWildcard)
+        for item in items:
+            if "HP" in item.text():
+                item.setSelected(True)
         layout.addWidget(self.group_label, height, 0)
         layout.addWidget(self.group_listWidget, height, 1)
 
