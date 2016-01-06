@@ -32,6 +32,7 @@ class MainWindow(QtGui.QMainWindow):
         qtab.addTab(common_panel, "common")
         qtab.addTab(maya_panel, "Maya")
 
+
         pannel_layout = QtGui.QVBoxLayout()
         pannel_layout.addWidget(qtab)
 
@@ -41,9 +42,16 @@ class MainWindow(QtGui.QMainWindow):
 
         panel.setLayout(pannel_layout)
 
+        qsplitH = QtGui.QSplitter(QtCore.Qt.Horizontal)
+        qtabL = QtGui.QTabWidget()
+        qtabL.addTab(QtGui.QListWidget(self),"tab")
+        qsplitH.addWidget(qtabL)
+        qsplitH.addWidget(panel)
+
+
 
         self.setWindowTitle("JobManager")
-        self.setCentralWidget(panel)
+        self.setCentralWidget(qsplitH)
 
     def dragEnterEvent(self, event):
         if event.mimeData().hasUrls():
