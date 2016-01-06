@@ -29,7 +29,7 @@ class MainWindow(QtGui.QMainWindow):
         job_common_panel = gui.submit.fileinfo.common.CommonPanel(jobList, panel)
         maya_panel = gui.submit.fileinfo.maya.MayaPanel(jobList, panel)
         qtab = QtGui.QTabWidget()
-        qtab.addTab(job_common_panel, "jobinfo")
+        qtab.addTab(job_common_panel, "fileinfo")
         qtab.addTab(maya_panel, "Maya")
 
         dispatcher_common_panel = gui.submit.dispatcher.common.CommonPanel(jobList, panel)
