@@ -1,19 +1,18 @@
-
-import filelib.parser.lib
 import os.path
 import sys
-import jobfactory.factory
-import dispatcher.qube
-
-from PyQt4 import QtGui, QtCore
 
 import yaml
-import job.jobinfo
+from PyQt4 import QtGui, QtCore
+
 import config.auto.autoconf
 import config.config
-import gui.submit.jobCommon
-import gui.submit.maya
-import gui.submit.dispatcherCommon
+import dispatcher.qube
+import filelib.parser.lib
+import gui.submit.dispatcher.common
+import gui.submit.fileinfo.common
+import gui.submit.fileinfo.maya
+import job.jobinfo
+
 
 class MainWindow(QtGui.QMainWindow):
     def __init__(self,jobList, parent=None):
@@ -27,13 +26,13 @@ class MainWindow(QtGui.QMainWindow):
 
         #main_window.setAcceptDrops(True)
 
-        job_common_panel = gui.submit.jobCommon.CommonPanel(jobList, panel)
-        maya_panel = gui.submit.maya.MayaPanel(jobList, panel)
+        job_common_panel = gui.submit.fileinfo.common.CommonPanel(jobList, panel)
+        maya_panel = gui.submit.fileinfo.maya.MayaPanel(jobList, panel)
         qtab = QtGui.QTabWidget()
         qtab.addTab(job_common_panel, "jobinfo")
         qtab.addTab(maya_panel, "Maya")
 
-        dispatcher_common_panel = gui.submit.dispatcherCommon.CommonPanel(jobList, panel)
+        dispatcher_common_panel = gui.submit.dispatcher.common.CommonPanel(jobList, panel)
         qtabRLow = QtGui.QTabWidget()
         qtabRLow.addTab(dispatcher_common_panel, "dispatcher")
 
@@ -108,7 +107,7 @@ class MainWindow(QtGui.QMainWindow):
 
         self._joblist.set_current_job_id(-1)
 #        common_panel = self.findChild(gui.submit.common.CommonPanel, "commonPanel")
-        common_panel = self.findChild(gui.submit.jobCommon.CommonPanel)
+        common_panel = self.findChild(gui.submit.fileinfo.common.CommonPanel)
         print common_panel
         common_panel.update_ui()
     def on_button_submit(self):
