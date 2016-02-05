@@ -9,7 +9,6 @@ class FileinfoPanel(QtGui.QTabWidget):
         QtGui.QTabWidget.__init__(self)
         self._parent = parent
         self._joblist = jobList
-        print self._joblist.get_joblist()
         self._dipatcherList = dispatcherList
         self._configInfo = configInfo
 

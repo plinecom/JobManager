@@ -32,7 +32,7 @@ class MayaPanel(QtGui.QWidget):
 
         self.renderer_combo.clear()
         itemListDic = {}
-        tmp = self._jobList.get_current_job().getValue("Maya_executable")
+        tmp = self._jobList.get_current_job().getValue("Maya_renderer")
         if isinstance(tmp,dict):
             itemListDic = tmp
         renderer_item_list = itemListDic.keys()
