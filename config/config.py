@@ -37,6 +37,7 @@ class ConfigInfo:
         jsonpath_expr = parse(jsonpath)
         print jsonpath
         print [match.value for match in jsonpath_expr.find( self._configlist)]
+        return [match.value for match in jsonpath_expr.find( self._configlist)]
 
 
 

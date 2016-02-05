@@ -30,8 +30,7 @@ class MainWindow(QtGui.QMainWindow):
 
         fileinfo_tab = gui.submit.fileinfo.fileinfo.FileinfoPanel(jobList, dispatcherList,configInfo, panel)
 
-
-        dispatcher_common_panel = gui.submit.dispatcher.common.CommonPanel(jobList, panel)
+        dispatcher_common_panel = gui.submit.dispatcher.common.CommonPanel(jobList, dispatcherList,configInfo, panel)
         qube_panel = gui.submit.dispatcher.qube.QubePanel(jobList, panel)
         qtabRLow = QtGui.QTabWidget()
         qtabRLow.addTab(dispatcher_common_panel, "dispatcher")
