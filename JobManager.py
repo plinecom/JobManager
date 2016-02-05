@@ -107,13 +107,13 @@ class MainWindow(QtGui.QMainWindow):
             print self._joblist.get_current_job()
 
         self._joblist.set_current_job_id(-1)
-#        common_panel = self.findChild(gui.submit.common.CommonPanel, "commonPanel")
         self.update_ui()
 
     def update_ui(self):
-        common_panel = self.findChild(gui.submit.fileinfo.common.CommonPanel)
-        common_panel.update_ui()
-
+#        common_panel = self.findChild(gui.submit.fileinfo.common.CommonPanel)
+#        common_panel.update_ui()
+        tab_panel = self.findChild(gui.submit.fileinfo.fileinfo.FileinfoPanel)
+        tab_panel.update_ui()
 
     def on_button_submit(self):
         dispatcher = self._joblist.get_current_job().getValue("dispatherObj")
