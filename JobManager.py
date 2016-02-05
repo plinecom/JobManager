@@ -10,8 +10,7 @@ import dispatcher.qube
 import filelib.parser.lib
 import gui.submit.dispatcher.common
 import gui.submit.dispatcher.qube
-import gui.submit.fileinfo.common
-import gui.submit.fileinfo.maya
+import gui.submit.fileinfo.fileinfo
 import job.jobinfo
 
 
@@ -29,11 +28,8 @@ class MainWindow(QtGui.QMainWindow):
 
         #main_window.setAcceptDrops(True)
 
-        job_common_panel = gui.submit.fileinfo.common.CommonPanel(jobList, panel)
-        maya_panel = gui.submit.fileinfo.maya.MayaPanel(jobList, panel)
-        qtab = QtGui.QTabWidget()
-        qtab.addTab(job_common_panel, "fileinfo")
-        qtab.addTab(maya_panel, "Maya")
+        fileinfo_tab = gui.submit.fileinfo.fileinfo.FileinfoPanel(jobList, dispatcherList,configInfo, panel)
+
 
         dispatcher_common_panel = gui.submit.dispatcher.common.CommonPanel(jobList, panel)
         qube_panel = gui.submit.dispatcher.qube.QubePanel(jobList, panel)
@@ -43,7 +39,7 @@ class MainWindow(QtGui.QMainWindow):
 
 
         panel_layout = QtGui.QVBoxLayout()
-        panel_layout.addWidget(qtab)
+        panel_layout.addWidget(fileinfo_tab)
         panel_layout.addWidget(qtabRLow)
 
         button_submit =QtGui.QPushButton("sumbmit")
@@ -112,9 +108,13 @@ class MainWindow(QtGui.QMainWindow):
 
         self._joblist.set_current_job_id(-1)
 #        common_panel = self.findChild(gui.submit.common.CommonPanel, "commonPanel")
+        self.update_ui()
+
+    def update_ui(self):
         common_panel = self.findChild(gui.submit.fileinfo.common.CommonPanel)
-        print common_panel
         common_panel.update_ui()
+
+
     def on_button_submit(self):
         dispatcher = self._joblist.get_current_job().getValue("dispatherObj")
         dispatcher.submit(self._joblist.get_current_job())
