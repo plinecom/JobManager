@@ -11,6 +11,7 @@ import filelib.parser.lib
 import gui.submit.dispatcher.common
 import gui.submit.dispatcher.qube
 import gui.submit.fileinfo.fileinfo
+import gui.joblist.list
 import job.jobinfo
 
 
@@ -56,7 +57,9 @@ class MainWindow(QtGui.QMainWindow):
         qsplitV =QtGui.QSplitter(QtCore.Qt.Vertical)
         panelL_layout = QtGui.QVBoxLayout()
         qtabL = QtGui.QTabWidget()
-        qtabL.addTab(QtGui.QListWidget(self), "Job")
+        self._list_view = gui.joblist.list.JobListView(jobList, dispatcherList,configInfo, panel)
+
+        qtabL.addTab( self._list_view, "Job")
 
 
 
@@ -113,6 +116,7 @@ class MainWindow(QtGui.QMainWindow):
 #        common_panel.update_ui()
         tab_panel = self.findChild(gui.submit.fileinfo.fileinfo.FileinfoPanel)
         tab_panel.update_ui()
+        self._list_view.update_ui()
 
     def on_button_submit(self):
         dispatcher = self._joblist.get_current_job().getValue("dispatherObj")
