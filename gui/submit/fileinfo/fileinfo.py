@@ -19,6 +19,8 @@ class FileinfoPanel(QtGui.QTabWidget):
         self.clear()
 
         job_common_panel = gui.submit.fileinfo.common.CommonPanel(self._joblist, self._parent)
-        maya_panel = gui.submit.fileinfo.maya.MayaPanel(self._joblist, self._parent)
         self.addTab(job_common_panel, "fileinfo")
-        self.addTab(maya_panel, "Maya")
+
+        if "Maya" in self._joblist.get_current_job().getValue("software"):
+            maya_panel = gui.submit.fileinfo.maya.MayaPanel(self._joblist, self._parent)
+            self.addTab(maya_panel, "Maya")
