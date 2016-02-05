@@ -57,12 +57,7 @@ class CommonPanel(QtGui.QWidget):
 
         height += 1
 
-        self.app_label = QtGui.QLabel("application")
-        self.app_combo = QtGui.QComboBox(self)
-        layout.addWidget(self.app_label, height, 0)
-        layout.addWidget(self.app_combo, height, 1)
 
-        height += 1
 
         self.setLayout(layout)
 
@@ -74,20 +69,9 @@ class CommonPanel(QtGui.QWidget):
 #        print self._jobList.get_current_job()._param
 #        print "testz"
 
-        self.app_combo.clear()
 
-        print self._jobList.get_current_job().getValue("Maya_executable")
 
-        itemListDic = {}
-        tmp = self._jobList.get_current_job().getValue("Maya_executable")
-        if isinstance(tmp,dict):
-            itemListDic = tmp
 
-        app_item_list = sorted(itemListDic.keys())
-        self.app_combo.addItems(app_item_list)
-        if self._jobList.get_current_job().getValue("application") in app_item_list:
-            self.app_combo.setCurrentIndex(app_item_list.index(self._jobList.get_current_job().getValue("application")))
-        self.app_combo.activated.connect(self.app_combo_activated)
 
 
 
@@ -100,10 +84,7 @@ class CommonPanel(QtGui.QWidget):
 #        print self._jobList.get_current_job().getValue("dispatch_software")
         self.manager_combo.addItems(["Qube6"])
 
-    def app_combo_activated(self,index):
-#        print index
-        self._jobList.get_current_job().setValue("application", self.app_combo.currentText())
-#        print self._jobList.get_current_job().getValue("application")
+
     def start_frame_textChanged(self,text):
         print text
         self._jobList.get_current_job().setValue("startFrame", str(self.start_frame_qle.text()))

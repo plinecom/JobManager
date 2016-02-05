@@ -19,6 +19,13 @@ class MayaPanel(QtGui.QWidget):
 
         height += 1
 
+        self.app_label = QtGui.QLabel("application")
+        self.app_combo = QtGui.QComboBox(self)
+        layout.addWidget(self.app_label, height, 0)
+        layout.addWidget(self.app_combo, height, 1)
+
+        height += 1
+
         self.renderer_label = QtGui.QLabel("renderer")
         self.renderer_combo = QtGui.QComboBox(self)
         layout.addWidget(self.renderer_label, height, 0)
@@ -29,6 +36,18 @@ class MayaPanel(QtGui.QWidget):
         self.update_ui()
 
     def update_ui(self):
+
+        self.app_combo.clear()
+        itemListDic = {}
+        tmp = self._jobList.get_current_job().getValue("Maya_executable")
+        if isinstance(tmp,dict):
+            itemListDic = tmp
+
+        app_item_list = sorted(itemListDic.keys())
+        self.app_combo.addItems(app_item_list)
+        if self._jobList.get_current_job().getValue("application") in app_item_list:
+            self.app_combo.setCurrentIndex(app_item_list.index(self._jobList.get_current_job().getValue("application")))
+        self.app_combo.activated.connect(self.app_combo_activated)
 
         self.renderer_combo.clear()
         itemListDic = {}
@@ -41,3 +60,8 @@ class MayaPanel(QtGui.QWidget):
 #        print self._jobList.get_current_job().getValue("renderer")
         if self._jobList.get_current_job().getValue("renderer") in renderer_item_list:
             self.renderer_combo.setCurrentIndex(renderer_item_list.index(self._jobList.get_current_job().getValue("renderer")))
+
+    def app_combo_activated(self,index):
+#        print index
+        self._jobList.get_current_job().setValue("application", self.app_combo.currentText())
+#        print self._jobList.get_current_job().getValue("application")
