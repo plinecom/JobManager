@@ -78,7 +78,12 @@ class CommonPanel(QtGui.QWidget):
 
         print self._jobList.get_current_job().getValue("Maya_executable")
 
-        app_item_list = sorted(self._jobList.get_current_job().getValue("Maya_executable").keys())
+        itemListDic = {}
+        tmp = self._jobList.get_current_job().getValue("Maya_executable")
+        if isinstance(tmp,dict):
+            itemListDic = tmp
+
+        app_item_list = sorted(itemListDic.keys())
         self.app_combo.addItems(app_item_list)
         if self._jobList.get_current_job().getValue("application") in app_item_list:
             self.app_combo.setCurrentIndex(app_item_list.index(self._jobList.get_current_job().getValue("application")))

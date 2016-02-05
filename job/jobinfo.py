@@ -9,7 +9,10 @@ class JobInfoList():
         self.jobList = []
 
     def get_current_job(self):
-        return self.jobList[self.current_job_id]
+        if len(self.jobList) > 0:
+            return self.jobList[self.current_job_id]
+        else:
+            return JobInfo()
 
     def get_joblist(self):
         return self.jobList
@@ -65,7 +68,7 @@ class JobInfo():
 
         category = None
         for param_key in self._paramkeyList:
-            if self._param.has_key(param_key):
+            if self._param.has_key(param_key) and self._param[param_key] is not None:
                 #print param_key
 #                print self._param["job_setting_override"]
 #                print self._param[param_key]

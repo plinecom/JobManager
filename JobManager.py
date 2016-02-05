@@ -16,10 +16,12 @@ import job.jobinfo
 
 
 class MainWindow(QtGui.QMainWindow):
-    def __init__(self,jobList, parent=None):
+    def __init__(self,jobList, dispatcherList,configInfo, parent=None):
         QtGui.QMainWindow.__init__(self,parent)
         self._joblist = jobList
         print self._joblist.get_joblist()
+        self._dipatcherList = dispatcherList
+        self._configInfo = configInfo
 
         self.setAcceptDrops(True)
         panel = QtGui.QWidget()
@@ -101,8 +103,8 @@ class MainWindow(QtGui.QMainWindow):
             self._joblist.get_joblist().append(
                     job.jobinfo.JobInfo(
                             file_parser.getparam(),
-                            self._joblist.get_current_job().getlist_dispatcher(),
-                            self._joblist.get_current_job().getparam_config()
+                            self._dipatcherList,
+                            self._configInfo
                     )
             )
 
@@ -174,11 +176,12 @@ if __name__ == "__main__":
     print dispatcherList
 
     jobList = job.jobinfo.JobInfoList()
-    jobList.get_joblist().append(job.jobinfo.JobInfo(fileParam,dispatcherList,configInfo))
+    if addFilePath is not None:
+        jobList.get_joblist().append(job.jobinfo.JobInfo(fileParam,dispatcherList,configInfo))
 
 
     app = QtGui.QApplication(sys.argv)
-    main_window = MainWindow(jobList)
+    main_window = MainWindow(jobList,dispatcherList,configInfo)
     main_window.show()
 
 

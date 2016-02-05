@@ -31,7 +31,11 @@ class MayaPanel(QtGui.QWidget):
     def update_ui(self):
 
         self.renderer_combo.clear()
-        renderer_item_list = self._jobList.get_current_job().getValue("Maya_renderer").keys()
+        itemListDic = {}
+        tmp = self._jobList.get_current_job().getValue("Maya_executable")
+        if isinstance(tmp,dict):
+            itemListDic = tmp
+        renderer_item_list = itemListDic.keys()
         self.renderer_combo.addItems(renderer_item_list)
 #        print renderer_item_list
 #        print self._jobList.get_current_job().getValue("renderer")

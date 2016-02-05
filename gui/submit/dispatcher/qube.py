@@ -29,7 +29,7 @@ class QubePanel(QtGui.QWidget):
 
         self.pool_label = QtGui.QLabel("cluster")
         self.pool_combo = QtGui.QComboBox(self)
-        self.pool_combo.addItems(self._jobList.get_current_job()._param["dispatcherInfo"][0]["pools"])
+#        self.pool_combo.addItems(self._jobList.get_current_job()._param["dispatcherInfo"][0]["pools"])
         layout.addWidget(self.pool_label, height, 0)
         layout.addWidget(self.pool_combo, height, 1)
 
@@ -43,7 +43,7 @@ class QubePanel(QtGui.QWidget):
 
         print self._jobList.get_current_job().getValue("Maya_executable")
 
-        app_item_list = sorted(self._jobList.get_current_job().getValue("Maya_executable").keys())
+#        app_item_list = sorted(self._jobList.get_current_job().getValue("Maya_executable").keys())
 
         print self._jobList.get_current_job().getValue("chunksize")
         self.chunksize_qle.setText(self._jobList.get_current_job().getValue("chunksize"))

@@ -25,7 +25,7 @@ class CommonPanel(QtGui.QWidget):
         self.group_label = QtGui.QLabel("group")
         self.group_listWidget = QtGui.QListWidget(self)
         self.group_listWidget.setSelectionMode(QtGui.QAbstractItemView.MultiSelection)
-        self.group_listWidget.addItems(self._jobList.get_current_job()._param["dispatcherInfo"][0]["groups"])
+#        self.group_listWidget.addItems(self._jobList.get_current_job()._param["dispatcherInfo"][0]["groups"])
         self.group_listWidget.itemSelectionChanged.connect(self.group_itemSelectionChanged)
         # init selected
         items = self.group_listWidget.findItems("*",QtCore.Qt.MatchWildcard)
@@ -44,8 +44,11 @@ class CommonPanel(QtGui.QWidget):
     def update_ui(self):
 
         print self._jobList.get_current_job().getValue("Maya_executable")
-
-        app_item_list = sorted(self._jobList.get_current_job().getValue("Maya_executable").keys())
+        itemListDic = {}
+        tmp = self._jobList.get_current_job().getValue("Maya_executable")
+        if isinstance(tmp,dict):
+            itemListDic = tmp
+        app_item_list = sorted(itemListDic.keys())
 
         self.priority_qle.setText(self._jobList.get_current_job().getValue("priority"))
 
