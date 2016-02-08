@@ -57,7 +57,12 @@ class CommonPanel(QtGui.QWidget):
 
         height += 1
 
+        self.project_label = QtGui.QLabel("project")
+        self.project_combo = QtGui.QComboBox(self)
+        layout.addWidget(self.project_label, height, 0)
+        layout.addWidget(self.project_combo, height, 1)
 
+        height += 1
 
         self.setLayout(layout)
 
