@@ -77,6 +77,16 @@ class MayaPanel(QtGui.QWidget):
             self.layer_combo.setCurrentIndex(app_layer_list.index(self._jobList.get_current_job().getValue("application")))
 #        self.layer_combo.activated.connect(self.app_combo_activated)
 
+        self.camera_combo.clear()
+
+
+        camera_list = self._jobList.get_current_job().getValue("cameraList")
+        self.camera_combo.addItems(camera_list)
+        if self._jobList.get_current_job().getValue("application") in camera_list:
+            self.camera_combo.setCurrentIndex(camera_list.index(self._jobList.get_current_job().getValue("application")))
+#        self.camera_combo.activated.connect(self.app_combo_activated)
+
+
 
         self.app_combo.clear()
         itemListDic = {}
