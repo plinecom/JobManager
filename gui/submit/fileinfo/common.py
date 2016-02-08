@@ -65,6 +65,7 @@ class CommonPanel(QtGui.QWidget):
 
     def update_ui(self):
         self.jobname_qle.setText(self._jobList.get_current_job().getValue("jobName"))
+        print "id " + str(self._jobList.current_job_id)
         print self._jobList.get_current_job().getValue("jobName")
 #        print self._jobList.get_current_job()._param
 #        print "testz"
