@@ -34,7 +34,8 @@ class MayaPanel(QtGui.QWidget):
         height += 1
 
         self.layer_label = QtGui.QLabel("layer")
-        self.layer_combo = QtGui.QComboBox(self)
+        self.layer_combo = QtGui.QListWidget(self)
+        self.layer_combo.setSelectionMode(QtGui.QListWidget.MultiSelection)
         layout.addWidget(self.layer_label, height, 0)
         layout.addWidget(self.layer_combo, height, 1)
 
@@ -71,7 +72,6 @@ class MayaPanel(QtGui.QWidget):
 
         self.layer_combo.clear()
         app_layer_list = self._jobList.get_current_job().getValue("renderLayerList")
-        app_layer_list.insert(0,"")
         self.layer_combo.addItems(app_layer_list)
         if self._jobList.get_current_job().getValue("application") in app_layer_list:
             self.layer_combo.setCurrentIndex(app_layer_list.index(self._jobList.get_current_job().getValue("application")))
