@@ -26,12 +26,60 @@ class MayaPanel(QtGui.QWidget):
 
         height += 1
 
+        self.camera_label = QtGui.QLabel("camera")
+        self.camera_combo = QtGui.QComboBox(self)
+        layout.addWidget(self.camera_label, height, 0)
+        layout.addWidget(self.camera_combo, height, 1)
+
+        height += 1
+
+        self.layer_label = QtGui.QLabel("layer")
+        self.layer_combo = QtGui.QComboBox(self)
+        layout.addWidget(self.layer_label, height, 0)
+        layout.addWidget(self.layer_combo, height, 1)
+
+        height += 1
+
+        self.renderer_label = QtGui.QLabel("renderer")
+        self.renderer_combo = QtGui.QComboBox(self)
+        layout.addWidget(self.renderer_label, height, 0)
+        layout.addWidget(self.renderer_combo, height, 1)
+
+
+
+        height += 1
+
         self.renderer_label = QtGui.QLabel("renderer")
         self.renderer_combo = QtGui.QComboBox(self)
         layout.addWidget(self.renderer_label, height, 0)
         layout.addWidget(self.renderer_combo, height, 1)
 
         height += 1
+
+        self.renderer_dir_label = QtGui.QLabel("render dir")
+        self.renderer_dir_qle = QtGui.QLineEdit()
+
+        layout.addWidget(self.renderer_dir_label, height, 0)
+        layout.addWidget(self.renderer_dir_qle, height, 1)
+
+        height += 1
+
+        self.renderer_filetype_label = QtGui.QLabel("file name")
+        self.renderer_filetype_qle = QtGui.QLineEdit()
+
+        layout.addWidget(self.renderer_filetype_label, height, 0)
+        layout.addWidget(self.renderer_filetype_qle, height, 1)
+
+        height += 1
+
+        self.renderer_opt_label = QtGui.QLabel("other option")
+        self.renderer_opt_qle = QtGui.QLineEdit()
+
+        layout.addWidget(self.renderer_opt_label, height, 0)
+        layout.addWidget(self.renderer_opt_qle, height, 1)
+
+        height += 1
+
         self.setLayout(layout)
         self.update_ui()
 
