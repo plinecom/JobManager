@@ -13,6 +13,14 @@ class QubePanel(QtGui.QWidget):
         height = 0
         layout = QtGui.QGridLayout()
 
+        self.instance_num_label = QtGui.QLabel("instances")
+        self.instance_num_qle = QtGui.QLineEdit(self)
+        layout.addWidget(self.instance_num_label, height, 0)
+        layout.addWidget(self.instance_num_qle, height, 1)
+
+        height += 1
+
+
         self.chunksize_label = QtGui.QLabel("chunksize")
         self.chunksize_qle = QtGui.QLineEdit(self)
         layout.addWidget(self.chunksize_label, height, 0)
@@ -40,10 +48,6 @@ class QubePanel(QtGui.QWidget):
     def update_ui(self):
 
         self.core_qle.setText("8")
-
-        print self._jobList.get_current_job().getValue("Maya_executable")
-
-#        app_item_list = sorted(self._jobList.get_current_job().getValue("Maya_executable").keys())
 
         print self._jobList.get_current_job().getValue("chunksize")
         self.chunksize_qle.setText(self._jobList.get_current_job().getValue("chunksize"))
