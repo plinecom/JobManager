@@ -9,7 +9,7 @@ class JobListView(QtGui.QTreeWidget):
         self._joblist = jobList
         self._dipatcherList = dispatcherList
         self._configInfo = configInfo
-
+        self.setSelectionMode(self.ExtendedSelection)
         self.currentItemChanged.connect(self.item_changed)
 
         self.update_ui()
@@ -46,7 +46,7 @@ class JobListView(QtGui.QTreeWidget):
         while parent != 0:
             print parent
             if parent.windowTitle() == "JobManager":
-                parent.update_ui()
+                parent.update_ui_right_pannel()
                 break
             parent = parent.parent()
 
