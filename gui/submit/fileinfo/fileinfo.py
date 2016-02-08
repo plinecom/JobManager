@@ -1,7 +1,8 @@
 from PyQt4 import QtGui, QtCore
 import gui.submit.fileinfo.common
-import gui.submit.fileinfo.maya
-
+import gui.submit.fileinfo.maya1
+import gui.submit.fileinfo.maya2
+import gui.submit.fileinfo.maya_mentalray
 
 class FileinfoPanel(QtGui.QTabWidget):
 
@@ -21,5 +22,11 @@ class FileinfoPanel(QtGui.QTabWidget):
         self.addTab(job_common_panel, "fileinfo")
 
         if "Maya" in self._joblist.get_current_job().getValue("software"):
-            maya_panel = gui.submit.fileinfo.maya.MayaPanel(self._joblist, self._parent)
-            self.addTab(maya_panel, "Maya")
+            maya_panel1 = gui.submit.fileinfo.maya1.MayaPanel(self._joblist, self._parent)
+            self.addTab(maya_panel1, "Maya1")
+            maya_panel2 = gui.submit.fileinfo.maya2.MayaPanel(self._joblist, self._parent)
+            self.addTab(maya_panel2, "Maya2")
+
+            if "mentalray" in self._joblist.get_current_job().getValue("Maya_renderer"):
+                mentalray_panel = gui.submit.fileinfo.maya_mentalray.MentalrayPanel(self._joblist, self._parent)
+                self.addTab(mentalray_panel, "Mentalray")
