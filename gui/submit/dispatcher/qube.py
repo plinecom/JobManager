@@ -35,6 +35,13 @@ class QubePanel(QtGui.QWidget):
 
         height += 1
 
+        self.coreall_label = QtGui.QLabel("core All(+)")
+        self.coreall_qcb = QtGui.QCheckBox(self)
+        layout.addWidget(self.coreall_label, height, 0)
+        layout.addWidget(self.coreall_qcb, height, 1)
+
+        height += 1
+
         self.pool_label = QtGui.QLabel("cluster")
         self.pool_combo = QtGui.QComboBox(self)
 #        self.pool_combo.addItems(self._jobList.get_current_job()._param["dispatcherInfo"][0]["pools"])
