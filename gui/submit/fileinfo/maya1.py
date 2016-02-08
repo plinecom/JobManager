@@ -69,6 +69,15 @@ class MayaPanel(QtGui.QWidget):
 
     def update_ui(self):
 
+        self.layer_combo.clear()
+        app_layer_list = self._jobList.get_current_job().getValue("renderLayerList")
+        app_layer_list.insert(0,"")
+        self.layer_combo.addItems(app_layer_list)
+        if self._jobList.get_current_job().getValue("application") in app_layer_list:
+            self.layer_combo.setCurrentIndex(app_layer_list.index(self._jobList.get_current_job().getValue("application")))
+#        self.layer_combo.activated.connect(self.app_combo_activated)
+
+
         self.app_combo.clear()
         itemListDic = {}
         tmp = self._jobList.get_current_job().getValue("Maya_executable")

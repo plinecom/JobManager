@@ -98,6 +98,7 @@ class MainWindow(QtGui.QMainWindow):
         for u in event.mimeData().urls():
             print u.toLocalFile()
             file_parser = filelib.parser.lib.fileParse(str(u.toLocalFile()))
+            print file_parser.getparam()
             self._joblist.get_joblist().append(
                     job.jobinfo.JobInfo(
                             file_parser.getparam(),
