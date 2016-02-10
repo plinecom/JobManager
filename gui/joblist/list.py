@@ -20,7 +20,7 @@ class JobListView(QtGui.QTreeWidget):
         i = 0;
         for jobinfo in self._joblist.get_joblist():
             item = QtGui.QTreeWidgetItem()
-            item.setData(0,QtCore.Qt.DisplayRole,jobinfo.getValue("jobName"))
+            item.setData(0,QtCore.Qt.DisplayRole,jobinfo.get_jobname())
             item.setData(0,QtCore.Qt.UserRole,i)
             self.addTopLevelItem(item)
             print "index "+str(i)

@@ -80,25 +80,6 @@ class JobInfo():
             ret = [""]
         return ret
 
-        category = None
-        for param_key in self._param:
-            print param_key
-            if param_key is not None:
-                #print param_key
-#                print self._param["job_setting_override"]
-#                print self._param[param_key]
-#                print self._param[param_key]
-                if "configInfo" in param_key:
-                   value = param_key["configInfo"].getvalue(key)
-                   if value is not None:
-                       return value
-                elif "dispatcherInfo" in param_key:
-                    print self._param[-1]["job_setting_override"]
+    def get_jobname(self):
+        return self.getValue("[*].*.fileNameWithoutExt")[0]
 
-                    if param_key[self._param[-1]["job_setting_override"]["dispatcherIndex"]].has_key(key):
-                        return param_key[self._param[-1]["job_setting_override"]["dispatcherIndex"]][key]
-                else:
-                    if param_key.has_key(key):
-                        return self._param[param_key][key]
-
-        return ""
