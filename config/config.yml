@@ -1,6 +1,6 @@
 {
   "01": {
-    "auto_config_overwrite": {
+    "config": {
       "Maya_executable": {
         "Maya_2016": "/usr/autodesk/maya2016/bin/Render",
         "Maya_2015": "/usr/autodesk/maya2015-x64/bin/Render",
@@ -21,6 +21,7 @@
         "localbatch":{
           "maya":"test"
         }
+      },
 
 ##      "Qube6": {
 ##        "dispatch_software": "Qube6",
@@ -33,14 +34,11 @@
 ##          "submitter": ""
 ##      }
 ##      }
-      }
-    }
-  },
-  "99":{
-      "studio_setting":{
 #        "use_dispatcher":["Qube6"],
-        "dispatcher_default":"Qube6",
-        "priority":"9999"
-      }
+
+      ## Studio Setting
+      "dispatcher_default":"Qube6",
+      "priority":"9999"
+    }
   }
 }

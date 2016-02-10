@@ -42,7 +42,7 @@ class Qube6(Qube):
         self.setValue("pools", sorted(cluster_dic.keys()))
         print cluster_dic.keys()
 
-        self.setValue("dispatherObj", self)
+#        self.setValue("dispatherObj", self)
 
     def addJob(self,job):
         self._job.append(job)

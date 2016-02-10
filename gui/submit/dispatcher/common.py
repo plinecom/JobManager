@@ -49,7 +49,7 @@ class CommonPanel(QtGui.QWidget):
 
 
 
-        self.priority_qle.setText(self._joblist.get_current_job().getValue("priority"))
+        self.priority_qle.setText(self._joblist.get_current_job().getValue("priority")[0])
 
 
 

@@ -21,12 +21,12 @@ class FileinfoPanel(QtGui.QTabWidget):
         job_common_panel = gui.submit.fileinfo.common.CommonPanel(self._joblist, self._parent)
         self.addTab(job_common_panel, "fileinfo")
 
-        if "Maya" in self._joblist.get_current_job().getValue("software"):
+        if "Maya" in self._joblist.get_current_job().getValue("[*].*.software")[0]:
             maya_panel1 = gui.submit.fileinfo.maya1.MayaPanel(self._joblist, self._parent)
             self.addTab(maya_panel1, "Maya1")
             maya_panel2 = gui.submit.fileinfo.maya2.MayaPanel(self._joblist, self._parent)
             self.addTab(maya_panel2, "Maya2")
 
-            if "mentalray" in self._joblist.get_current_job().getValue("Maya_renderer"):
+            if "mentalray" in self._joblist.get_current_job().getValue("[*].*.renderer")[0]:
                 mentalray_panel = gui.submit.fileinfo.maya_mentalray.MentalrayPanel(self._joblist, self._parent)
                 self.addTab(mentalray_panel, "Mentalray")

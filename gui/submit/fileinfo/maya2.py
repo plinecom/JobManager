@@ -12,7 +12,7 @@ class MayaPanel(QtGui.QWidget):
         height = 0
         layout = QtGui.QGridLayout()
         self.jobname_label = QtGui.QLabel("job name")
-        self.jobname_qle = QtGui.QLineEdit(self._jobList.get_current_job().getValue("jobName"))
+        self.jobname_qle = QtGui.QLineEdit(self._jobList.get_current_job().getValue("jobName")[0])
 
         layout.addWidget(self.jobname_label, height, 0)
         layout.addWidget(self.jobname_qle, height, 1)
@@ -23,7 +23,7 @@ class MayaPanel(QtGui.QWidget):
 
 
         self.renderer_proj_path_label = QtGui.QLabel("project path")
-        self.renderer_proj_path_qle = QtGui.QLineEdit()
+        self.renderer_proj_path_qle = QtGui.QLineEdit(self._jobList.get_current_job().getValue("proj")[0])
 
         layout.addWidget(self.renderer_proj_path_label, height, 0)
         layout.addWidget(self.renderer_proj_path_qle, height, 1)

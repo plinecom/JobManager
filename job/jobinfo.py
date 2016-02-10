@@ -1,5 +1,6 @@
 import interface
-
+import json
+from jsonpath_rw import jsonpath, parse
 
 __author__ = 'Masataka'
 
@@ -29,19 +30,24 @@ class JobInfo():
 #        interface.IJob.__init__(self)
         self.test=1
 
-        self._param ={}
-        self._param["fileInfo"] = param  # copy param Dictionary
-        self._param["dispatcherInfo"] = dispatcherList
-        self._param["configInfo"] = configInfo
-        self._param["job_setting_override"] = {
-            "dispatcherIndex":0
-        }  # GUI Select
+        self._param =[]
+        self._param.append({"job_setting_override":{
+            "dispatcherIndex":0 # GUI Select
+        }})
+        if configInfo is not None:
+            for config in configInfo._configlist:
+                self._param.append(config)
+        self._param.append({"fileInfo":param})
+        self._param.append({"dispatcherInfo":dispatcherList})
+
+
         self._paramkeyList = ["job_setting_override", "configInfo", "fileInfo", "dispatcherInfo"]
  #       for paramKey in self._paramkeyList:
 #            self._param["job_setting_override"][0][paramKey] = 0
 
         print "inst"
         print self._param
+        print json.dumps(self._param, sort_keys=False, indent=4)
         print self
 
     def getparam(self):
@@ -62,27 +68,37 @@ class JobInfo():
         return param
 
     def setValue(self, key, value):
-        self._param["job_setting_override"][key]=value
+
+        self._param[0]["job_setting_override"][key] = value
+
+        print json.dumps(self._param, sort_keys=False, indent=4)
 
     def getValue(self, key):
+        jsonpath_expr = parse(key)
+        ret =  [match.value for match in jsonpath_expr.find( self._param)]
+        if len(ret) <= 0:
+            ret = [""]
+        return ret
 
         category = None
-        for param_key in self._paramkeyList:
-            if self._param.has_key(param_key) and self._param[param_key] is not None:
+        for param_key in self._param:
+            print param_key
+            if param_key is not None:
                 #print param_key
 #                print self._param["job_setting_override"]
 #                print self._param[param_key]
 #                print self._param[param_key]
-                if param_key == "configInfo":
-                   value = self._param[param_key].getvalue(key)
+                if "configInfo" in param_key:
+                   value = param_key["configInfo"].getvalue(key)
                    if value is not None:
                        return value
-                elif param_key == "dispatcherInfo":
+                elif "dispatcherInfo" in param_key:
+                    print self._param[-1]["job_setting_override"]
 
-                    if self._param[param_key][self._param["job_setting_override"]["dispatcherIndex"]].has_key(key):
-                        return self._param[param_key][self._param["job_setting_override"]["dispatcherIndex"]][key]
+                    if param_key[self._param[-1]["job_setting_override"]["dispatcherIndex"]].has_key(key):
+                        return param_key[self._param[-1]["job_setting_override"]["dispatcherIndex"]][key]
                 else:
-                    if self._param[param_key].has_key(key):
+                    if param_key.has_key(key):
                         return self._param[param_key][key]
 
         return ""

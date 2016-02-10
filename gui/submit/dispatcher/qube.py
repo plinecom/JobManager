@@ -57,7 +57,7 @@ class QubePanel(QtGui.QWidget):
         self.core_qle.setText("8")
 
         print self._jobList.get_current_job().getValue("chunksize")
-        self.chunksize_qle.setText(self._jobList.get_current_job().getValue("chunksize"))
+        self.chunksize_qle.setText(self._jobList.get_current_job().getValue("chunksize")[0])
 
 
 

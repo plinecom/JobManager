@@ -2,6 +2,7 @@ import os.path
 import sys
 
 import yaml
+import json
 from PyQt4 import QtGui, QtCore
 
 import config.auto.autoconf
@@ -161,6 +162,7 @@ if __name__ == "__main__":
         configList.append(config_data[key])
 
     print configList
+    print json.dumps(configList, sort_keys=False, indent=4)
     configInfo = config.config.ConfigInfo(configList)
 #    print configInfo.getvalue("priority")
 #    print configInfo.getvalue("priority")
