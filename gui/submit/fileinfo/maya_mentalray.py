@@ -13,6 +13,7 @@ class MentalrayPanel(QtGui.QWidget):
         layout = QtGui.QGridLayout()
         self.jobname_label = QtGui.QLabel("job name")
         self.jobname_qle = QtGui.QLineEdit(self._jobList.get_current_job().get_jobname())
+        self.jobname_qle.setReadOnly(True)
 
         layout.addWidget(self.jobname_label, height, 0)
         layout.addWidget(self.jobname_qle, height, 1)
