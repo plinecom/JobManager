@@ -167,7 +167,6 @@ if __name__ == "__main__":
 #    print configInfo.getvalue("priority")
 #    print configInfo.getvalue("priority")
     configInfo.getvalueJsonPath("[*].*.priority")
-    print "xx"
     print configInfo.getvalueJsonPath("[*].*.dispatcher")
     #command line mode?
 
