@@ -90,6 +90,8 @@ class FileParserMayaMB(filelib.parser.ma.FileParserMaya):
                 elif 'vray' in ren:
                     renderer = 'vray'
                 else:
+                    print "ren"
+                    print ren
                     renderer = 'maya_software'
             if "RNDLCREA" in l:
                 renderLayerInfoList = l.split("RNDLCREA");
