@@ -167,7 +167,8 @@ if __name__ == "__main__":
 #    print configInfo.getvalue("priority")
 #    print configInfo.getvalue("priority")
     configInfo.getvalueJsonPath("[*].*.priority")
-    configInfo.getvalueJsonPath("[*].*.dispatcher")
+    print "xx"
+    print configInfo.getvalueJsonPath("[*].*.dispatcher")
     #command line mode?
 
     # loadFile(addFilePath)
@@ -180,9 +181,10 @@ if __name__ == "__main__":
 #    job_factory = jobfactory.factory.JobFactory()
 #    job = job_factory.getJob(fileParser.getparam(), "SudioPlugin()")
     dispatcherList = []
-    for dispatcher_name in configInfo.getvalue("dispatcher").keys():
-        if dispatcher_name == "Qube6":
-          dispatcherList.append(dispatcher.qube.Qube6(configInfo.getvalue("dispatcher")[dispatcher_name]).getparam())
+    for dispatcher_info in  configInfo.getvalueJsonPath("[*].*.dispatcher"):
+        print dispatcher_info
+        if u"Qube6" in dispatcher_info.keys():
+            dispatcherList.append(dispatcher.qube.Qube6(configInfo.getvalueJsonPath("[*].*.dispatcher.Qube6")[0]).getparam())
     print dispatcherList
 
     jobList = job.jobinfo.JobInfoList()
