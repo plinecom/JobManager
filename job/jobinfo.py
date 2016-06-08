@@ -12,8 +12,7 @@ class JobInfoList():
     def get_current_job(self):
         if len(self.jobList) > 0:
             return self.jobList[self.current_job_id]
-        else:
-            return JobInfo()
+
 
     def get_joblist(self):
         return self.jobList
@@ -69,7 +68,6 @@ class JobInfo():
     def setValue(self, key, value):
 
         self._param[0]["job_setting_override"][key] = value
-
         print json.dumps(self._param, sort_keys=False, indent=4)
 
     def getValue(self, key):

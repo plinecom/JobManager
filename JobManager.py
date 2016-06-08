@@ -189,7 +189,8 @@ if __name__ == "__main__":
     jobList = job.jobinfo.JobInfoList()
     if addFilePath is not None:
         jobList.get_joblist().append(job.jobinfo.JobInfo(fileParam,dispatcherList,configInfo))
-
+    else:
+        jobList.get_joblist().append(job.jobinfo.JobInfo(None, dispatcherList, configInfo.getvalueJsonPath("[*]")))
 
     app = QtGui.QApplication(sys.argv)
     main_window = MainWindow(jobList,dispatcherList,configInfo)
