@@ -38,8 +38,15 @@ class Qube6(Qube):
         cluster_dic = {}
         for e in qb_xml_document.findall("object/item/object/cluster"):
             cluster_dic[e.text.encode("utf-8")] = "1"
+        cluster_dic2 = {}
+        for cluster in cluster_dic.keys():
+            cluster_level = cluster.split("/")
+            for i in range(0,len(cluster_level)+1):
+                cluster_dic2["/".join(cluster_level[0:i])]=1
+        #print cluster_dic2
+
         #    group_dic[e.text]="1"
-        self.setValue("pools", sorted(cluster_dic.keys()))
+        self.setValue("pools", sorted(cluster_dic2.keys()))
         print cluster_dic.keys()
 
 #        self.setValue("dispatherObj", self)
