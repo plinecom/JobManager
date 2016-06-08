@@ -47,23 +47,6 @@ class JobInfo():
 #        print json.dumps(self._param, sort_keys=False, indent=4)
 #        print self
 
-    def getparam(self):
-        return self._param
-
-    def get_dispatcher(self):
-        print self._param[self._param["job_setting_override"]["dispatcherIndex"]]
-        return self.getlist_dispatcher()[self._param["job_setting_override"]["dispatcherIndex"]]
-
-    def getlist_dispatcher(self):
-        key = "dispatcherInfo"
-        self._param[self._paramkeyList[key]]
-
-    def getparam_config(self):
-        key = "configInfo"
-        param = {}
-        if self._param.has_key(key):
-            param = self._param["configInfo"]
-        return param
 
     def setValue(self, key, value):
 
