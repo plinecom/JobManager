@@ -92,7 +92,9 @@ class MayaPanel(QtGui.QWidget):
 
         self.app_combo.clear()
         itemListDic = {}
-        tmp = self._jobList.get_current_job().getValue("[*].*.Maya_executable")[0]
+        tmp = self._jobList.get_current_job().getValue("[*].configInfo.[*].*.Maya_executable")[0]
+        print "test"
+        print tmp
         if isinstance(tmp,dict):
             itemListDic = tmp
 

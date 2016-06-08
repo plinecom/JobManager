@@ -13,7 +13,8 @@
         "maya_hardware": "hw",
         "maya_file": "file",
         "vray": "vray",
-        "3Delight": "3Delight"
+        "3Delight": "3Delight",
+        "arnold": "arnold"
       },
       "chunksize": "10",
       "priority": "100",

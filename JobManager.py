@@ -193,7 +193,7 @@ if __name__ == "__main__":
         jobList.get_joblist().append(job.jobinfo.JobInfo(None, dispatcherList, configInfo.getvalueJsonPath("[*]")))
 
     app = QtGui.QApplication(sys.argv)
-    main_window = MainWindow(jobList,dispatcherList,configInfo)
+    main_window = MainWindow(jobList,dispatcherList,configInfo.getvalueJsonPath("[*]"))
     main_window.show()
 
 
