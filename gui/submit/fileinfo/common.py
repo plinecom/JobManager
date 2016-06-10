@@ -84,17 +84,10 @@ class CommonPanel(QtGui.QWidget):
         print "id " + str(self._jobList.current_job_id)
         print self._jobList.get_current_job().getValue("jobName")
 #        print self._jobList.get_current_job()._param
-#        print "testz"
-
-
-
-
-
-
-
-        self.start_frame_qle.setText(self._jobList.get_current_job().getValue("startFrame")[0])
-        self.end_frame_qle.setText(self._jobList.get_current_job().getValue("endFrame")[0])
-        print self._jobList.get_current_job().getValue("chunksize")
+        print "testz"
+        print self._jobList.get_current_job().getValue("[*].fileInfo.endFrame")[0]
+        self.end_frame_qle.setText(self._jobList.get_current_job().getValue("[*].fileInfo.endFrame")[0])
+        self.start_frame_qle.setText(self._jobList.get_current_job().getValue("[*].fileInfo.startFrame")[0])
 
 
 
@@ -104,10 +97,10 @@ class CommonPanel(QtGui.QWidget):
 
     def start_frame_textChanged(self,text):
         print text
-        self._jobList.get_current_job().setValue("startFrame", str(self.start_frame_qle.text()))
+#       self._jobList.get_current_job().setValue("startFrame", str(self.start_frame_qle.text()))
     def end_frame_textChanged(self,text):
         print text
-        self._jobList.get_current_job().setValue("endFrame", str(self.end_frame_qle.text()))
+#        self._jobList.get_current_job().setValue("endFrame", str(self.end_frame_qle.text()))
     def group_itemSelectionChanged(self):
         itemList =[]
         for item in self.group_listWidget.selectedItems():
