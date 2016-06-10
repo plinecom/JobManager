@@ -28,7 +28,7 @@ class CommonPanel(QtGui.QWidget):
         self.group_label = QtGui.QLabel("group")
         self.group_listWidget = QtGui.QListWidget(self)
         self.group_listWidget.setSelectionMode(QtGui.QAbstractItemView.MultiSelection)
-#        self.group_listWidget.addItems(self._dipatcherList[0]["groups"])
+        self.group_listWidget.addItems(self._joblist.get_current_job().getValue("[*].dispatcherInfo.[0].groups")[0])
 
         self.group_listWidget.itemSelectionChanged.connect(self.group_itemSelectionChanged)
         # init selected
@@ -48,8 +48,9 @@ class CommonPanel(QtGui.QWidget):
     def update_ui(self):
 
 
-
-        self.priority_qle.setText(self._joblist.get_current_job().getValue("priority")[0])
+        print "priority"
+        print self._joblist.get_current_job().getValue("[*].dispatcherInfo.[0].groups")
+        self.priority_qle.setText(self._joblist.get_current_job().getValue("[*].configInfo.[*].*.priority")[0])
 
 
 
