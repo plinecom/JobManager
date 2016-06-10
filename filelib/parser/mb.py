@@ -133,6 +133,9 @@ class FileParserMayaMB(filelib.parser.ma.FileParserMaya):
         if frameStart is None:
             self._param["startFrame"] = "1"
         else:
+            print "tx"
+            print frameStart
+            print fpsData
             self._param["startFrame"]=str(frameStart*fpsData/100.0/60.0)
         if frameEnd is None:
             self._param["endFrame"] = "10"
