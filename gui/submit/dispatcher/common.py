@@ -28,7 +28,7 @@ class CommonPanel(QtGui.QWidget):
         self.group_label = QtGui.QLabel("group")
         self.group_listWidget = QtGui.QListWidget(self)
         self.group_listWidget.setSelectionMode(QtGui.QAbstractItemView.MultiSelection)
-        self.group_listWidget.addItems(self._dipatcherList[0]["groups"])
+#        self.group_listWidget.addItems(self._dipatcherList[0]["groups"])
 
         self.group_listWidget.itemSelectionChanged.connect(self.group_itemSelectionChanged)
         # init selected
