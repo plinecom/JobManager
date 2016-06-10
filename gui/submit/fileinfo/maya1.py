@@ -106,7 +106,7 @@ class MayaPanel(QtGui.QWidget):
 
         self.renderer_combo.clear()
         itemListDic = {}
-        tmp = self._jobList.get_current_job().getValue("[*].*.Maya_renderer")[0]
+        tmp = self._jobList.get_current_job().getValue("[*].*.[*].*.Maya_renderer")[0]
         if isinstance(tmp,dict):
             itemListDic = tmp
         renderer_item_list = itemListDic.keys()
