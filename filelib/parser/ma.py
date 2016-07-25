@@ -83,6 +83,8 @@ class FileParserMayaMA(FileParserMaya):
                     renderer = 'mentalray'
                 elif 'vray' in temp:
                     renderer = 'vray'
+                elif 'arnold' in temp:
+                    renderer = 'arnold'
                 elif 'mayaHardware' in temp:
                     renderer = 'maya_hardware'
                 else:

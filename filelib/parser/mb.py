@@ -89,6 +89,8 @@ class FileParserMayaMB(filelib.parser.ma.FileParserMaya):
                     renderer = 'maya_hardware'
                 elif 'vray' in ren:
                     renderer = 'vray'
+                elif 'arnold' in ren:
+                    renderer = 'arnold'
                 else:
                     print "ren"
                     print ren
