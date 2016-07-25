@@ -24,7 +24,9 @@ class CommonPanel(QtGui.QWidget):
         height += 1
 
         self.jobname_template_label = QtGui.QLabel("name template")
-        self.jobname_template_qle = QtGui.QLineEdit(self._jobList.get_current_job().getValue("jobNameTemplate")[0])
+        print "eee"
+        print self._jobList.get_current_job().getValue("[*].configInfo.[*].*.jobNameTemplate")[0]
+        self.jobname_template_qle = QtGui.QLineEdit(self._jobList.get_current_job().getValue("[*].configInfo.[*].*.jobNameTemplate")[0])
 
         layout.addWidget(self.jobname_template_label, height, 0)
         layout.addWidget(self.jobname_template_qle, height, 1)

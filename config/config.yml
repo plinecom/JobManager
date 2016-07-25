@@ -23,6 +23,7 @@
           "maya":"test"
         }
       },
+      "jobNameTemplate":"<filename>",
 
 ##      "Qube6": {
 ##        "dispatch_software": "Qube6",
