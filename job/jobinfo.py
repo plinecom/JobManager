@@ -61,5 +61,7 @@ class JobInfo():
         return ret
 
     def get_jobname(self):
-        return self.getValue("[*].*.fileNameWithoutExt")[0]
+        template = self.getValue("[*].configInfo.[*].*.jobNameTemplate")[0]
+        jobname = template.replace("<filename>",self.getValue("[*].*.fileNameWithoutExt")[0])
+        return jobname
 
