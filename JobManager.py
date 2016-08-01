@@ -51,7 +51,7 @@ class MainWindow(QtGui.QMainWindow):
         panelL = QtGui.QWidget()
         panelL.setObjectName("listPanel")
 
-        #main_window.setAcceptDrops(True)
+        # main_window.setAcceptDrops(True)
 
         qsplitV = QtGui.QSplitter(QtCore.Qt.Vertical)
         panelL_layout = QtGui.QVBoxLayout()
