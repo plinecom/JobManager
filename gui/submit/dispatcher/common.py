@@ -3,7 +3,7 @@ from PyQt4 import QtGui, QtCore
 
 class CommonPanel(QtGui.QWidget):
 
-    def __init__(self,jobList, dispatcherList,configInfo, parent=None):
+    def __init__(self, jobList, dispatcherList, configInfo, parent=None):
         QtGui.QWidget.__init__(self, parent)
         self._parent = parent
         self._joblist = jobList
@@ -11,11 +11,9 @@ class CommonPanel(QtGui.QWidget):
         self._configInfo = configInfo
         self.init_ui()
 
-
     def init_ui(self):
         height = 0
         layout = QtGui.QGridLayout()
-
 
         self.priority_label = QtGui.QLabel("priority")
         self.priority_qle = QtGui.QLineEdit(self)
@@ -24,7 +22,6 @@ class CommonPanel(QtGui.QWidget):
 
         height += 1
 
-
         self.group_label = QtGui.QLabel("group")
         self.group_listWidget = QtGui.QListWidget(self)
         self.group_listWidget.setSelectionMode(QtGui.QAbstractItemView.MultiSelection)
@@ -32,14 +29,12 @@ class CommonPanel(QtGui.QWidget):
 
         self.group_listWidget.itemSelectionChanged.connect(self.group_itemSelectionChanged)
         # init selected
-        items = self.group_listWidget.findItems("*",QtCore.Qt.MatchWildcard)
+        items = self.group_listWidget.findItems("*", QtCore.Qt.MatchWildcard)
         for item in items:
             if "HP" in item.text():
                 item.setSelected(True)
         layout.addWidget(self.group_label, height, 0)
         layout.addWidget(self.group_listWidget, height, 1)
-
-
 
         self.setLayout(layout)
 
@@ -47,26 +42,25 @@ class CommonPanel(QtGui.QWidget):
 
     def update_ui(self):
 
-
         print "priority"
         print self._joblist.get_current_job().getValue("[*].dispatcherInfo.[0].groups")
         self.priority_qle.setText(self._joblist.get_current_job().getValue("[*].configInfo.[*].*.priority")[0])
 
+        #  print self._jobList.get_current_job().getValue("dispatch_software")
 
-
-#        print self._jobList.get_current_job().getValue("dispatch_software")
-
-
-    def app_combo_activated(self,index):
-#        print index
+    def app_combo_activated(self, index):
+        # print index
         self._jobList.get_current_job().setValue("application", self.app_combo.currentText())
-#        print self._jobList.get_current_job().getValue("application")
-    def start_frame_textChanged(self,text):
-        print text
+        # print self._jobList.get_current_job().getValue("application")
+
+    def start_frame_textChanged(self, text):
+        # print text
         self._jobList.get_current_job().setValue("startFrame", str(self.start_frame_qle.text()))
-    def end_frame_textChanged(self,text):
-        print text
+
+    def end_frame_textChanged(self, text):
+        # print text
         self._jobList.get_current_job().setValue("endFrame", str(self.end_frame_qle.text()))
+
     def group_itemSelectionChanged(self):
         itemList =[]
         for item in self.group_listWidget.selectedItems():
