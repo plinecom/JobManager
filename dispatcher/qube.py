@@ -92,6 +92,6 @@ class Qube6(Qube):
                 cmd = self.getValue("executable")+' -s '+self.getValue("server")+' -u admin -b -department '+getpass.getuser()+' -e 566 -n '+job.getValue("job")+' -f '+job.getValue("filePath")+' -proj '+job.getValue("proj")+' -sf '+job.getValue("startFrame") + " -ef " +job.getValue("endFrame") + " -bf " + job.getValue("byFrameSteps") + "  -se 0 -st 1 -attr MAYADIGITS 10 1 -max 1"
                 print cmd
                 p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
-                ( stdoutdata, stderrdata ) = p.communicate()
-                print stdoutdata
-                print stderrdata
+                (stdout_data, stderr_data) = p.communicate()
+                print stdout_data
+                print stderr_data
