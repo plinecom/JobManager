@@ -4,4 +4,3 @@ class IDispatcher:
 
     def test(self):
         pass
-
