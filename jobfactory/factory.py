@@ -1,10 +1,9 @@
 from job import _maya
 
 
-class JobFactory():
-
-#    def __init__(self):
-#        pass
+class JobFactory:
+    # def __init__(self):
+    #    pass
 
     def getJob(self, param, studio_plugin):
 

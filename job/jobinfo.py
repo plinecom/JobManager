@@ -16,8 +16,8 @@ class JobInfoList:
     def get_joblist(self):
         return self.jobList
 
-    def set_current_job_id(self,id):
-        if len( self.jobList ) > id:
+    def set_current_job_id(self, id):
+        if len(self.jobList) > id:
             self.current_job_id = id
         else:
             self.current_job_id = -1
