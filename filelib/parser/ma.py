@@ -37,7 +37,7 @@ class FileParserMayaMA(FileParserMaya):
 
 
         for l in f:
-            #print l
+            # print l
             if version is None and 'fileInfo "product"' in l:
                 temp = l
                 version = temp.replace('fileInfo "product"','').lstrip().replace('"','').replace(";","").split()[1]

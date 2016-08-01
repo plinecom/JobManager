@@ -34,7 +34,7 @@ class FileParserBase(interface.IFileParser):
         pass
 
     def parse(self):
-        print "test2"
+        # print "test2"
 
         self.parse_preprocess()
 

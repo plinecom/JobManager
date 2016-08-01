@@ -1,7 +1,7 @@
 __author__ = 'Masataka'
 
 
-class IJob():
+class IJob:
     def __init__(self):
         pass
 

@@ -8,13 +8,12 @@ class CommonPanel(QtGui.QWidget):
         self._jobList= jobList
         self.init_ui()
 
-
     def init_ui(self):
         height = 0
         layout = QtGui.QGridLayout()
         self.jobname_label = QtGui.QLabel("job name")
-        print "tess"
-        print self._jobList.get_current_job().get_jobname()
+        # print "tess"
+        # print self._jobList.get_current_job().get_jobname()
         self.jobname_qle = QtGui.QLineEdit(self._jobList.get_current_job().get_jobname())
         self.jobname_qle.setReadOnly(True)
 
@@ -24,8 +23,8 @@ class CommonPanel(QtGui.QWidget):
         height += 1
 
         self.jobname_template_label = QtGui.QLabel("name template")
-        print "eee"
-        print self._jobList.get_current_job().getValue("[*].configInfo.[*].*.jobNameTemplate")[0]
+        # print "eee"
+        # print self._jobList.get_current_job().getValue("[*].configInfo.[*].*.jobNameTemplate")[0]
         self.jobname_template_qle = QtGui.QLineEdit(self._jobList.get_current_job().getValue("[*].configInfo.[*].*.jobNameTemplate")[0])
 
         layout.addWidget(self.jobname_template_label, height, 0)
@@ -83,29 +82,28 @@ class CommonPanel(QtGui.QWidget):
 
     def update_ui(self):
         self.jobname_qle.setText(self._jobList.get_current_job().get_jobname())
-        print "id " + str(self._jobList.current_job_id)
-        print self._jobList.get_current_job().getValue("jobName")
+        # print "id " + str(self._jobList.current_job_id)
+        # print self._jobList.get_current_job().getValue("jobName")
 #        print self._jobList.get_current_job()._param
-        print "testz"
-        print self._jobList.get_current_job().getValue("[*].fileInfo.endFrame")[0]
+        # print "testz"
+        # print self._jobList.get_current_job().getValue("[*].fileInfo.endFrame")[0]
         self.end_frame_qle.setText(self._jobList.get_current_job().getValue("[*].fileInfo.endFrame")[0])
         self.start_frame_qle.setText(self._jobList.get_current_job().getValue("[*].fileInfo.startFrame")[0])
-
-
 
 #        print self._jobList.get_current_job().getValue("dispatch_software")
         self.manager_combo.addItems(["Qube6"])
 
-
     def start_frame_textChanged(self,text):
         print text
 #       self._jobList.get_current_job().setValue("startFrame", str(self.start_frame_qle.text()))
+
     def end_frame_textChanged(self,text):
         print text
 #        self._jobList.get_current_job().setValue("endFrame", str(self.end_frame_qle.text()))
+
     def group_itemSelectionChanged(self):
         itemList =[]
         for item in self.group_listWidget.selectedItems():
             itemList.append(str(item.text()))
-        print itemList
+        # print itemList
         self._jobList.get_current_job().setValue("selected_groups", itemList)

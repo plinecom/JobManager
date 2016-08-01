@@ -4,9 +4,10 @@ import gui.submit.fileinfo.maya1
 import gui.submit.fileinfo.maya2
 import gui.submit.fileinfo.maya_mentalray
 
+
 class FileinfoPanel(QtGui.QTabWidget):
 
-    def __init__(self,jobList, dispatcherList,configInfo, parent=None):
+    def __init__(self, jobList, dispatcherList, configInfo, parent=None):
         QtGui.QTabWidget.__init__(self)
         self._parent = parent
         self._joblist = jobList

@@ -72,7 +72,7 @@ class MayaPanel(QtGui.QWidget):
 
         self.layer_combo.clear()
         app_layer_list = self._jobList.get_current_job().getValue("[*].fileInfo.renderLayerList")[0]
-        print app_layer_list
+        # print app_layer_list
         app_layer_list.insert(0,"")
         self.layer_combo.addItems(app_layer_list)
         if self._jobList.get_current_job().getValue("application") in app_layer_list:
@@ -88,14 +88,12 @@ class MayaPanel(QtGui.QWidget):
             self.camera_combo.setCurrentIndex(camera_list.index(self._jobList.get_current_job().getValue("application")))
 #        self.camera_combo.activated.connect(self.app_combo_activated)
 
-
-
         self.app_combo.clear()
         itemListDic = {}
         tmp = self._jobList.get_current_job().getValue("[*].configInfo.[*].*.Maya_executable")[0]
-        print "test"
-        print tmp
-        if isinstance(tmp,dict):
+        # print "test"
+        # print tmp
+        if isinstance(tmp, dict):
             itemListDic = tmp
 
         app_item_list = sorted(itemListDic.keys())
@@ -107,7 +105,7 @@ class MayaPanel(QtGui.QWidget):
         self.renderer_combo.clear()
         itemListDic = {}
         tmp = self._jobList.get_current_job().getValue("[*].*.[*].*.Maya_renderer")[0]
-        if isinstance(tmp,dict):
+        if isinstance(tmp, dict):
             itemListDic = tmp
         renderer_item_list = itemListDic.keys()
         self.renderer_combo.addItems(renderer_item_list)
@@ -117,6 +115,6 @@ class MayaPanel(QtGui.QWidget):
             self.renderer_combo.setCurrentIndex(renderer_item_list.index(self._jobList.get_current_job().getValue("[*].fileInfo.renderer")[0]))
 
     def app_combo_activated(self,index):
-#        print index
+        # print index
         self._jobList.get_current_job().setValue("application", str(self.app_combo.currentText()))
-#        print self._jobList.get_current_job().getValue("application")
+        # print self._jobList.get_current_job().getValue("application")
