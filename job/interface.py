@@ -7,4 +7,3 @@ class IJob:
 
     def test(self):
         pass
-

@@ -8,7 +8,6 @@ class QubePanel(QtGui.QWidget):
         self._jobList= jobList
         self.init_ui()
 
-
     def init_ui(self):
         height = 0
         layout = QtGui.QGridLayout()
@@ -19,7 +18,6 @@ class QubePanel(QtGui.QWidget):
         layout.addWidget(self.instance_num_qle, height, 1)
 
         height += 1
-
 
         self.chunksize_label = QtGui.QLabel("chunksize")
         self.chunksize_qle = QtGui.QLineEdit(self)
@@ -58,26 +56,26 @@ class QubePanel(QtGui.QWidget):
 
         self.core_qle.setText("8")
 
-        print self._jobList.get_current_job().getValue("chunksize")
+        # print self._jobList.get_current_job().getValue("chunksize")
         self.chunksize_qle.setText(self._jobList.get_current_job().getValue("chunksize")[0])
-
-
 
 #        print self._jobList.get_current_job().getValue("dispatch_software")
 
-
-    def app_combo_activated(self,index):
-#        print index
+    def app_combo_activated(self, index):
+        # print index
         self._jobList.get_current_job().setValue("application", self.app_combo.currentText())
 #        print self._jobList.get_current_job().getValue("application")
-    def start_frame_textChanged(self,text):
-        print text
+
+    def start_frame_textChanged(self, text):
+        # print text
         self._jobList.get_current_job().setValue("startFrame", str(self.start_frame_qle.text()))
-    def end_frame_textChanged(self,text):
-        print text
+
+    def end_frame_textChanged(self, text):
+        # print text
         self._jobList.get_current_job().setValue("endFrame", str(self.end_frame_qle.text()))
+
     def group_itemSelectionChanged(self):
-        itemList =[]
+        itemList = []
         for item in self.group_listWidget.selectedItems():
             itemList.append(str(item.text()))
         print itemList

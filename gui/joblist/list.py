@@ -23,7 +23,7 @@ class JobListView(QtGui.QTreeWidget):
             item.setData(0, QtCore.Qt.DisplayRole, jobinfo.get_jobname())
             item.setData(0, QtCore.Qt.UserRole, i)
             self.addTopLevelItem(item)
-            print "index "+str(i)
+            # print "index "+str(i)
             i += 1
 
     def item_changed(self, current_item, previous_item):
@@ -31,7 +31,7 @@ class JobListView(QtGui.QTreeWidget):
         if current_item is None:
             return
 
-        print current_item.text(0)
+        # print current_item.text(0)
         jobid = current_item.data(0, QtCore.Qt.UserRole)
         i = 0
         for jobinfo in self._joblist.get_joblist():
@@ -44,7 +44,7 @@ class JobListView(QtGui.QTreeWidget):
             i += 1
         parent = self.parent()
         while parent != 0:
-            print parent
+            # print parent
             if parent.windowTitle() == "JobManager":
                 parent.update_ui_right_pannel()
                 break

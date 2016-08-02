@@ -102,7 +102,7 @@ class CommonPanel(QtGui.QWidget):
 #        self._jobList.get_current_job().setValue("endFrame", str(self.end_frame_qle.text()))
 
     def group_itemSelectionChanged(self):
-        itemList =[]
+        itemList = []
         for item in self.group_listWidget.selectedItems():
             itemList.append(str(item.text()))
         # print itemList

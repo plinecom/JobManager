@@ -54,7 +54,7 @@ class MentalrayPanel(QtGui.QWidget):
     def update_ui(self):
         pass
 
-    def app_combo_activated(self,index):
+    def app_combo_activated(self, index):
         # print index
         self._jobList.get_current_job().setValue("application", self.app_combo.currentText())
         # print self._jobList.get_current_job().getValue("application")

@@ -8,7 +8,5 @@ class ConfigInfo:
     def getvalueJsonPath(self, jsonpath):
         jsonpath_expr = parse(jsonpath)
 #        print jsonpath
-#        print [match.value for match in jsonpath_expr.find( self._configlist)]
-        return [match.value for match in jsonpath_expr.find( self._configlist)]
-
-
+#        print [match.value for match in jsonpath_expr.find(self._configlist)]
+        return [match.value for match in jsonpath_expr.find(self._configlist)]

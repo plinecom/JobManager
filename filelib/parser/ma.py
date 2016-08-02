@@ -31,9 +31,9 @@ class FileParserMayaMA(FileParserMaya):
         outputPathFormat = None
         outputPathFormatVray = None
 
-        renderLayerList=[]
-        renderlayerEnable={}
-        cameraList=['default']
+        renderLayerList = []
+        renderlayerEnable = {}
+        cameraList = ['default']
 
 
         for l in f:
@@ -54,18 +54,17 @@ class FileParserMayaMA(FileParserMaya):
                     byFrameSteps = "1"
 
             if 'createNode camera ' in l:
-                camera = l.split(' ')[-1].replace('"','').replace(';','').rstrip()
+                camera = l.split(' ')[-1].replace('"', '').replace(';', '').rstrip()
                 cameraList.append(camera)
             if 'createNode renderLayer -n' in l:
-                renderLayer = l.split(' ')[-1].replace('"','').replace(';','').rstrip()
+                renderLayer = l.split(' ')[-1].replace('"', '').replace(';', '').rstrip()
                 renderLayerList.append(renderLayer)
                 renderlayerEnable[renderLayer] = True
                 for i in range(0,2):
                     line = f.next()
                     if 'setAttr ".rndr" no;' in line:
-                        renderlayerEnable[renderLayer]= False
+                        renderlayerEnable[renderLayer] = False
                         break
-
 
             if outputFileExt is None and ('setAttr ".imfkey" -type' in l or 'setAttr -cb on ".imfkey" -type' in l):
                 outputFileExt = "."+l.split(' ')[-1].replace(';', '').replace('\n', '').replace('"','')
@@ -74,10 +73,10 @@ class FileParserMayaMA(FileParserMaya):
             if outputFileExtVray is None and ( 'setAttr ".imgfs" -type' in l or 'setAttr -cb on ".imgfs" -type' in l):
                 outputFileExtVray = "."+l.split(' ')[-1].replace(';', '').replace('\n', '').replace('"','')
             if outputPathFormatVray is None and ('setAttr ".fnprx" -type' in l or 'setAttr -cb on ".fnprx" -type' in l):
-                outputPathFormatVray = l.split(' ')[-1].replace(';', '').replace('\n', '').replace('"','')
+                outputPathFormatVray = l.split(' ')[-1].replace(';', '').replace('\n', '').replace('"', '')
 
             if renderer is None and ('setAttr ".ren" -type' in l or 'setAttr -cb on ".ren" -type' in l):
-                print l;
+                print l
                 temp = l.split(' ')[-1]
                 if 'mentalRay' in temp:
                     renderer = 'mentalray'
@@ -103,23 +102,23 @@ class FileParserMayaMA(FileParserMaya):
         if byFrameSteps is None:
             byFrameSteps = "0"
 
-        self._param["filePath"]= self.getFilePath()
-        self._param["version"]=version
-        self._param["application"]="Maya_"+version
-        self._param["renderer"]=renderer
+        self._param["filePath"] = self.getFilePath()
+        self._param["version"] = version
+        self._param["application"] = "Maya_"+version
+        self._param["renderer"] = renderer
 
-        self._param["startFrame"]=frameStart
-        self._param["endFrame"]=frameEnd
-        self._param["byFrameSteps"]=byFrameSteps
+        self._param["startFrame"] = frameStart
+        self._param["endFrame"] = frameEnd
+        self._param["byFrameSteps"] = byFrameSteps
 
-        self._param["outputFileExt"]=outputFileExt
-        self._param["outputFileExtVray"]=outputFileExtVray
-        self._param["outputPathFormat"]=outputPathFormat
-        self._param["opuputPathFormatVray"]=outputPathFormatVray
+        self._param["outputFileExt"] = outputFileExt
+        self._param["outputFileExtVray"] = outputFileExtVray
+        self._param["outputPathFormat"] = outputPathFormat
+        self._param["opuputPathFormatVray"] = outputPathFormatVray
 
-        self._param["renderLayerList"]=renderLayerList
-        self._param["renderLayerEnable"]=renderlayerEnable
-        self._param["cameraList"]=cameraList
+        self._param["renderLayerList"] = renderLayerList
+        self._param["renderLayerEnable"] = renderlayerEnable
+        self._param["cameraList"] = cameraList
 
         print self._param
 

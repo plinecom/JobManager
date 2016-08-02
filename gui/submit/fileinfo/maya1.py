@@ -39,7 +39,6 @@ class MayaPanel(QtGui.QWidget):
         layout.addWidget(self.layer_label, height, 0)
         layout.addWidget(self.layer_combo, height, 1)
 
-
         height += 1
 
         self.renderer_label = QtGui.QLabel("renderer")
@@ -81,7 +80,6 @@ class MayaPanel(QtGui.QWidget):
 
         self.camera_combo.clear()
 
-
         camera_list = self._jobList.get_current_job().getValue("[*].fileInfo.cameraList")[0]
         self.camera_combo.addItems(camera_list)
         if self._jobList.get_current_job().getValue("application") in camera_list:
@@ -114,7 +112,7 @@ class MayaPanel(QtGui.QWidget):
         if self._jobList.get_current_job().getValue("[*].fileInfo.renderer")[0] in renderer_item_list:
             self.renderer_combo.setCurrentIndex(renderer_item_list.index(self._jobList.get_current_job().getValue("[*].fileInfo.renderer")[0]))
 
-    def app_combo_activated(self,index):
+    def app_combo_activated(self, index):
         # print index
         self._jobList.get_current_job().setValue("application", str(self.app_combo.currentText()))
         # print self._jobList.get_current_job().getValue("application")

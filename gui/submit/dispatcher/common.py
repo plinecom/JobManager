@@ -42,8 +42,8 @@ class CommonPanel(QtGui.QWidget):
 
     def update_ui(self):
 
-        print "priority"
-        print self._joblist.get_current_job().getValue("[*].dispatcherInfo.[0].groups")
+        # print "priority"
+        # print self._joblist.get_current_job().getValue("[*].dispatcherInfo.[0].groups")
         self.priority_qle.setText(self._joblist.get_current_job().getValue("[*].configInfo.[*].*.priority")[0])
 
         #  print self._jobList.get_current_job().getValue("dispatch_software")
@@ -62,8 +62,8 @@ class CommonPanel(QtGui.QWidget):
         self._jobList.get_current_job().setValue("endFrame", str(self.end_frame_qle.text()))
 
     def group_itemSelectionChanged(self):
-        itemList =[]
+        itemList = []
         for item in self.group_listWidget.selectedItems():
             itemList.append(str(item.text()))
-        print itemList
+        # print itemList
         self._joblist.get_current_job().setValue("selected_groups", itemList)

@@ -14,7 +14,7 @@ class AutoConfig:
             system = "MacOS_X"
         self._param["auto_config"]["system"] = system
 
-        pathList =[]
+        pathList = []
 
         if "Windows" in system:
             pathList = ( os.environ['PATH'].split(';') )
@@ -23,8 +23,8 @@ class AutoConfig:
 
         # print pathList
         script_dir_path = os.path.abspath(os.path.dirname(__file__))
-        config_path = os.path.join(script_dir_path,"autoconf.json")
-        config_file = open(config_path,'r')
+        config_path = os.path.join(script_dir_path, "autoconf.json")
+        config_file = open(config_path, 'r')
         config = json.load(config_file)
 
         # search dispatcher

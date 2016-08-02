@@ -119,9 +119,8 @@ class MainWindow(QtGui.QMainWindow):
         dispatcher.submit(self._joblist.get_current_job())
         print "submit"
 
-
-def loadFile(absPath):
-    return job
+    def loadFile(self, absPath):
+        return job
 
 
 if __name__ == "__main__":
@@ -135,14 +134,14 @@ if __name__ == "__main__":
     auto_config = config.auto.autoconf.AutoConfig().getparam()
 
     script_dir_path = os.path.abspath(os.path.dirname(__file__))
-    config_path = os.path.join(script_dir_path,"config","config.yml")
+    config_path = os.path.join(script_dir_path, "config", "config.yml")
     # print config_path
-    config_file = open(config_path,'r')
+    config_file = open(config_path, 'r')
     config_data = yaml.load(config_file)
 
     config_data["00"] = auto_config
     # print config
-    configList=[]
+    configList = []
     # configList.append(auto_config["dispatcher"])
     for key in sorted(config_data.keys(), reverse=True):
         configList.append(config_data[key])
@@ -153,8 +152,8 @@ if __name__ == "__main__":
 #    print configInfo.getvalue("priority")
 #    print configInfo.getvalue("priority")
     configInfo.getvalueJsonPath("[*].*.priority")
-    print "extrt"
-    print configInfo.getvalueJsonPath("[*].*.dispatcher")
+    # print "ext_rt"
+    # print configInfo.getvalueJsonPath("[*].*.dispatcher")
     # command line mode?
 
     # loadFile(addFilePath)
@@ -167,7 +166,7 @@ if __name__ == "__main__":
 #    job_factory = jobfactory.factory.JobFactory()
 #    job = job_factory.getJob(fileParser.getparam(), "SudioPlugin()")
     dispatcherList = []
-    for dispatcher_info in  configInfo.getvalueJsonPath("[*].*.dispatcher"):
+    for dispatcher_info in configInfo.getvalueJsonPath("[*].*.dispatcher"):
         # print dispatcher_info
         if u"Qube6" in dispatcher_info.keys():
             dispatcherList.append(dispatcher.qube.Qube6(configInfo.getvalueJsonPath("[*].*.dispatcher.Qube6")[0]).getparam())
@@ -175,12 +174,12 @@ if __name__ == "__main__":
 
     jobList = job.jobinfo.JobInfoList()
     if addFilePath is not None:
-        jobList.get_joblist().append(job.jobinfo.JobInfo(fileParam,dispatcherList,configInfo))
+        jobList.get_joblist().append(job.jobinfo.JobInfo(fileParam, dispatcherList, configInfo))
     else:
         jobList.get_joblist().append(job.jobinfo.JobInfo(None, dispatcherList, configInfo.getvalueJsonPath("[*]")))
 
     app = QtGui.QApplication(sys.argv)
-    main_window = MainWindow(jobList,dispatcherList,configInfo.getvalueJsonPath("[*]"))
+    main_window = MainWindow(jobList, dispatcherList, configInfo.getvalueJsonPath("[*]"))
     main_window.show()
 
     sys.exit(app.exec_())

@@ -1,4 +1,3 @@
-import json
 from jsonpath_rw import jsonpath, parse
 
 __author__ = 'Masataka'
@@ -26,9 +25,9 @@ class JobInfoList:
 class JobInfo:
     def __init__(self, param=None, dispatcherList=None, configInfo=None):
         # interface.IJob.__init__(self)
-        self.test=1
+        self.test = 1
 
-        self._param =[]
+        self._param = []
         self._param.append({"job_setting_override": {
             "dispatcherIndex": 0  # GUI Select
         }})
