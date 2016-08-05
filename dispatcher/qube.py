@@ -51,7 +51,7 @@ class Qube6(Qube):
 
 #        self.setvalue("dispatherObj", self)
 
-    def addJob(self,job):
+    def addJob(self, job):
         self._job.append(job)
 
     def submmision(self):
@@ -60,7 +60,7 @@ class Qube6(Qube):
     def getDispatcherName(self):
         return "Qube 6"
 
-    def submit(self,jobObj):
+    def submit(self, jobObj):
         print jobObj.getparam()
 #        job = jobObj.getparam();
         cmd = self.getvalue("executable") + ' --name ' + jobObj.getvalue("jobName")\
