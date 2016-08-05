@@ -115,7 +115,7 @@ class MainWindow(QtGui.QMainWindow):
         tab_panel.update_ui()
 
     def on_button_submit(self):
-        dispatcher = self._joblist.get_current_job().getValue("dispatherObj")
+        dispatcher = self._joblist.get_current_job().getvalue("dispatherObj")
         dispatcher.submit(self._joblist.get_current_job())
         print "submit"
 

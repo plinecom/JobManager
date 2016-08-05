@@ -21,7 +21,7 @@ class MayaPanel(QtGui.QWidget):
         height += 1
 
         self.renderer_proj_path_label = QtGui.QLabel("project path")
-        self.renderer_proj_path_qle = QtGui.QLineEdit(self._jobList.get_current_job().getValue("proj")[0])
+        self.renderer_proj_path_qle = QtGui.QLineEdit(self._jobList.get_current_job().getvalue("proj")[0])
 
         layout.addWidget(self.renderer_proj_path_label, height, 0)
         layout.addWidget(self.renderer_proj_path_qle, height, 1)
@@ -44,5 +44,5 @@ class MayaPanel(QtGui.QWidget):
 
     def app_combo_activated(self, index):
         # print index
-        self._jobList.get_current_job().setValue("application", self.app_combo.currentText())
-        # print self._jobList.get_current_job().getValue("application")
+        self._jobList.get_current_job().setvalue("application", self.app_combo.currentText())
+        # print self._jobList.get_current_job().getvalue("application")

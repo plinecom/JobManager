@@ -70,25 +70,25 @@ class MayaPanel(QtGui.QWidget):
     def update_ui(self):
 
         self.layer_combo.clear()
-        app_layer_list = self._jobList.get_current_job().getValue("[*].fileInfo.renderLayerList")[0]
+        app_layer_list = self._jobList.get_current_job().getvalue("[*].fileInfo.renderLayerList")[0]
         # print app_layer_list
         app_layer_list.insert(0,"")
         self.layer_combo.addItems(app_layer_list)
-        if self._jobList.get_current_job().getValue("application") in app_layer_list:
-            self.layer_combo.setCurrentIndex(app_layer_list.index(self._jobList.get_current_job().getValue("application")))
+        if self._jobList.get_current_job().getvalue("application") in app_layer_list:
+            self.layer_combo.setCurrentIndex(app_layer_list.index(self._jobList.get_current_job().getvalue("application")))
 #        self.layer_combo.activated.connect(self.app_combo_activated)
 
         self.camera_combo.clear()
 
-        camera_list = self._jobList.get_current_job().getValue("[*].fileInfo.cameraList")[0]
+        camera_list = self._jobList.get_current_job().getvalue("[*].fileInfo.cameraList")[0]
         self.camera_combo.addItems(camera_list)
-        if self._jobList.get_current_job().getValue("application") in camera_list:
-            self.camera_combo.setCurrentIndex(camera_list.index(self._jobList.get_current_job().getValue("application")))
+        if self._jobList.get_current_job().getvalue("application") in camera_list:
+            self.camera_combo.setCurrentIndex(camera_list.index(self._jobList.get_current_job().getvalue("application")))
 #        self.camera_combo.activated.connect(self.app_combo_activated)
 
         self.app_combo.clear()
         itemListDic = {}
-        tmp = self._jobList.get_current_job().getValue("[*].configInfo.[*].*.Maya_executable")[0]
+        tmp = self._jobList.get_current_job().getvalue("[*].configInfo.[*].*.Maya_executable")[0]
         # print "test"
         # print tmp
         if isinstance(tmp, dict):
@@ -96,23 +96,23 @@ class MayaPanel(QtGui.QWidget):
 
         app_item_list = sorted(itemListDic.keys())
         self.app_combo.addItems(app_item_list)
-        if self._jobList.get_current_job().getValue("[*].fileInfo.application")[0] in app_item_list:
-            self.app_combo.setCurrentIndex(app_item_list.index(self._jobList.get_current_job().getValue("[*].fileInfo.application")[0]))
+        if self._jobList.get_current_job().getvalue("[*].fileInfo.application")[0] in app_item_list:
+            self.app_combo.setCurrentIndex(app_item_list.index(self._jobList.get_current_job().getvalue("[*].fileInfo.application")[0]))
         self.app_combo.activated.connect(self.app_combo_activated)
 
         self.renderer_combo.clear()
         itemListDic = {}
-        tmp = self._jobList.get_current_job().getValue("[*].*.[*].*.Maya_renderer")[0]
+        tmp = self._jobList.get_current_job().getvalue("[*].*.[*].*.Maya_renderer")[0]
         if isinstance(tmp, dict):
             itemListDic = tmp
         renderer_item_list = itemListDic.keys()
         self.renderer_combo.addItems(renderer_item_list)
 #        print renderer_item_list
-#        print self._jobList.get_current_job().getValue("renderer")
-        if self._jobList.get_current_job().getValue("[*].fileInfo.renderer")[0] in renderer_item_list:
-            self.renderer_combo.setCurrentIndex(renderer_item_list.index(self._jobList.get_current_job().getValue("[*].fileInfo.renderer")[0]))
+#        print self._jobList.get_current_job().getvalue("renderer")
+        if self._jobList.get_current_job().getvalue("[*].fileInfo.renderer")[0] in renderer_item_list:
+            self.renderer_combo.setCurrentIndex(renderer_item_list.index(self._jobList.get_current_job().getvalue("[*].fileInfo.renderer")[0]))
 
     def app_combo_activated(self, index):
         # print index
-        self._jobList.get_current_job().setValue("application", str(self.app_combo.currentText()))
-        # print self._jobList.get_current_job().getValue("application")
+        self._jobList.get_current_job().setvalue("application", str(self.app_combo.currentText()))
+        # print self._jobList.get_current_job().getvalue("application")

@@ -25,7 +25,7 @@ class CommonPanel(QtGui.QWidget):
         self.group_label = QtGui.QLabel("group")
         self.group_listWidget = QtGui.QListWidget(self)
         self.group_listWidget.setSelectionMode(QtGui.QAbstractItemView.MultiSelection)
-        self.group_listWidget.addItems(self._joblist.get_current_job().getValue("[*].dispatcherInfo.[0].groups")[0])
+        self.group_listWidget.addItems(self._joblist.get_current_job().getvalue("[*].dispatcherInfo.[0].groups")[0])
 
         self.group_listWidget.itemSelectionChanged.connect(self.group_itemSelectionChanged)
         # init selected
@@ -43,27 +43,27 @@ class CommonPanel(QtGui.QWidget):
     def update_ui(self):
 
         # print "priority"
-        # print self._joblist.get_current_job().getValue("[*].dispatcherInfo.[0].groups")
-        self.priority_qle.setText(self._joblist.get_current_job().getValue("[*].configInfo.[*].*.priority")[0])
+        # print self._joblist.get_current_job().getvalue("[*].dispatcherInfo.[0].groups")
+        self.priority_qle.setText(self._joblist.get_current_job().getvalue("[*].configInfo.[*].*.priority")[0])
 
-        #  print self._jobList.get_current_job().getValue("dispatch_software")
+        #  print self._jobList.get_current_job().getvalue("dispatch_software")
 
     def app_combo_activated(self, index):
         # print index
-        self._jobList.get_current_job().setValue("application", self.app_combo.currentText())
-        # print self._jobList.get_current_job().getValue("application")
+        self._jobList.get_current_job().setvalue("application", self.app_combo.currentText())
+        # print self._jobList.get_current_job().getvalue("application")
 
     def start_frame_textChanged(self, text):
         # print text
-        self._jobList.get_current_job().setValue("startFrame", str(self.start_frame_qle.text()))
+        self._jobList.get_current_job().setvalue("startFrame", str(self.start_frame_qle.text()))
 
     def end_frame_textChanged(self, text):
         # print text
-        self._jobList.get_current_job().setValue("endFrame", str(self.end_frame_qle.text()))
+        self._jobList.get_current_job().setvalue("endFrame", str(self.end_frame_qle.text()))
 
     def group_itemSelectionChanged(self):
         itemList = []
         for item in self.group_listWidget.selectedItems():
             itemList.append(str(item.text()))
         # print itemList
-        self._joblist.get_current_job().setValue("selected_groups", itemList)
+        self._joblist.get_current_job().setvalue("selected_groups", itemList)

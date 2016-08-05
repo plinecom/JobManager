@@ -13,10 +13,10 @@ class Qube6(Qube):
         Qube.__init__(self)
         print configdict
         self._configdict = configdict
-        self.setValue("executable", self._configdict["submitter"])
-        self.setValue("server", "172.29.115.99")
+        self.setvalue("executable", self._configdict["submitter"])
+        self.setvalue("server", "172.29.115.99")
 
-        self.setValue("dispatch_software", "Qube6")
+        self.setvalue("dispatch_software", "Qube6")
         cmd = self._configdict["qbhosts"]+" --xml"
 
         p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -32,7 +32,7 @@ class Qube6(Qube):
             if e.text is not None:
                 group_dic[e.text.encode("utf-8")] = "1"
 
-        self.setValue("groups", sorted(group_dic.keys()))
+        self.setvalue("groups", sorted(group_dic.keys()))
         # print group_dic.keys()
 
         cluster_dic = {}
@@ -46,10 +46,10 @@ class Qube6(Qube):
         # print cluster_dic2
 
         #    group_dic[e.text]="1"
-        self.setValue("pools", sorted(cluster_dic2.keys()))
+        self.setvalue("pools", sorted(cluster_dic2.keys()))
         # print cluster_dic.keys()
 
-#        self.setValue("dispatherObj", self)
+#        self.setvalue("dispatherObj", self)
 
     def addJob(self,job):
         self._job.append(job)
@@ -63,15 +63,15 @@ class Qube6(Qube):
     def submit(self,jobObj):
         print jobObj.getparam()
 #        job = jobObj.getparam();
-        cmd = self.getValue("executable")+' --name '+jobObj.getValue("jobName")\
-            + ' --priority '+jobObj.getValue("priority") \
-            + ' --range '+jobObj.getValue("startFrame")+'-'+jobObj.getValue("endFrame")\
+        cmd = self.getvalue("executable") + ' --name ' + jobObj.getvalue("jobName")\
+            + ' --priority '+jobObj.getvalue("priority") \
+            + ' --range '+jobObj.getvalue("startFrame") + '-' + jobObj.getvalue("endFrame")\
             + ' --chunk 10'
-        if isinstance(jobObj.getValue("selected_groups"),list):
-            if len(jobObj.getValue("selected_groups"))>0:
-                cmd += ' --groups '+','.join(jobObj.getValue("selected_groups"))
+        if isinstance(jobObj.getvalue("selected_groups"), list):
+            if len(jobObj.getvalue("selected_groups"))>0:
+                cmd += ' --groups '+','.join(jobObj.getvalue("selected_groups"))
         cmd += ' /usr/autodesk/maya2014-x64/bin/Render -s QB_FRAME_START -e QB_FRAME_END ' \
-            + jobObj.getValue("filePath")
+            + jobObj.getvalue("filePath")
         # --groups string
         # --cluster string
         # --processors int
@@ -89,7 +89,7 @@ class Qube6(Qube):
     def _buildCmd(self):
         for job in self._job:
             # if job.__class__.__name__ == "JobMayaSw":
-                cmd = self.getValue("executable")+' -s '+self.getValue("server")+' -u admin -b -department '+getpass.getuser()+' -e 566 -n '+job.getValue("job")+' -f '+job.getValue("filePath")+' -proj '+job.getValue("proj")+' -sf '+job.getValue("startFrame") + " -ef " +job.getValue("endFrame") + " -bf " + job.getValue("byFrameSteps") + "  -se 0 -st 1 -attr MAYADIGITS 10 1 -max 1"
+                cmd = self.getvalue("executable") + ' -s ' + self.getvalue("server") + ' -u admin -b -department ' + getpass.getuser() + ' -e 566 -n ' + job.getvalue("job") + ' -f ' + job.getvalue("filePath") + ' -proj ' + job.getvalue("proj") + ' -sf ' + job.getvalue("startFrame") + " -ef " + job.getvalue("endFrame") + " -bf " + job.getvalue("byFrameSteps") + "  -se 0 -st 1 -attr MAYADIGITS 10 1 -max 1"
                 print cmd
                 p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
                 (stdout_data, stderr_data) = p.communicate()

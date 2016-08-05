@@ -44,12 +44,12 @@ class JobInfo:
 #        print json.dumps(self._param, sort_keys=False, indent=4)
 #        print self
 
-    def setValue(self, key, value):
+    def setvalue(self, key, value):
 
         self._param[0]["job_setting_override"][key] = value
         # print json.dumps(self._param, sort_keys=False, indent=4)
 
-    def getValue(self, key):
+    def getvalue(self, key):
         jsonpath_expr = parse(key)
         ret =  [match.value for match in jsonpath_expr.find(self._param)]
         if len(ret) <= 0:
@@ -57,7 +57,7 @@ class JobInfo:
         return ret
 
     def get_jobname(self):
-        template = self.getValue("[*].configInfo.[*].*.jobNameTemplate")[0]
-        jobname = template.replace("<filename>", self.getValue("[*].*.fileNameWithoutExt")[0])
+        template = self.getvalue("[*].configInfo.[*].*.jobNameTemplate")[0]
+        jobname = template.replace("<filename>", self.getvalue("[*].*.fileNameWithoutExt")[0])
         return jobname
 

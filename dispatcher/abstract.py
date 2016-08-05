@@ -10,10 +10,10 @@ class DispatcherBase(interface.IDispatcher):
     def getparam(self):
         return self._param
 
-    def setValue(self, key, value):
+    def setvalue(self, key, value):
         self._param[key] = value
 
-    def getValue(self, key):
+    def getvalue(self, key):
 
         if self._param.has_key(key):
             return self._param[key]

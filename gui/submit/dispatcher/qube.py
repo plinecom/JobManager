@@ -43,8 +43,8 @@ class QubePanel(QtGui.QWidget):
         self.pool_label = QtGui.QLabel("cluster")
         self.pool_combo = QtGui.QComboBox(self)
         print "ccc"
-        print self._jobList.get_current_job().getValue("[*].dispatcherInfo.[0].pools")
-        self.pool_combo.addItems(self._jobList.get_current_job().getValue("[*].dispatcherInfo.[0].pools")[0])
+        print self._jobList.get_current_job().getvalue("[*].dispatcherInfo.[0].pools")
+        self.pool_combo.addItems(self._jobList.get_current_job().getvalue("[*].dispatcherInfo.[0].pools")[0])
         layout.addWidget(self.pool_label, height, 0)
         layout.addWidget(self.pool_combo, height, 1)
 
@@ -56,27 +56,27 @@ class QubePanel(QtGui.QWidget):
 
         self.core_qle.setText("8")
 
-        # print self._jobList.get_current_job().getValue("chunksize")
-        self.chunksize_qle.setText(self._jobList.get_current_job().getValue("chunksize")[0])
+        # print self._jobList.get_current_job().getvalue("chunksize")
+        self.chunksize_qle.setText(self._jobList.get_current_job().getvalue("chunksize")[0])
 
-#        print self._jobList.get_current_job().getValue("dispatch_software")
+#        print self._jobList.get_current_job().getvalue("dispatch_software")
 
     def app_combo_activated(self, index):
         # print index
-        self._jobList.get_current_job().setValue("application", self.app_combo.currentText())
-#        print self._jobList.get_current_job().getValue("application")
+        self._jobList.get_current_job().setvalue("application", self.app_combo.currentText())
+#        print self._jobList.get_current_job().getvalue("application")
 
     def start_frame_textChanged(self, text):
         # print text
-        self._jobList.get_current_job().setValue("startFrame", str(self.start_frame_qle.text()))
+        self._jobList.get_current_job().setvalue("startFrame", str(self.start_frame_qle.text()))
 
     def end_frame_textChanged(self, text):
         # print text
-        self._jobList.get_current_job().setValue("endFrame", str(self.end_frame_qle.text()))
+        self._jobList.get_current_job().setvalue("endFrame", str(self.end_frame_qle.text()))
 
     def group_itemSelectionChanged(self):
         itemList = []
         for item in self.group_listWidget.selectedItems():
             itemList.append(str(item.text()))
         print itemList
-        self._jobList.get_current_job().setValue("selected_groups", itemList)
+        self._jobList.get_current_job().setvalue("selected_groups", itemList)
