@@ -5,19 +5,19 @@ __author__ = 'Masataka'
 
 
 class FileParserMaya(abstract.FileParserBase):
-    def __init__(self, filepath):
-        abstract.FileParserBase.__init__(self, filepath)
+    def __init__(self, file_path):
+        abstract.FileParserBase.__init__(self, file_path)
         self._param["software"] = "Maya"
 
 
 class FileParserMayaMA(FileParserMaya):
-    def __init__(self, filepath):
-        FileParserMaya.__init__(self, filepath)
+    def __init__(self, file_path):
+        FileParserMaya.__init__(self, file_path)
 
     def parse_process(self):
         print "test3"
 
-        f = file(self.getFilePath(),'r')
+        f = file(self.get_file_path(), 'r')
 
         version = None
         renderer = None
@@ -102,7 +102,7 @@ class FileParserMayaMA(FileParserMaya):
         if byFrameSteps is None:
             byFrameSteps = "0"
 
-        self._param["filePath"] = self.getFilePath()
+        self._param["filePath"] = self.get_file_path()
         self._param["version"] = version
         self._param["application"] = "Maya_"+version
         self._param["renderer"] = renderer

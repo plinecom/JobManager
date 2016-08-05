@@ -31,7 +31,7 @@ class FileParserMayaMB(filelib.parser.ma.FileParserMaya):
 #        for renderLayer in job["renderLayerList"]:
 #            res["renderLayerEnable"][renderLayer]= True
 
-        f = file(self.getFilePath(), 'rb')
+        f = file(self.get_file_path(), 'rb')
         for l in f:
             if version is None and 'version' in l:
                 version = l.split('version')[1][1:5]

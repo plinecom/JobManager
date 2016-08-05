@@ -3,14 +3,14 @@ import mb
 import os.path
 
 
-def fileParse(abs_path):
-    (directory, jobExt) = os.path.splitext(abs_path)
-    jobExt = jobExt.lower()
-    if jobExt == ".ma":
-        fileParser = ma.FileParserMayaMA(abs_path)
-    elif jobExt == ".mb":
-        fileParser = mb.FileParserMayaMB(abs_path)
+def file_parse(abs_path):
+    (directory, job_ext) = os.path.splitext(abs_path)
+    job_ext = job_ext.lower()
+    if job_ext == ".ma":
+        file_parser = ma.FileParserMayaMA(abs_path)
+    elif job_ext == ".mb":
+        file_parser = mb.FileParserMayaMB(abs_path)
 
-    fileParser.parse()
+    file_parser.parse()
 
-    return fileParser
+    return file_parser

@@ -5,10 +5,10 @@ __author__ = 'Masataka'
 
 
 class FileParserBase(interface.IFileParser):
-    def __init__(self, filepath):
+    def __init__(self, file_path):
         interface.IFileParser.__init__(self)
         self._param = {}
-        self.setFilePath(filepath)
+        self.set_file_path(file_path)
         self._param["batchframe"] = "0"
 #        self._param["chunksize"] = studioPlugin.getDefaultChunksize()
 #        self._param["machineLimit"] = studioPlugin.getDefaultMachineLimit()
@@ -16,27 +16,28 @@ class FileParserBase(interface.IFileParser):
     def getparam(self):
         return self._param
 
-    def setFilePath(self, filePath):
-        self._param["filePath"] = filePath
-        self._param["fileNameWithoutExt"] = os.path.splitext(os.path.basename(filePath))[0]
-        self._param["proj"] = os.path.dirname(filePath)
+    def set_file_path(self, file_path):
+        self._param["filePath"] = file_path
+        self._param["fileNameWithoutExt"] = os.path.splitext(os.path.basename(file_path))[0]
+        self._param["proj"] = os.path.dirname(file_path)
 
-    def getFilePath(self):
+    def get_file_path(self):
         return self._param["filePath"]
 
-    def parse_preprocess(self):
+    def parse_pre_process(self):
         pass
-#        scene = self.getFilePath();
-#        projectPath = os.path.dirname(self.getFilePath())
-#        projectName = self._studioPlugin.getProjectFromPath(self.getFilePath());
+#        scene = self.get_file_path();
+#        projectPath = os.path.dirname(self.get_file_path())
+#        projectName = self._studioPlugin.getProjectFromPath(self.get_file_path());
 
     def parse_process(self):
         pass
 
     def parse(self):
+        # type: () -> object
         # print "test2"
 
-        self.parse_preprocess()
+        self.parse_pre_process()
 
         self.parse_process()
 

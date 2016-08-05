@@ -89,7 +89,7 @@ class MainWindow(QtGui.QMainWindow):
     def dropEvent(self, event):
         for u in event.mimeData().urls():
             # print u.toLocalFile()
-            file_parser = filelib.parser.lib.fileParse(str(u.toLocalFile()))
+            file_parser = filelib.parser.lib.file_parse(str(u.toLocalFile()))
             # print file_parser.getparam()
             self._joblist.get_joblist().append(
                     job.jobinfo.JobInfo(
@@ -159,7 +159,7 @@ if __name__ == "__main__":
     # loadFile(addFilePath)
     fileParam = {}
     if addFilePath is not None:
-        fileParser = filelib.parser.lib.fileParse(addFilePath)
+        fileParser = filelib.parser.lib.file_parse(addFilePath)
         # print fileParser.getparam()
         fileParam = fileParser.getparam()
 #
