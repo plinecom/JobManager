@@ -3,9 +3,9 @@ from PyQt4 import QtGui, QtCore
 
 class MentalrayPanel(QtGui.QWidget):
 
-    def __init__(self, jobList, parent=None):
+    def __init__(self, job_list, parent=None):
         QtGui.QWidget.__init__(self, parent)
-        self._jobList= jobList
+        self._jobList= job_list
         self.init_ui()
 
     def init_ui(self):

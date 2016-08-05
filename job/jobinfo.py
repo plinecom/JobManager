@@ -12,18 +12,18 @@ class JobInfoList:
         if len(self.jobList) > 0:
             return self.jobList[self.current_job_id]
 
-    def get_joblist(self):
+    def get_job_list(self):
         return self.jobList
 
-    def set_current_job_id(self, id):
-        if len(self.jobList) > id:
-            self.current_job_id = id
+    def set_current_job_id(self, job_id):
+        if len(self.jobList) > job_id:
+            self.current_job_id = job_id
         else:
             self.current_job_id = -1
 
 
 class JobInfo:
-    def __init__(self, param=None, dispatcherList=None, configInfo=None):
+    def __init__(self, param=None, dispatcher_list=None, config_info=None):
         # interface.IJob.__init__(self)
         self.test = 1
 
@@ -31,12 +31,12 @@ class JobInfo:
         self._param.append({"job_setting_override": {
             "dispatcherIndex": 0  # GUI Select
         }})
-        self._param.append({"configInfo": configInfo})
+        self._param.append({"configInfo": config_info})
         self._param.append({"fileInfo": param})
-        self._param.append({"dispatcherInfo": dispatcherList})
+        self._param.append({"dispatcherInfo": dispatcher_list})
 
-        self._paramkeyList = {"job_setting_override": 0, "configInfo": 1, "fileInfo": 2, "dispatcherInfo": 3}
-        # for paramKey in self._paramkeyList:
+        self._param_key_list = {"job_setting_override": 0, "configInfo": 1, "fileInfo": 2, "dispatcherInfo": 3}
+        # for paramKey in self._param_key_list:
 #            self._param["job_setting_override"][0][paramKey] = 0
 
 #        print "inst"
@@ -51,13 +51,12 @@ class JobInfo:
 
     def getvalue(self, key):
         jsonpath_expr = parse(key)
-        ret =  [match.value for match in jsonpath_expr.find(self._param)]
+        ret = [match.value for match in jsonpath_expr.find(self._param)]
         if len(ret) <= 0:
             ret = [""]
         return ret
 
     def get_jobname(self):
         template = self.getvalue("[*].configInfo.[*].*.jobNameTemplate")[0]
-        jobname = template.replace("<filename>", self.getvalue("[*].*.fileNameWithoutExt")[0])
-        return jobname
-
+        job_name = template.replace("<filename>", self.getvalue("[*].*.fileNameWithoutExt")[0])
+        return job_name

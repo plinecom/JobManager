@@ -18,7 +18,7 @@ class JobListView(QtGui.QTreeWidget):
         self.setColumnCount(2)
         self.clear()
         i = 0
-        for job_info in self._joblist.get_joblist():
+        for job_info in self._joblist.get_job_list():
             item = QtGui.QTreeWidgetItem()
             item.setData(0, QtCore.Qt.DisplayRole, job_info.get_jobname())
             item.setData(0, QtCore.Qt.UserRole, i)
@@ -34,7 +34,7 @@ class JobListView(QtGui.QTreeWidget):
         # print current_item.text(0)
         job_id = current_item.data(0, QtCore.Qt.UserRole)
         i = 0
-        for jobinfo in self._joblist.get_joblist():
+        for jobinfo in self._joblist.get_job_list():
             if job_id == i:
                 self._joblist.set_current_job_id(i)
                 print "hit"

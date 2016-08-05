@@ -20,7 +20,7 @@ class MainWindow(QtGui.QMainWindow):
     def __init__(self, jobList, dispatcherList, configInfo, parent=None):
         QtGui.QMainWindow.__init__(self,parent)
         self._joblist = jobList
-        # print self._joblist.get_joblist()
+        # print self._joblist.get_job_list()
         self._dipatcherList = dispatcherList
         self._configInfo = configInfo
 
@@ -30,7 +30,7 @@ class MainWindow(QtGui.QMainWindow):
 
         # main_window.setAcceptDrops(True)
 
-        file_info_tab = gui.submit.fileinfo.fileinfo.FileinfoPanel(jobList, dispatcherList, configInfo, panel)
+        file_info_tab = gui.submit.fileinfo.fileinfo.FileInfoPanel(jobList, dispatcherList, configInfo, panel)
 
         dispatcher_common_panel = gui.submit.dispatcher.common.CommonPanel(jobList, dispatcherList, configInfo, panel)
         qube_panel = gui.submit.dispatcher.qube.QubePanel(jobList, panel)
@@ -91,7 +91,7 @@ class MainWindow(QtGui.QMainWindow):
             # print u.toLocalFile()
             file_parser = filelib.parser.lib.file_parse(str(u.toLocalFile()))
             # print file_parser.getparam()
-            self._joblist.get_joblist().append(
+            self._joblist.get_job_list().append(
                     job.jobinfo.JobInfo(
                             file_parser.getparam(),
                             self._dipatcherList,
@@ -111,7 +111,7 @@ class MainWindow(QtGui.QMainWindow):
         self._list_view.update_ui()
 
     def update_ui_right_pannel(self):
-        tab_panel = self.findChild(gui.submit.fileinfo.fileinfo.FileinfoPanel)
+        tab_panel = self.findChild(gui.submit.fileinfo.fileinfo.FileInfoPanel)
         tab_panel.update_ui()
 
     def on_button_submit(self):
@@ -174,9 +174,9 @@ if __name__ == "__main__":
 
     jobList = job.jobinfo.JobInfoList()
     if addFilePath is not None:
-        jobList.get_joblist().append(job.jobinfo.JobInfo(fileParam, dispatcherList, configInfo))
+        jobList.get_job_list().append(job.jobinfo.JobInfo(fileParam, dispatcherList, configInfo))
     else:
-        jobList.get_joblist().append(job.jobinfo.JobInfo(None, dispatcherList, configInfo.getvalue_by_json_path("[*]")))
+        jobList.get_job_list().append(job.jobinfo.JobInfo(None, dispatcherList, configInfo.getvalue_by_json_path("[*]")))
 
     app = QtGui.QApplication(sys.argv)
     main_window = MainWindow(jobList, dispatcherList, configInfo.getvalue_by_json_path("[*]"))
