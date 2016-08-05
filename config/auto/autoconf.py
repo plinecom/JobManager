@@ -11,17 +11,17 @@ class AutoConfig:
 
         system = platform.system()  # Windows, Linux, Darwin
         if "Darwin" in system:
-            system = "MacOS_X"
+            system = "macOS"
         self._param["auto_config"]["system"] = system
 
-        pathList = []
+        path_list = []
 
         if "Windows" in system:
-            pathList = ( os.environ['PATH'].split(';') )
+            path_list = ( os.environ['PATH'].split(';') )
         else:
-            pathList = os.environ['PATH'].split(':')
+            path_list = os.environ['PATH'].split(':')
 
-        # print pathList
+        # print path_list
         script_dir_path = os.path.abspath(os.path.dirname(__file__))
         config_path = os.path.join(script_dir_path, "autoconf.json")
         config_file = open(config_path, 'r')
@@ -36,11 +36,12 @@ class AutoConfig:
                 continue
 #            print "test"
 #            print  config[dispatcher_name]["submitter"][system].replace('\\\\','\\')
-            submit_path =  config["dispatcher"][dispatcher_name]["submitter"][system].replace('\\\\', '\\')
+            submit_path = config["dispatcher"][dispatcher_name]["submitter"][system].replace('\\\\', '\\')
             if os.path.exists(submit_path):
                 self._param["auto_config"]["dispatcher"][dispatcher_name] = {}
                 for param_key in config["dispatcher"][dispatcher_name].keys():
-                    self._param["auto_config"]["dispatcher"][dispatcher_name][param_key] = config["dispatcher"][dispatcher_name][param_key][system].replace('\\\\', '\\')
+                    self._param["auto_config"]["dispatcher"][dispatcher_name][param_key] =\
+                        config["dispatcher"][dispatcher_name][param_key][system].replace('\\\\', '\\')
 
                 # print "path"
 

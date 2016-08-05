@@ -13,7 +13,7 @@
       "qbhosts": {
         "Windows": "C:\\Program Files\\pfx\\qube\\bin\\qbhosts.exe",
         "Linux": "/usr/local/pfx/qube/bin/qbhosts",
-        "MacOS_X": ""
+        "macOS": ""
       }
     }
   }
