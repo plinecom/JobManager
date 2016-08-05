@@ -42,8 +42,8 @@ class QubePanel(QtGui.QWidget):
 
         self.pool_label = QtGui.QLabel("cluster")
         self.pool_combo = QtGui.QComboBox(self)
-        print "ccc"
-        print self._jobList.get_current_job().getvalue("[*].dispatcherInfo.[0].pools")
+        # print "ccc"
+        # print self._jobList.get_current_job().getvalue("[*].dispatcherInfo.[0].pools")
         self.pool_combo.addItems(self._jobList.get_current_job().getvalue("[*].dispatcherInfo.[0].pools")[0])
         layout.addWidget(self.pool_label, height, 0)
         layout.addWidget(self.pool_combo, height, 1)
