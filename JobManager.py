@@ -151,9 +151,9 @@ if __name__ == "__main__":
     configInfo = config.config.ConfigInfo(configList)
 #    print configInfo.getvalue("priority")
 #    print configInfo.getvalue("priority")
-    configInfo.getvalueJsonPath("[*].*.priority")
+    configInfo.getvalue_by_json_path("[*].*.priority")
     # print "ext_rt"
-    # print configInfo.getvalueJsonPath("[*].*.dispatcher")
+    # print configInfo.getvalue_by_json_path("[*].*.dispatcher")
     # command line mode?
 
     # loadFile(addFilePath)
@@ -166,20 +166,20 @@ if __name__ == "__main__":
 #    job_factory = jobfactory.factory.JobFactory()
 #    job = job_factory.getJob(fileParser.getparam(), "SudioPlugin()")
     dispatcherList = []
-    for dispatcher_info in configInfo.getvalueJsonPath("[*].*.dispatcher"):
+    for dispatcher_info in configInfo.getvalue_by_json_path("[*].*.dispatcher"):
         # print dispatcher_info
         if u"Qube6" in dispatcher_info.keys():
-            dispatcherList.append(dispatcher.qube.Qube6(configInfo.getvalueJsonPath("[*].*.dispatcher.Qube6")[0]).getparam())
+            dispatcherList.append(dispatcher.qube.Qube6(configInfo.getvalue_by_json_path("[*].*.dispatcher.Qube6")[0]).getparam())
     # print dispatcherList
 
     jobList = job.jobinfo.JobInfoList()
     if addFilePath is not None:
         jobList.get_joblist().append(job.jobinfo.JobInfo(fileParam, dispatcherList, configInfo))
     else:
-        jobList.get_joblist().append(job.jobinfo.JobInfo(None, dispatcherList, configInfo.getvalueJsonPath("[*]")))
+        jobList.get_joblist().append(job.jobinfo.JobInfo(None, dispatcherList, configInfo.getvalue_by_json_path("[*]")))
 
     app = QtGui.QApplication(sys.argv)
-    main_window = MainWindow(jobList, dispatcherList, configInfo.getvalueJsonPath("[*]"))
+    main_window = MainWindow(jobList, dispatcherList, configInfo.getvalue_by_json_path("[*]"))
     main_window.show()
 
     sys.exit(app.exec_())
