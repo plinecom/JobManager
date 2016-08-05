@@ -3,12 +3,12 @@ from PyQt4 import QtGui, QtCore
 
 class JobListView(QtGui.QTreeWidget):
 
-    def __init__(self, jobList, dispatcherList, configInfo, parent=None):
-        QtGui.QListWidget.__init__(self, parent)
+    def __init__(self, job_list, dispatcher_list, config_info, parent=None):
+        QtGui.QTreeWidget.__init__(self, parent)
         self._parent = parent
-        self._joblist = jobList
-        self._dipatcherList = dispatcherList
-        self._configInfo = configInfo
+        self._joblist = job_list
+        self._dipatcherList = dispatcher_list
+        self._configInfo = config_info
         self.setSelectionMode(self.ExtendedSelection)
         self.currentItemChanged.connect(self.item_changed)
 
@@ -18,9 +18,9 @@ class JobListView(QtGui.QTreeWidget):
         self.setColumnCount(2)
         self.clear()
         i = 0
-        for jobinfo in self._joblist.get_joblist():
+        for job_info in self._joblist.get_joblist():
             item = QtGui.QTreeWidgetItem()
-            item.setData(0, QtCore.Qt.DisplayRole, jobinfo.get_jobname())
+            item.setData(0, QtCore.Qt.DisplayRole, job_info.get_jobname())
             item.setData(0, QtCore.Qt.UserRole, i)
             self.addTopLevelItem(item)
             # print "index "+str(i)
@@ -32,10 +32,10 @@ class JobListView(QtGui.QTreeWidget):
             return
 
         # print current_item.text(0)
-        jobid = current_item.data(0, QtCore.Qt.UserRole)
+        job_id = current_item.data(0, QtCore.Qt.UserRole)
         i = 0
         for jobinfo in self._joblist.get_joblist():
-            if jobid == i:
+            if job_id == i:
                 self._joblist.set_current_job_id(i)
                 print "hit"
                 print i
