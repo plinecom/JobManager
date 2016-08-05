@@ -17,12 +17,12 @@ import job.jobinfo
 
 
 class MainWindow(QtGui.QMainWindow):
-    def __init__(self, jobList, dispatcherList, configInfo, parent=None):
-        QtGui.QMainWindow.__init__(self,parent)
-        self._joblist = jobList
-        # print self._joblist.get_job_list()
-        self._dipatcherList = dispatcherList
-        self._configInfo = configInfo
+    def __init__(self, job_list, dispatcher_list, config_info, parent=None):
+        QtGui.QMainWindow.__init__(self, parent)
+        self._job_list = job_list
+        # print self._job_list.get_job_list()
+        self._dipatcherList = dispatcher_list
+        self._configInfo = config_info
 
         self.setAcceptDrops(True)
         panel = QtGui.QWidget()
@@ -30,10 +30,10 @@ class MainWindow(QtGui.QMainWindow):
 
         # main_window.setAcceptDrops(True)
 
-        file_info_tab = gui.submit.fileinfo.fileinfo.FileInfoPanel(jobList, dispatcherList, configInfo, panel)
+        file_info_tab = gui.submit.fileinfo.fileinfo.FileInfoPanel(job_list, dispatcher_list, config_info, panel)
 
-        dispatcher_common_panel = gui.submit.dispatcher.common.CommonPanel(jobList, dispatcherList, configInfo, panel)
-        qube_panel = gui.submit.dispatcher.qube.QubePanel(jobList, panel)
+        dispatcher_common_panel = gui.submit.dispatcher.common.CommonPanel(job_list, dispatcher_list, config_info, panel)
+        qube_panel = gui.submit.dispatcher.qube.QubePanel(job_list, panel)
         qtabRLow = QtGui.QTabWidget()
         qtabRLow.addTab(dispatcher_common_panel, "dispatcher")
         qtabRLow.addTab(qube_panel, "Qube")
@@ -42,7 +42,7 @@ class MainWindow(QtGui.QMainWindow):
         panel_layout.addWidget(file_info_tab)
         panel_layout.addWidget(qtabRLow)
 
-        button_submit =QtGui.QPushButton("sumbmit")
+        button_submit = QtGui.QPushButton("sumbmit")
         button_submit.clicked.connect(self.on_button_submit)
         panel_layout.addWidget(button_submit)
 
@@ -56,7 +56,7 @@ class MainWindow(QtGui.QMainWindow):
         qsplitV = QtGui.QSplitter(QtCore.Qt.Vertical)
         panelL_layout = QtGui.QVBoxLayout()
         qtabL = QtGui.QTabWidget()
-        self._list_view = gui.joblist.list.JobListView(jobList, dispatcherList, configInfo, panel)
+        self._list_view = gui.joblist.list.JobListView(job_list, dispatcher_list, config_info, panel)
 
         qtabL.addTab( self._list_view, "Job")
 
@@ -91,7 +91,7 @@ class MainWindow(QtGui.QMainWindow):
             # print u.toLocalFile()
             file_parser = filelib.parser.lib.file_parse(str(u.toLocalFile()))
             # print file_parser.getparam()
-            self._joblist.get_job_list().append(
+            self._job_list.get_job_list().append(
                     job.jobinfo.JobInfo(
                             file_parser.getparam(),
                             self._dipatcherList,
@@ -101,7 +101,7 @@ class MainWindow(QtGui.QMainWindow):
 
             # print self._joblist.get_current_job()
 
-        self._joblist.set_current_job_id(-1)
+        self._job_list.set_current_job_id(-1)
         self.update_ui()
 
     def update_ui(self):
@@ -115,8 +115,8 @@ class MainWindow(QtGui.QMainWindow):
         tab_panel.update_ui()
 
     def on_button_submit(self):
-        dispatcher = self._joblist.get_current_job().getvalue("dispatherObj")
-        dispatcher.submit(self._joblist.get_current_job())
+        dispatcher = self._job_list.get_current_job().getvalue("dispatherObj")
+        dispatcher.submit(self._job_list.get_current_job())
         print "submit"
 
     def loadFile(self, absPath):
