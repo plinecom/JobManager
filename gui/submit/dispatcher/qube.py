@@ -3,9 +3,9 @@ from PyQt4 import QtGui, QtCore
 
 class QubePanel(QtGui.QWidget):
 
-    def __init__(self, jobList, parent=None):
+    def __init__(self, job_list, parent=None):
         QtGui.QWidget.__init__(self, parent)
-        self._jobList= jobList
+        self._jobList= job_list
         self.init_ui()
 
     def init_ui(self):
@@ -66,17 +66,17 @@ class QubePanel(QtGui.QWidget):
         self._jobList.get_current_job().setvalue("application", self.app_combo.currentText())
 #        print self._jobList.get_current_job().getvalue("application")
 
-    def start_frame_textChanged(self, text):
+    def start_frame_text_changed(self, text):
         # print text
         self._jobList.get_current_job().setvalue("startFrame", str(self.start_frame_qle.text()))
 
-    def end_frame_textChanged(self, text):
+    def end_frame_text_changed(self, text):
         # print text
         self._jobList.get_current_job().setvalue("endFrame", str(self.end_frame_qle.text()))
 
-    def group_itemSelectionChanged(self):
-        itemList = []
+    def group_item_selection_changed(self):
+        item_list = []
         for item in self.group_listWidget.selectedItems():
-            itemList.append(str(item.text()))
-        print itemList
-        self._jobList.get_current_job().setvalue("selected_groups", itemList)
+            item_list.append(str(item.text()))
+        print item_list
+        self._jobList.get_current_job().setvalue("selected_groups", item_list)

@@ -3,12 +3,12 @@ from PyQt4 import QtGui, QtCore
 
 class CommonPanel(QtGui.QWidget):
 
-    def __init__(self, jobList, dispatcherList, configInfo, parent=None):
+    def __init__(self, job_list, dispatcher_list, config_info, parent=None):
         QtGui.QWidget.__init__(self, parent)
         self._parent = parent
-        self._joblist = jobList
-        self._dipatcherList = dispatcherList
-        self._configInfo = configInfo
+        self._joblist = job_list
+        self._dipatcherList = dispatcher_list
+        self._configInfo = config_info
         self.init_ui()
 
     def init_ui(self):
@@ -27,7 +27,7 @@ class CommonPanel(QtGui.QWidget):
         self.group_listWidget.setSelectionMode(QtGui.QAbstractItemView.MultiSelection)
         self.group_listWidget.addItems(self._joblist.get_current_job().getvalue("[*].dispatcherInfo.[0].groups")[0])
 
-        self.group_listWidget.itemSelectionChanged.connect(self.group_itemSelectionChanged)
+        self.group_listWidget.itemSelectionChanged.connect(self.group_item_selection_changed)
         # init selected
         items = self.group_listWidget.findItems("*", QtCore.Qt.MatchWildcard)
         for item in items:
@@ -53,17 +53,17 @@ class CommonPanel(QtGui.QWidget):
         self._jobList.get_current_job().setvalue("application", self.app_combo.currentText())
         # print self._jobList.get_current_job().getvalue("application")
 
-    def start_frame_textChanged(self, text):
+    def start_frame_text_changed(self, text):
         # print text
         self._jobList.get_current_job().setvalue("startFrame", str(self.start_frame_qle.text()))
 
-    def end_frame_textChanged(self, text):
+    def end_frame_text_changed(self, text):
         # print text
         self._jobList.get_current_job().setvalue("endFrame", str(self.end_frame_qle.text()))
 
-    def group_itemSelectionChanged(self):
-        itemList = []
+    def group_item_selection_changed(self):
+        item_list = []
         for item in self.group_listWidget.selectedItems():
-            itemList.append(str(item.text()))
-        # print itemList
-        self._joblist.get_current_job().setvalue("selected_groups", itemList)
+            item_list.append(str(item.text()))
+        # print item_list
+        self._joblist.get_current_job().setvalue("selected_groups", item_list)
