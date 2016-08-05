@@ -5,7 +5,7 @@ import xml.etree.ElementTree
 
 class Qube(abstract.DispatcherBase):
     def __init__(self):
-       abstract.DispatcherBase.__init__(self)
+        abstract.DispatcherBase.__init__(self)
 
 
 class Qube6(Qube):
