@@ -1,5 +1,6 @@
 import ma
 import mb
+import nuke
 import os.path
 
 
@@ -10,6 +11,8 @@ def file_parse(abs_path):
         file_parser = ma.FileParserMayaMA(abs_path)
     elif job_ext == ".mb":
         file_parser = mb.FileParserMayaMB(abs_path)
+    elif job_ext == ".nk":
+        file_parser = nuke.FileParserNuke(abs_path)
 
     file_parser.parse()
 
