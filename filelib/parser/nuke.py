@@ -42,16 +42,24 @@ class FileParserNuke(abstract.FileParserBase):
                 print minor_version
             if "Root {" in l:
                 root_parse = True
+            if "Write {" in l:
+                write_parse = True
 
             if root_parse:
                 if frame_start is None and " frame" in l:
                     temp = l
                     frame_start = temp.split()[1]
                     print frame_start
-            if frame_end is None and " last_frame" in l:
-                temp = l
-                frame_end = temp.split()[1]
-                print frame_end
+                if frame_end is None and " last_frame" in l:
+                    temp = l
+                    frame_end = temp.split()[1]
+                    print frame_end
+
+            if write_parse:
+                if "name" in l:
+                    temp = l
+                    render_layer_list.append(temp.split()[1])
+                    print render_layer_list
 
             if "}" in l:
                 root_parse = False
