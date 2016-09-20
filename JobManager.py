@@ -58,7 +58,7 @@ class MainWindow(QtGui.QMainWindow):
         qtabL = QtGui.QTabWidget()
         self._list_view = gui.joblist.list.JobListView(job_list, dispatcher_list, config_info, panel)
 
-        qtabL.addTab( self._list_view, "Job")
+        qtabL.addTab(self._list_view, "Job")
 
         txtBrowser = QtGui.QTextBrowser()
         txtBrowser.append("test")

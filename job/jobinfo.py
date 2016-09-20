@@ -1,4 +1,5 @@
 from jsonpath_rw import jsonpath, parse
+import json
 
 __author__ = 'Masataka'
 
@@ -52,6 +53,7 @@ class JobInfo:
     def getvalue(self, key):
         jsonpath_expr = parse(key)
         ret = [match.value for match in jsonpath_expr.find(self._param)]
+        # print json.dumps(ret, sort_keys=False, indent=4)
         if len(ret) <= 0:
             ret = [""]
         return ret

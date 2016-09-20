@@ -3,6 +3,7 @@ import gui.submit.fileinfo.common
 import gui.submit.fileinfo.maya1
 import gui.submit.fileinfo.maya2
 import gui.submit.fileinfo.maya_mentalray
+import gui.submit.fileinfo.nuke
 
 
 class FileInfoPanel(QtGui.QTabWidget):
@@ -32,5 +33,6 @@ class FileInfoPanel(QtGui.QTabWidget):
                 mentalray_panel = gui.submit.fileinfo.maya_mentalray.MentalrayPanel(self._joblist, self._parent)
                 self.addTab(mentalray_panel, "Mentalray")
 
-        if "Nuke" in self._joblist.get_current_job().getvalue("[*].*.software")[0]:
-            pass
+        elif "Nuke" in self._joblist.get_current_job().getvalue("[*].*.software")[0]:
+            nuke_panel = gui.submit.fileinfo.nuke.NukePanel(self._joblist, self._parent)
+            self.addTab(nuke_panel, "Nuke")
