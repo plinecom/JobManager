@@ -23,6 +23,12 @@
           "maya":"test"
         }
       },
+      "Nuke_executable": {
+        "Nuke_2016": "/usr/autodesk/maya2016/bin/Render",
+        "Nuke_2015": "/usr/autodesk/maya2015-x64/bin/Render",
+        "Nuke_2014": "/usr/autodesk/maya2014-x64/bin/Render",
+        "Nuke_2013": "/usr/autodesk/maya2013-x64/bin/Render"
+      },
       "jobNameTemplate":"<filename>",
 
 ##      "Qube6": {

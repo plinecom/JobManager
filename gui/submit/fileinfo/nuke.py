@@ -89,7 +89,7 @@ class NukePanel(QtGui.QWidget):
 
         self.app_combo.clear()
         item_list_dic = {}
-        tmp = self._jobList.get_current_job().getvalue("[*].configInfo.[*].*.Maya_executable")[0]
+        tmp = self._jobList.get_current_job().getvalue("[*].configInfo.[*].*.Nuke_executable")[0]
         # print "test"
         # print tmp
         if isinstance(tmp, dict):
