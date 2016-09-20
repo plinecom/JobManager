@@ -31,3 +31,6 @@ class FileInfoPanel(QtGui.QTabWidget):
             if "mentalray" in self._joblist.get_current_job().getvalue("[*].*.renderer")[0]:
                 mentalray_panel = gui.submit.fileinfo.maya_mentalray.MentalrayPanel(self._joblist, self._parent)
                 self.addTab(mentalray_panel, "Mentalray")
+
+        if "Nuke" in self._joblist.get_current_job().getvalue("[*].*.software")[0]:
+            pass
